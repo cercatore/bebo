@@ -1,0 +1,33 @@
+<style>
+   a { margin-left:20px}
+   </style>
+
+
+<div class="card card-block py-2" >
+  <h1 class="text-white bg-info mx-auto px-2" >Nice to meet you, fish</h1>
+  ENTRA COME: <input placeholder="Pick a username." type="text" class="mx-auto m-2 form-control" ng-model="control.username">
+  <div class="p-2 bg-secondary"<h2 class="text-warning">{{chat_error}}</h2></div>
+  <div class="row col-sm-6 col-lg-12 px-2 mt-2">
+    <a class="btn btn-success col-sm-3 py-2" ng-click="control.sonoUser(control.username)">ENTRA</a>
+    <a class="btn btn-info col-sm-3 py-2" ng-click="control.sonoPaperino()">Enter as Donald@ Duck</a>
+    <a class="btn btn-success col-sm-3 py-2" ng-click="control.sonoMaster()">Enter as Mickey</a>
+
+  </div>
+  {{tutti_utenti|json}}
+  <ul class="row">
+    <li ng-repeat="user in tutti_utenti">
+      <a ng-if="!control.presence[user.name].offline" class="col-sm-3 btn btn-success"> BLACKAL</a>
+      <a ng-if=" control.presence[user.name].offline" class="col-sm-3 btn btn-default"> BLACKKD</a>
+
+    </li>
+  </ul>
+  <ul>
+    <li ng-repeat="(key,value) in currentChat.messages">
+      <!-- {{key }} - {{value}}</li> -->
+    </ul>
+
+  <br/>
+  <my-messanger></my-messanger>
+  <a class="btn btn-block btn-info mx-auto" href="mailto:claudio.bagnato@gmail.com?subject=wtf I like it">DROP ME SOMEHTING</a>
+
+</div>

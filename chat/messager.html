@@ -1,0 +1,102 @@
+<style>
+.conversation_orig{
+  margin-left:20px
+}
+footer {
+  position: fixed;
+  height: auto;
+  bottom: 0;
+
+}
+.receiver{
+  border-radius: 0 10px 10px 10px;
+  color:white;
+
+}
+.sender {
+  border-radius: 10px 0 10px 10px;
+  color:white;
+}
+.thumbnail{
+  max-width:62px;
+  max-height:62px;
+}
+
+
+</style>
+<!-- Message Box -->
+<div class="converation" id="ciao" style="overflow-y:scroll;height:300px;">
+<div class="row col-sm-12 pa-2" >
+    <div ng-repeat-start="(key,message) in currentChat.messages track by $index"></div>
+    <div class="col-sm-8 offset-sm-4 pull-right mb-2" ng-if="message.sender == control.user">
+        <div class="row">
+          <div class="col-sm-10 text-wrap sender bg-dark">
+            <strong class="text-no-wrap"><b>{{message.sender}}</b></strong>
+            <span class="text-wrap">{{message.text}}</span>
+            <div class="align-text-bottom text-sm-right text-secondary">{{ message.date | date: " h:mma" }}</div>
+
+          </div>
+          <div class="col-sm-2 bg-secondary text-center">
+            <img class="thumbnail rounded-circle" src="images/topolino.png">
+          </div>
+        </div>
+      
+    </div>
+    <div class="col-sm-8 mx-4 mb-2" ng-if="message.sender != control.user" ng-repeat-end>
+      <div class="row">
+          <div class="col-sm-2 text-center">
+            <img class="thumbnail rounded-circle mx-auto" src="images/thecat.jpg">
+          </div>
+          <div class="col-sm-10 p-2 receiver bg-dark">
+            <strong class="text-wrap">Cecilia</strong>
+            <div class="text-wrap">{{message.text}}</div> 
+            <div class="align-text-bottom text-sm-right text-secondary">{{ message.date | date: " h:mma" }}</div>
+          </div>
+
+      
+    </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+  <!-- Message Box End -->
+
+  <!-- Reply Box -->
+  <div hl-sticky="bottom" alwaysSticky="true" ><h2 class="text-primary">CIAO SONO STICKE</h2>
+  <div class="p-2" offset="100">
+    <form name="form" class="conversation-compose" style="background:#444" ng-submit="control.addMessage()">
+      <div class="emoji">
+        <i class="fa fa-smile-o fa-2x"></i>
+      </div>
+      <div class="input-group">
+        <input class="cl-tooltip form-control" name="text" ng-model="control.text" placeholder="Type a message" autofocus required><!--ng-init="control.text='blabla'" ng-required-->
+        <select type="text" class="custom-select" ng-model="control.other_input" >
+          <option>MANGIARE</option>
+          <option>DORMIRE</option>
+          <option>CACARE</option>
+        
+        </select>
+        <div class="photo"><i class="fa fa-2x fa-paperclip"></i></div>
+        <div class="photo"><i class="fa fa-2x fa-microphone"></i></div>
+        <div class="photo"><button><i class="fa fa-2x fa-send" ng-click="control.error = 'errore'"></i></button></div>
+        
+      </div>
+      <h4><i class="fa fa-info-circle"></i>{{control.error}}</h4>
+
+    </div>
+      
+
+
+    </form>
+  </div>
+  </div>
+
+
+</div>
+<!-- Conversation

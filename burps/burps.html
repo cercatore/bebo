@@ -1,0 +1,100 @@
+<style>
+  .box.ng-enter{
+        -webkit-animation: tinywalk 600ms ease-out;
+        animation: tinywalk 600ms ease-out;
+      }
+  .box.ng-leave{
+    -webkit-animation: tinywalk 600ms ease-in reverse;
+    animation: tinywalk 600ms ease-in reverse;
+  }
+  @keyframes tinywalk {
+        0%{ transform: translate(30%);opacity:0;}
+
+        100%{ transform: translate(0);opacity:1}
+      }
+  .text_order.ng-enter {
+        -webkit-animation: walk 1000ms ease;
+        animation: walk 1000ms ease;
+  }
+  @keyframes walk {
+        0% { transform: translate(30%);opacity:0;}
+        30%{ transform: translate(30%);opacity:0}
+        100%{transform: translate(0);opacity:1}
+  }
+  .btn-file input[type=file] {
+    display:block;
+
+  }
+  file-label::after{
+    content: "Click me";
+  }
+
+  img {
+    max-width:100%;
+    overflow:hidden;
+    border:none;
+    padding:0;
+    margin:0 auto;
+    display:block;
+  }
+
+
+</style>
+
+
+<div class="card" id="rootElement">
+  <div class="card-header">
+    <h4>Lottare</h4><small>inutile resistere</small>
+    </div>
+  <div class="card body my-2 px-2 py-2" ng-init="main.active = 0">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Mr, Your name</h2>
+      </div>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" placeholder="your name" ng-model="main.name" >
+
+      </div>
+
+
+    </div>
+
+
+    <form name="form">
+    <h2 class="text-danger text-nowrap">{{innocu_error}}</h2>
+    <cl-upload class="text-dark text-truncate btn btn-warning btn-file" id="rootid" file-input="file" on-change="readFile()" >{{zio}}</cl-upload>
+      <br/>{{out_url}}
+    </form>
+    <button class="btn btn-info my-2" type="button" ng-click="main.active = !main.active" >BUTTON</button>
+
+    <!-- <a class="btn btn-block btn-info" ng-click="main.cleanup()">MANDA</a> -->
+
+    <div class="row col-sm-12 mt-5">
+      <div class="card col-sm-6 col-md-8" >
+      <div class="card-block my-2 pa-2" >
+        <img ng-if=" upload_complete || main.active" style="min-height:200px";class="box img-responsive img-auto" src="{{thecat}}">
+      </div>
+    </div>
+      <div class="card col-sm-6 col-md-4">
+          <div class="card-block my-2 pa-2" >
+            <div ng-repeat="testo in main.testi track by $index"  style="font-size:28px" class="text_order" ng-if="main.active">
+              <div ng-if="$index != 2"><i>{{testo}}</i></div>
+              <div ng-if="$index == 2"><b><i>{{testo}}</i></b></div>
+            </div>
+        </div>
+      </div>
+      </div>
+      <div>
+        <a class="btn btn-block btn-success" ng-if="upload_complete" ng-click="main.procedi()">PROSEGUI PASSO SSUCCESSIVO</a>
+      </div>
+        HOISTING
+
+
+
+
+
+
+
+    </div>
+
+  </div>

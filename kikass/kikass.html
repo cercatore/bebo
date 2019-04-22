@@ -1,0 +1,73 @@
+<style>
+.input-card {
+    background-image: url(images/background-card.png); 
+    background-size: cover; 
+    background-position:bottom;
+}
+</style>
+<form  ng-submit="main.done(main.input)">
+<div class="form-group">
+    <a class="btn btn-secondary pull-right" ng-click="openSettings()"><i class="fa fa-gear">AIUTO</i></a>
+    <h1 class="text-center text-truncate">select one, two , trh33</h1>
+  
+    <div class="card card-block">
+        <h2 class="text-sm-center text-block text-secondary ">TEAM CASA</h2>
+        <div class="card-body input-card bg-secondary p-2">
+        <select class="form-control col col-sm-4 my-2 " ng-model="main.input.selected_team_1">
+            <option ng-selected="main.input.selected_team == item" ng-repeat="item in squadre_serie_a" ng-value="item" >{{item}}</option>
+        </select>
+        
+        <input type="text" class="form-control col col-sm-6 my-2" ng-model="main.input.formazione_1" placeholder="Players..." required >
+            <div ng-messages="main.input.formazione_1"> {{error}}</div>
+            <button type="button" class="pull-right btn btn-default popovers-2" 
+                data-content="Inserisci i giocatori separati da ','"><i class="fa fa-gear fa-2x"></i></button>
+        </div>
+        </div>
+    </div>
+    
+    <div class="card card-block bg-secondary p-2">
+
+        <h2 class="text-sm-center">TEAM OSPITI</h2>
+    <select class="form-control my-2" ng-model="main.input.selected_team_2" required>
+        <option ng-selected="main.input.selected_team == item" ng-repeat="item in squadre_serie_a" ng-value="item" >{{item}}</option>
+    </select>
+    <input type="text" class="form-control my-2" name="team2" ng-model="main.input.formazione_2" required >
+        <div ng-messages="form1.team2.$invalid || form1.team2.$dirty">
+            <div ng-message="required" class="ng-error" >required.</div>
+        </div>
+    </div>
+            <button type="button"
+                class="btn popovers-1"
+                title="TITLE HERE"
+                data-content="giruirine panini&lt;span class='fa fa-shopping-cart' ng-click='wow()' &gt;&lt;/span&gt;"
+                
+                data-original-title="A Title">dlkvmsvk</button>
+    <footer class="position-sticky">
+        <i>(optional)</i><i class="fa fa-info-circle"></i>
+        <select class="form-control" ng-model="main.input.separator">
+            <option value=",">comma</option>
+            <option value=".">dot</option>
+            <option value=";">semicolo</option>
+    
+            <option value="&nbsp;">space</option>
+    
+        </select>
+    </footer>
+
+
+
+</div>
+<button type="submit" class="btn btn-primary col col-pull-right" ng-click="main.done(main.input)">FORZA</button>
+    
+</form>
+
+
+
+<pre>
+    {{ results }}
+</pre>
+<pre>
+    {{ out2}}
+</pre>
+<script src="kikass/strings.js"></script>
+<script src="kikass/data2018.js"></script>

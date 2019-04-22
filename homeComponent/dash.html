@@ -1,0 +1,92 @@
+<style>
+  .figure {
+      height: 15vw;
+  }
+
+  .figure  img {
+      width:100%;
+      object-fit:cover;
+  }
+
+
+  </style>
+  <div  class="card card-block doggo">
+    <div class="card-header">
+        <div class="row col-sm-12">
+            <div class="col-sm-5"><i class="text-truncate"><h2>{{userLoggedIn}}</h2></i>
+              <span><i class="text-primary">status: {{user.textStatus}}</i><i class="fa fa-edit fa-2x"></i></span>
+            </div>
+            <!-- <div ng-click="main.tutorial()"><i class="fa fa-info fa-2x"></i></div> -->
+            <button class="btn btn-primary pull-right" ng-click="main.clear()">CLEAR</button>
+            <button class="btn btn-warning pull-right .popovers-2" ng-click="main.running()">Runar</button>
+
+            <button type="button"
+                class="col-sm-5 col-sm-offset-10 btn  btn-outline-success pull-right popovers-2"
+                placement="bottom"
+                title="TITLE HERE&lt;span onclick='this.popover('hide');alert()'&gt;&times;&lt;/span&gt;>"
+                data-content="leroe dei due mondi che tutto mi deve arrivare la gioia giafigurine panini&lt;span class='fa fa-shopping-cart' onclick='console.log(this.hasOwnProperty('popover')' &gt;&lt;/span&gt;"
+
+                data-original-title="A Title">FA FA</button>
+
+        </div>
+
+        <small><pre>text to say things {{main.tutorial}}</pre></small>
+        <div ng-if="userverified">your email is not verified. rensend linkuser.emailVerified;</div>
+    </div>
+    <div class="card-body">
+
+         <!-- choose body -> -->
+         <div class="row mt-5">
+          <div class="figure col-6"  >
+            <figcaption class="figure-caption"><h2 >Celebritis</h2></figcaption>
+            <img src="images/dashboard_2.png"class="figure-img img-fluid rounded" alt="pick celebrities" ng-click="scelta = 1; main.forward()">
+          </div>
+            <!-- ignore card mode, later shadow-->
+          <div class="figure col-sm-offset-6 col-6">
+            <figcaption class="figure-caption"><h2 > A caption for the above image.</h2></figcaption>
+            <img src="images/dashboard_player.jpg" class="figure-img img-fluid rounded" alt="pick animals" ng-click="scelta = 2; main.forward()">
+
+
+          </div>
+          </div>
+
+        <pre class="small fa fa-italic">
+        	La donzelletta vien dalla campagna,
+In sul calar del sole,
+Col suo fascio dell'erba; e reca in mano
+Un mazzolin di rose e di viole,
+Onde, siccome suole,
+Ornare ella si appresta
+Dimani, al dì di festa, il petto e il crine.
+Siede con le vicine
+Su la scala a filar la vecchierella,
+Incontro là dove si perde il giorno;
+E novellando vien del suo buon tempo,
+Quando ai dì della festa ella si ornava,
+Ed ancor sana e snella
+Solea danzar la sera intra di quei
+Ch'ebbe compagni dell'età più bella.
+Già tutta l'aria imbruna,
+Torna azzurro il sereno, e tornan l'ombre
+Giù da' colli e da' tetti,
+Al biancheggiar della recente luna.
+Or la squilla dà segno
+Della festa che viene;
+Ed a quel suon diresti
+Che il cor si riconforta.
+I fanciulli gridando
+Su la piazzuola in frotta,
+E qua e là saltando,
+Fanno un lieto romore:
+E intanto riede alla sua parca mensa,
+Fischiando, il zappatore,
+E seco pensa al dì del suo riposo.
+
+
+
+
+    </pre>
+    </div>
+    <button class="btn btn-success col-6 mx-auto" ng-click="koko()">PNAECIOA</button>
+
+</div>

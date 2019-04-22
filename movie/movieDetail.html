@@ -1,0 +1,177 @@
+
+<style>
+.thumbnail .corner{
+  position:absolute;
+  right:0;
+  background-color:#70707070;
+
+}
+.thumbnail{
+  transition-duration: .62s ease-out all;
+}
+.thumbnail img{
+  width:200px;
+  height:auto;
+}
+.thumbnail:hover{
+  opacity:0;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none;
+  outline: 0;
+
+}
+.grey {
+  color: #999;
+}
+.bold {
+  font-weight: bold;
+}
+.card{
+  font-family:Verdana;
+  font-size:22px;
+}
+.white{
+  color:white;
+}
+.yellow{color:yellow}
+img {
+  width: 100%;
+}
+.img-container {
+  position:relative;
+  max-width:500px;
+}
+.thumbnail {
+  transition-duration: 0.62s;
+}
+
+.iverposed {
+  position:absolute;
+  top:0;
+  opacity: 0;
+  transition-duration: .62s;
+}
+
+.thumbnail:hover {
+  opacity: .5;
+}
+
+.iverposed:hover {
+  opacity: 1;
+}
+
+.mycaption {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  background-color:#545;
+
+}
+.lead{
+  font-size:28px;
+  text-shadow: 1px 1px 2px black;
+  background-color:#444A;
+  color:white;
+
+}
+.list-group-item:hover{
+  color:white;font-weight:bold;
+  background-color:#428f43A0;
+  cursor:pointer;
+}
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+</style>
+<!-- <section class="col-lg-12 main_content">
+<div class="panel panel-info py-2 my-2">
+
+<div class="panel-heading mx-2 panel-info"><i class="fa fa-bars"></i><span class="bold lead "> MOVIES</span></div>
+<div class="panel-body panel-info">
+<ul class="list-group mb-5">
+<li class="list-group-item active"><i class="fa fa-film fa-2x"></i>  CINEMA</li>
+<li class="list-group-item"><i class="fa fa-tv fa-2x"></i>  SERIE TV</li><li class="list-group-item"><i class="fa fa-2x fa-play"></i>  CARTONI</li>
+</ul>
+<ul class="list-group mb-5">
+<li class="list-group-item active"><i class="fa fa-send fa-2x"></i>  GENERI</li>
+<li class="list-group-item"><span class="fa fa-envelope">  AZIONE</span></li>
+</ul>
+</div>
+</div>
+</section> -->
+<div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{progress}}%"></div>
+<div class="panel bg-light">
+  <div class="navbar navbar-collapse" >
+    <div class="nav-item" style="vertical-align:baseline">
+      <span class="text-wrap"><i class="fa fa-film fa-4x"> <strong>{{data.length}}</strong>movies</i>
+    </div>
+
+    <div class="nav-item">
+      <a class="btn btn-primary" ng-init="ctrl.fire = 0" ng-click="ctrl.loadMovies()">FUOCO A VOLO</a>
+      <a class="btn btn-danger" ng-init="ctrl.fire = 0" ng-click="ctrl.setTable()">FIGA</a>
+
+    </div>
+    <div class="pull-right nav-item">
+      <i class="fa fa-arrow-down fa-2x"></i>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="! toggleDetail">
+    <div class="card card-block col-sm-4 my-2 " ng-repeat="movie in data">
+      <!-- <div class="card-header">BEDD SUCCHIAMI</div> -->
+      <div class="container">
+
+      <div class="mx-auto row col-md-12 bg-dark" >
+        <div class="col-md-6 text-nowrap">
+          <i class="grey"> {{movie.year}}</i>
+        </div>
+        <div class="col-md-6 text-sm-right text-nowrap">
+          <i class="grey"> {{movie.genre}}</i>
+
+        </div>
+      </div>
+      <div class="mx-auto img-container" >
+        <img class="thumbnail" src="{{movie.image}}">
+        <div class="iverposed" style="width:100%;">
+          <img  src="images/play.png" ng-click="mostraDettaglio()">
+          <cl-rating value="movie.score"></cl-rating>
+
+        </div>
+        <p class="col-md-12 lead text-center bg-dark"> <b>{{movie.name}}</b> </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h1 class="text-justify">ANCORRRRRA Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et</h1>
+
+</div>
