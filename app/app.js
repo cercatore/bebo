@@ -410,6 +410,10 @@ app.config(
 			templateUrl:"chat/customerchat.html",
 			controller:'burpsCtrl as main'
 		})
+		.when( '/cascata' , {
+			templateUrl:"blanotte/cascata.html",
+			controller:"cascata as main"
+		})
 		.otherwise({
 			redirectTo:"/maia"
 		})
