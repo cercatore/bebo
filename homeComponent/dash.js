@@ -9,6 +9,9 @@ angular.module("dash", ['ngNativeTransitions'])
     $scope.$watch( "scelta", ( valore, oldval) => {$log.debug(valore)} )
 
 
+    //  mondo nuovo
+     
+
 
 
 

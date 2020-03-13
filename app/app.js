@@ -414,8 +414,12 @@ app.config(
 			templateUrl:"blanotte/cascata.html",
 			controller:"cascata as main"
 		})
+		.when('/prefs' , {
+			templateUrl:"blanotte/cascata.html",
+			controller:"prefs as main"
+		})
 		.otherwise({
-			redirectTo:"/maia"
+			redirectTo:"/prefs"
 		})
 
 
