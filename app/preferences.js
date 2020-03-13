@@ -10,16 +10,29 @@ const prefs  = (function( afs, user, $log){
 
 
     } 
-    function carica(key){
-        afs.collection("users").doc(user)
+    async function  carica(key){
+        let value =undefined;
+        let ciao = await afs.collection("users").doc(user)
             .get()
-            .then(doc => console.log(doc.data()))
+            .then(doc =>{return  doc.data()  } )
+            .catch(error => $log("error;.."));
+        $log(`key : ${key} ho recuperato la prop :${ciao[key]}`);
+        
     }
     function base(){return afs;}
+    function isFunction(functionToCheck) {
+        return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+    }
+    async function action(key, callback){
+        if (!isFunction(callback)) $log("error! no callback taken")
+        let prefValue =  await carica(key);
+        console.log(prefValue)
+
+    }
     return {
         save: save,
         carica:carica,
-        getBase: base
+        caricaAction:action
     }
 })(db,"uomo", console.log);
 
@@ -28,5 +41,5 @@ app.controller("prefs", function($http,$log){
     log("iniziale valore di pref : " + this.preferenza);
 
     //log(prefs.save("ciaokey","clavalue"));
-   prefs.carica("ciaokey");
+   prefs.caricaAction("ciaokey", "fjkjf" );
 });
