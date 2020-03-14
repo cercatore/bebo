@@ -13,6 +13,7 @@
         <a href="#" class="btn bg-dark text-light" ng-click="main.signInGithub()">GITHUB</a>
       </div>
   </div>
+  
   <form class="card-header" name="main.myform" ng-submit="main.signInNormal(main.user)">
   <h2 class="text-sm-center"> <br><br/><span class="pull-right col-2"><img class="img-thumbnail" src="images/loading.gif" ng-if="main.working"></span></h2>
   <div class="form-group" >
@@ -32,6 +33,8 @@
     <label for="remember"> Remember Me</label>
   </div>
   <a href="" class="pull-right" ng-click="main.sendEmailForgot()"><i><small>Password dimenticata?</i></small></a>
+  <!-- test-->
+  <a class="pull-right btn btn-info" ng-click="main.doStuff()"><span class="fa fa-send fa-2x"></span>OTA LOGIN</a>
   <a class="btn btn-primary" ng-click="main.signInNormal(user)"><span class="fa fa-login"> LOGIN</span></a>
   <div class="text-primary text-sm-center" ng-if="message"><h2>{{message}}</h2></div>
   <span class="icon-bar" style="width:3939px"></span>

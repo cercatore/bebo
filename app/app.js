@@ -45,6 +45,33 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
 	$rootScope.user = firebase.auth().currentUser;
 		// $location.path("/kikass");
+	//test button
+	var actionCodeSettings = {
+		url: 'https://www.example.com/?email=' + firebase.auth().currentUser.email,
+		iOS: {
+		  bundleId: 'com.example.ios'
+		},
+		android: {
+		  packageName: 'io.melanzatm.whatisdoggo',
+		  installApp: true,
+		  minimumVersion: '19'
+		},
+		handleCodeInApp: true,
+		// When multiple custom dynamic link domains are defined, specify which
+		// one to use.
+		dynamicLinkDomain: "example.page.link"
+	  };
+this.doStuff = () => {
+	firebase.auth().currentUser.sendEmailVerification(actionCodeSettings)
+  .then(function() {
+    console.log("ok");
+  })
+  .catch(function(error) {
+	// Error occurred. Inspect error.code.
+	console.log(error);
+  });
+
+}
 
 	this.signInNormal = ( ) => {
 	  this.working = true;

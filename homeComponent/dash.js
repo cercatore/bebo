@@ -17,7 +17,7 @@ angular.module("dash", ['ngNativeTransitions'])
     $log.info(user);
     let prefs = $settings.prefs(db, "homegreen@gmail.com",console.log);
     function saveSettings(){
-      //prefs.save("dummykey", user.email);
+      //  prefs.save("dummykey", user.email);
     }
     saveSettings();
 
