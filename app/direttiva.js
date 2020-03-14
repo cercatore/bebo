@@ -1,3 +1,5 @@
+
+
 _ = (message) => {console.log(message + "dficance")};
 let modulo = angular.module('myApp.costanti', []);
 modulo
@@ -10,10 +12,29 @@ modulo
     squadre_serie_a: ["SELEZIONA...", "ATALANTA", "BOLOGNA", "CAGLIARI", "CHIEVO", "EMPOLI", "FIORENTINA", "FROSINONE", "GENOA", "INTER", "JUVENTUS", "LAZIO", "MILAN", "NAPOLI", "PARMA", "ROMA", "SAMPDORIA", "SASSUOLO", "SPAL", "TORINO", "UDINESE"],
     history: [],
     routes,
-    amazonBackend: "http://ec2-18-221-235-74.us-east-2.compute.amazonaws.com/message/blabla:"
+    amazonBackend: "http://ec2-18-221-235-74.us-east-2.compute.amazonaws.com/message/blabla:",
+    prefs : prefs
 
 });
+app.controller("prefs", function(clSettings, $http, $log){
+    let log = $log.info;
+    log("iniziale valore di pref : " + this.preferenza);
+    const prefs = clSettings.prefs(db,"bagnato_c",console.log);
+    //log(prefs.save("ciaokey","clavalue"));
+    //prefs.caricaAction("ciaokey", "fjkjf" );
+    var user = firebase.auth().currentUser;
 
+    this.resetPassword = () => {
+        user.updateEmail("cbagnato77@gmail.com").then(function() {
+            // Update successful.
+            $log.info("success")
+          }).catch(function(error) {
+            // An error happened.
+            $log.info("err: " + error)
+          });
+          
+    }
+});
 angular.module('myApp.playground', [])
     .controller('playCtrl', function ($rootScope, $scope, $timeout, $location ){
         function mock_ctrl() {

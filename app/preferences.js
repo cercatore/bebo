@@ -19,7 +19,8 @@ const prefs  = (function( afs, user, $log){
         $log(`key : ${key} ho recuperato la prop :${ciao[key]}`);
         
     }
-    function base(){return afs;}
+    function base(){
+        if(user ==="" || user ===undefined || afs === undefined) throw new DOMException("kgjds");}
     function isFunction(functionToCheck) {
         return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
     }
@@ -29,17 +30,13 @@ const prefs  = (function( afs, user, $log){
         console.log(prefValue)
 
     }
+    base();
+
     return {
         save: save,
         carica:carica,
         caricaAction:action
     }
-})(db,"uomo", console.log);
+})
 
-app.controller("prefs", function($http,$log){
-    let log = $log.info;
-    log("iniziale valore di pref : " + this.preferenza);
 
-    //log(prefs.save("ciaokey","clavalue"));
-   prefs.caricaAction("ciaokey", "fjkjf" );
-});

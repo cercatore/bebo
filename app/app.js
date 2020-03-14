@@ -109,7 +109,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 			// The signed-in user info.
 			var user = result.user;
 			$rootScope.rightPath = 1;
-			$rootScope.userLoggedIn = result.user.displayName || result.user.email || "anonymous";
+			$rootScope.userLoggedIn = result.user.displayName || result.user.email || "anonymous";// +++498534??? add data
 			// user.getIdToken().then( token => {window.localStorage.setItem("token", token);confirm("hello ! " + token.substring(0,5) );});
 
 			$rootScope.user = user;
