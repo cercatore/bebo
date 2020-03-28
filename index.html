@@ -140,10 +140,8 @@
 
   </body>
 
-  <script src="js/jquery.3.1.0.min.js"></script>
-  <!-- <script src="https://unpkg.com/popper.js"></script> -->
-  <script scr="https://cdnjs.com/libraries/popper.js"></script><!-- <script src="js/bootstrap.4.0.0-alpha.3.min.js"></script> -->
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.js"></script>
   <script src="js/angular.js"></script>
 
   <script src="js/angular-route.js"></script>
@@ -169,16 +167,9 @@
   };
   var fireapp = firebase.initializeApp(config);
   var db = firebase.firestore();
-  console.log(db);
-  const messaging = firebase.messaging();
-  console.log(fireapp.name + " " + messaging);
+  console.log("firebase app:" + fireapp.name )
   // Add the public key generated from the console here.
 // messaging.usePublicVapidKey("BKagOny0KF_2pCJQ3m....moL0ewzQ8rZu");
-
-  messaging.onMessage(function(payload) {
-  console.log('Message received. ', payload);
-  // ...
-});
 
 </script>
 <script src="app/ng-file-upload.min.js"></script>
