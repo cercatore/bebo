@@ -130,11 +130,11 @@
   <img class="col-6" ng-if="!splashLoad" src="images/loading.gif">
   </div>
 <div >
-  <div class="col-12 card card-block">
-    <div class="btn btn-primary  mx-5 my-5" ng-click="move()">HISTORY-1</div>
-  </div>
   <div ng-view class="doggo" style="marginTop:-20px" ></div><!-- qua TODO-->
-
+  <div class="col-12 card card-block">
+      <div class="btn btn-primary  mx-5 my-5" ng-click="move()">GO BACK</div>
+    </div>
+    
 
 </div>
 
@@ -185,6 +185,7 @@
 
 <script src="partials/shared/modal.js"></script>
 <script src="app/app.js"></script>
+<script src="app/preferences.js"></script>
 <script src="app/common.js"></script>
 <script src="app/pica.js"></script>
 <script src="app/direttiva.js"></script>

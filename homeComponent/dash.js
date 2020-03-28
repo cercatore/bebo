@@ -1,5 +1,7 @@
+
+
 angular.module("dash", ['ngNativeTransitions'])
-  .controller('appCtrl', ['$scope', '$nativeTransitions' ,'$log', '$location', function ($scope, $nativeTransitions, $log, $location){
+  .controller('appCtrl', ['$scope', "$rootScope", "clSettings", '$nativeTransitions' ,'$log', '$location', function ($scope,$rootScope, $settings,$nativeTransitions, $log, $location){
 
 
 
@@ -9,8 +11,17 @@ angular.module("dash", ['ngNativeTransitions'])
     $scope.$watch( "scelta", ( valore, oldval) => {$log.debug(valore)} )
 
 
+    //  mondo nuovo
+    
+    let user = $rootScope.userLoggedIn ;
+    $log.info(user);
+    let prefs = $settings.prefs(db, "homegreen@gmail.com",console.log);
+    function saveSettings(){
+      //  prefs.save("dummykey", user.email);
+    }
+    saveSettings();
 
-
+    prefs.carica("dummykey");
 
 
 
@@ -30,7 +41,7 @@ angular.module("dash", ['ngNativeTransitions'])
         fixedPixelsTop: 45,
         href: '#home'
       };
-      $('.popovers-1').popover({show: true, html: true});
+     // $('.popovers-1').popover({show: true, html: true});
       $('.popovers-2').on('click', (evt) => {
         self.running();
       })
@@ -55,7 +66,7 @@ angular.module("dash", ['ngNativeTransitions'])
 
 
       $scope.koko = () => {
-          $log.debug("this was changed for maasturbate");
+          $log("this was changed for maasturbate");
           $location.path("azione");
           // $nativeTransitions.slide(options, callback, error);
 

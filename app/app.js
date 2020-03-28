@@ -45,6 +45,33 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
 	$rootScope.user = firebase.auth().currentUser;
 		// $location.path("/kikass");
+	//test button
+	var actionCodeSettings = {
+		url: 'https://www.example.com/?email=' + firebase.auth().currentUser.email,
+		iOS: {
+		  bundleId: 'com.example.ios'
+		},
+		android: {
+		  packageName: 'io.melanzatm.whatisdoggo',
+		  installApp: true,
+		  minimumVersion: '19'
+		},
+		handleCodeInApp: true,
+		// When multiple custom dynamic link domains are defined, specify which
+		// one to use.
+		dynamicLinkDomain: "example.page.link"
+	  };
+this.doStuff = () => {
+	firebase.auth().currentUser.sendEmailVerification(actionCodeSettings)
+  .then(function() {
+    console.log("ok");
+  })
+  .catch(function(error) {
+	// Error occurred. Inspect error.code.
+	console.log(error);
+  });
+
+}
 
 	this.signInNormal = ( ) => {
 	  this.working = true;
@@ -109,7 +136,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 			// The signed-in user info.
 			var user = result.user;
 			$rootScope.rightPath = 1;
-			$rootScope.userLoggedIn = result.user.displayName || result.user.email || "anonymous";
+			$rootScope.userLoggedIn = result.user.displayName || result.user.email || "anonymous";// +++498534??? add data
 			// user.getIdToken().then( token => {window.localStorage.setItem("token", token);confirm("hello ! " + token.substring(0,5) );});
 
 			$rootScope.user = user;
@@ -353,35 +380,20 @@ app.config(
 		  //alert ("useXDomain prop is " + $httpProvider.defaults.useXDomain)
 	// $httpProvider.interceptors.push('BearerAuthInterceptor');
 
-    $routeProvider.
-      when('/comanda', {
-			title:"PRFESSIONAL HOME PAGE DEVELOPER CLAUDIO",					// title: 'LOGIN',
-			templateUrl:"/partials/comanda/comanda_new.html",			// templateUrl: 'login.html',
-			controller:"comandaCtrl"					// controller: 'loginCtrl'
-      })
-	  .when('/lista_portate', {
-		title: 'visualizza admin portate',
-		templateUrl: 'partials/viewPortata/list_portate.html',
-        controller: 'portateCtrl'
-	  })
-      .when("/admin", {
-		title: 'Form Prodotto',
-		templateUrl: 'partials/portata/admin_portata.html',
-		controller: 'addProductCtrl'
-
-	  })
+    $routeProvider
+      
 	  .when('/login', {
 			title: 'LOGIN',
 			templateUrl: '/former.html',
 			controller:"formerCtrl as main"					// controller: 'loginCtrl'
       })
-	  .when( routes[1], {
+	  .when( "/home" , {
 			title : 'NUTELLA',
 			templateUrl: 'homeComponent/home.html',
 			controller : 'homeController as main'
 
 		})
-		.when( routes[2], {
+		.when(  "/signup", {
 		 		title: 'YOLO PLAYGROUND',
 				templateUrl: 'former/register.html',
 				controller:"playCtrl as main"
@@ -390,7 +402,7 @@ app.config(
 				title: '500',
 				templateUrl: 'homeComponent/500.html'
 		})
-		.when( routes[3], {
+		.when(  "/chat", {
 			title:'chat',
 			templateUrl: 'chat/room.html',
 			controller: 'chatController as control'
@@ -420,6 +432,21 @@ app.config(
 		.when('/azione', {
 			templateUrl:"burps/burps.html",
 			controller:'burpsCtrl as main'
+		})
+		.when('/maia' , {
+			templateUrl:"chat/customerchat.html",
+			controller:'burpsCtrl as main'
+		})
+		.when( '/cascata' , {
+			templateUrl:"blanotte/cascata.html",
+			controller:"cascata as main"
+		})
+		.when('/prefs' , {
+			templateUrl:"blanotte/cascata.html",
+			controller:"prefs as main"
+		})
+		.otherwise({
+			redirectTo:"/prefs"
 		})
 
 
@@ -523,6 +550,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 			href: last
 		  };
 		console.log(last);
+		$location.path("/home");
 	}
 	$rootScope.$watch("user", function(newvalue,oldvalue){
 		console.log("redirecting to daskboard...");
