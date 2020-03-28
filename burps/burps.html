@@ -75,6 +75,7 @@
         <img ng-if=" upload_complete || main.active" style="min-height:200px";class="box img-responsive img-auto" src="{{thecat}}">
       </div>
     </div>
+      <div ng-if="recog_in_progress">{{recog_in_progress}}</div>
       <div class="card col-sm-6 col-md-4">
           <div class="card-block my-2 pa-2" >
             <div ng-repeat="testo in main.testi track by $index"  style="font-size:28px" class="text_order" ng-if="main.active">

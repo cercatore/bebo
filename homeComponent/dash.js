@@ -23,6 +23,7 @@ angular.module("dash", ['ngNativeTransitions'])
 
     prefs.carica("dummykey");
 
+   
 
 
 
@@ -30,8 +31,16 @@ angular.module("dash", ['ngNativeTransitions'])
 
 
 
-
-
+    this.doStuff = () => {
+      firebase.auth().currentUser.sendEmailVerification(actionCodeSettings)
+      .then(function() {
+        console.log("ok sent to " + firebase.auth().currentUser.email );
+      })
+      .catch(function(error) {
+      // Error occurred. Inspect error.code.
+      console.log(error);
+      });
+    }    
 
       var options = {
         direction: 'left',
@@ -41,14 +50,22 @@ angular.module("dash", ['ngNativeTransitions'])
         fixedPixelsTop: 45,
         href: '#home'
       };
-     // $('.popovers-1').popover({show: true, html: true});
-      $('.popovers-2').on('click', (evt) => {
-        self.running();
+        
+      $('.popovers-1').on('click', (evt) => {
+        alert("£click")
       })
       var callback = function (successMsg){ console.log('success -> ' + successMsg) };
       var error = function (error){ console.log(error) };
+      function sendEmailVerification()  {
 
-
+        user.sendEmailPasswordReminder(user).then(function() {  //WRONG
+        console.log("// Email sent. " + user);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+    $scope.testEmail = sendEmailVerification;
+      
 
 
 
@@ -66,11 +83,26 @@ angular.module("dash", ['ngNativeTransitions'])
 
 
       $scope.koko = () => {
-          $log("this was changed for maasturbate");
           $location.path("azione");
           // $nativeTransitions.slide(options, callback, error);
 
         };
+        var actionCodeSettings = {
+          url: 'https://127.0.0.1/?email=' + "FIREBBASE,AUTH",
+          iOS: {
+            bundleId: 'com.example.ios'
+          },
+          android: {
+            packageName: 'io.melanzatm.whatisdoggo',
+            installApp: false,
+            minimumVersion: '19'
+          },
+          handleCodeInApp: true,
+          // When multiple custom dynamic link domains are defined, specify which
+          // one to use.
+          dynamicLinkDomain: "example.page.link"
+          };
+        
 
 
 

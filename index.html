@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="user-scalable=yes, maximum-scale=1.0, width=device-width, height=device-height" />
-  <link href="css/bootstrap.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=yes, maximum-scale=1.0, width=device-width" />
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 
-  <link href="css/font-awesome.4.6.3.min.css" rel="stylesheet">
+  <link href="css/font-awesome.4.6.3.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Courier:400,300,100,100italic" rel="stylesheet">
   <link href="css/movie_styles.css" rel="stylesheet">
   <link href="css/chat2.css" rel="stylesheet">
@@ -139,10 +139,8 @@
 
   </body>
 
-  <script src="js/jquery.3.1.0.min.js"></script>
-  <!-- <script src="https://unpkg.com/popper.js"></script> -->
-  <script scr="https://cdnjs.com/libraries/popper.js"></script><!-- <script src="js/bootstrap.4.0.0-alpha.3.min.js"></script> -->
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.js"></script>
   <script src="js/angular.js"></script>
 
   <script src="js/angular-route.js"></script>
@@ -168,17 +166,7 @@
   };
   var fireapp = firebase.initializeApp(config);
   var db = firebase.firestore();
-  console.log(db);
-  const messaging = firebase.messaging();
-  console.log(fireapp.name + " " + messaging);
-  // Add the public key generated from the console here.
-// messaging.usePublicVapidKey("BKagOny0KF_2pCJQ3m....moL0ewzQ8rZu");
-
-  messaging.onMessage(function(payload) {
-  console.log('Message received. ', payload);
-  // ...
-});
-
+ 
 </script>
 <script src="app/ng-file-upload.min.js"></script>
 
@@ -196,15 +184,15 @@
 <script src="movie/movieController.js"></script>
 <script src="movie/batch.js"></script>
 <script src="js/threadpool.js"></script>
-<script src="caps/caps.js"></script>
 <script src="burps/burps.js"></script>
 
 <script src="kikass/kikass.js"></script>
-<script src="cordova.js"></script>
+<script src="cordova.js" type="text"></script>
 <script src="app/dialogs.js"></script>
 <script src="app/cordova_boot.js"></script>
 <script src="https://smartlock.google.com/client"></script>
 <script src="app/angular-native-transitions.js"></script>
 <script src="homeComponent/dash.js"></script>
 <script src="app/yap.js"></script>
+<script src="riparare/former.js"></script>
 </html>

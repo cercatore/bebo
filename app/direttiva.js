@@ -7,13 +7,14 @@ modulo
     beUrl:      'https://api.mlab.com/api/1/databases/cbmanager/collections/',
     docName: 		 'test03',
     apikey:      '?apiKey=LC-wif-orODQhsURWZf43a-I0x2hjhIf',
-    storageBase:  '',
+    storageBase:  '', 
     otherSetting: 'XYZ',
     squadre_serie_a: ["SELEZIONA...", "ATALANTA", "BOLOGNA", "CAGLIARI", "CHIEVO", "EMPOLI", "FIORENTINA", "FROSINONE", "GENOA", "INTER", "JUVENTUS", "LAZIO", "MILAN", "NAPOLI", "PARMA", "ROMA", "SAMPDORIA", "SASSUOLO", "SPAL", "TORINO", "UDINESE"],
     history: [],
     routes,
     amazonBackend: "http://ec2-18-221-235-74.us-east-2.compute.amazonaws.com/message/blabla:",
-    prefs : prefs
+    prefs : prefs,
+    doggobackend: "http://doggo4backend.herokuapp.com/message?blabla="
 
 });
 app.controller("prefs", function(clSettings, $http, $log){

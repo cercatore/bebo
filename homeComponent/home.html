@@ -2,14 +2,25 @@
    .social-buttons{
     margin:12px 0
 }
+
+
+
 </style>
-<div class="card card-block register_sfondo" ng-controller="homeController as main">
+<div class="card card-block register_sfondo" >
   <div class="col-md-12">
       Login via
       <div class="social-buttons">
+          <div class="row">
+              <div class="col-md-3">
+                  <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                  Login with Google
+                </a>
+              </div>
+            </div>
         <a href="#" class="btn btn-primary" ng-click="main.signInFacebook()"><i class="fa fa-facebook"></i> Facebook</a>
-        <a href="#" class="btn btn-primary" ng-click="main.signInGoogle()" style="background-color:#DE5E53"><i class="fa fa-google-plus"></i> Google</a>
         <!-- <a href="#" class="btn btn-error"><i class="fa fa-twitter"></i> Twitter</a> -->
+        <a class="pull-right btn btn-outline-dark" ng-click="main.signInGoogle()" style="text-transform:none"><img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" /></a>
+        
         <a href="#" class="btn bg-dark text-light" ng-click="main.signInGithub()">GITHUB</a>
       </div>
   </div>
@@ -32,10 +43,9 @@
     <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
     <label for="remember"> Remember Me</label>
   </div>
-  <a href="" class="pull-right" ng-click="main.sendEmailForgot()"><i><small>Password dimenticata?</i></small></a>
+  <a class="pull-right" ng-click="main.sendEmailForgot()"><i><small>Password dimenticata?</i></small></a>
   <!-- test-->
-  <a class="pull-right btn btn-info" ng-click="main.doStuff()"><span class="fa fa-send fa-2x"></span>OTA LOGIN</a>
-  <a class="btn btn-primary" ng-click="main.signInNormal(user)"><span class="fa fa-login"> LOGIN</span></a>
+  <a class="btn btn-primary" ng-click="main.signInNormal()"><span class="fa fa-login"> LOGIN</span></a>
   <div class="text-primary text-sm-center" ng-if="message"><h2>{{message}}</h2></div>
   <span class="icon-bar" style="width:3939px"></span>
 </form>

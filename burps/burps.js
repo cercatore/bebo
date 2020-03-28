@@ -1,4 +1,5 @@
 
+
 app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $log, Upload, $http, aracnoService, geoService, $location) {
   const cloud = "https://vision.googleapis.com/v1/images:annotate?key="; // WARING NO KEY
   // const key = 'AIzaSyAN8SUGdR7A17SCZta40uHajTYhsdOX-po';
@@ -36,7 +37,9 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   this.updateRange = (r)=>{
     console.log("range : " + r);
   };
+  const feedDoggo = (data) => {
 
+  }
   const feedGoogle = (data, outputDebug) => {
       log( "User login status ", $rootScope.userLogged);
       log({"headers":{
@@ -132,11 +135,23 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
 
 
 
-  $scope.aggiornaUser = (a, bucket)=>{self.client.image = a;$scope.upload_complete = true;self.client.gcsImage = bucket;
+  $scope.aggiornaUser = async (a, bucket)=>{self.client.image = a;$scope.upload_complete = true;self.client.gcsImage = bucket;
     $scope.recog_in_progress = "wait please, check in progress";
     let sent = buildRequest(self.client.gcsImage);
     $scope.thecat = a;
-    feedGoogle(sent, "ciao");
+
+    $scope.recog_in_progress = "wait please, check in progress";
+      // let sent = buildRequest(self.client.gcsImage);
+      let url = clSettings.doggobackend + "" + a;
+      let result = await $http.get(url);
+      $scope.recog_in_progress = "";
+      let data = result.labels;
+      main.active = true;
+      for (ii=0; ii< data.length; ii++){
+      //self.testi =data[ii];
+        console.log(data[ii] + " data" + data);
+      //inserire preferenza
+      }
 
 
 

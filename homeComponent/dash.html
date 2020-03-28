@@ -1,81 +1,124 @@
 <style>
-  .figure {
-      height: 45vh;
-      
-  }
+    .figure {
+        height: 40vh;
+        
+    }
+  
+    .figure  img {
+        width:100%;
+        object-fit:fill;
+    }
+    .myslide.ng-enter, .myslide.ng-leave {
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .6s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .6s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .6s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .6s;
+}
 
-  .figure  img {
-      width:100%;
-      object-fit:cover;
-  }
+.myslide.ng-enter{
+    position: absolute;
+    top: 100px;
+}
+.myslide.ng-enter.ng-enter-active {
+    position: relative;
+    top: 0px;
+}  
+.myslide.ng-leave{
+    position: absolute;
+    top: 0px;
+    
+}
+.myslide.ng-leave.ng-leave-active {
+    position: relative;
+    top: -90px;
 
+}
 
-  </style>
-  <div  class="card card-block doggo">
-    <div class="card-header">
-        <div class="row col-sm-12">
-            <div class="col-sm-5"><i>Helllo </i><h2 class="text-truncate"><h2>{{userLoggedIn}}</h2>
-            
+  
+    </style>
+    <div  class="card card-block"   ng-init="main.active=false">
+      <div class="card-header">
+          <div class="row col-sm-12">
+              <div class="col-sm-5"><i class="text-truncate"><h2>
+              
+          </div>
+  
+          
+          <div ng-if="user-verified">your email is not verified. rensend linkuser.emailVerified;</div>
+      </div>
+  main-.active is {{main.active }}
+          <div class="card-body row col-sm-12">
+              <div class="col-sm-5"><i>Hello </i><h2 class="text-truncate"><h2>{{userLoggedIn}}</h2>
+              
+              </div>
+              
+              <div ng-if="user.emailVerified">mail your email is not verified. rensend linkuser.emailVerified;</div><button class="pull-right btn btn-default" ng-click="logout()">ESCI</button>
+              <a class="ml-5 btn btn-info" ng-click="main.doStuff()"><span class="fa fa-paper-clip"></span>OTA LOGIN</a>
+         
+              <div >{{user.uid}}</div>
+          <small><pre>text to say things {{main.tutorial}}</pre></small>
+          <small><input type="text" ng-model="friend">{{friend}}</small>
+          
+      </div>
+      <div  class="myslide" ><a class="btn btn-primary" ng-click="main.active = !main.active" >some casual text with fica</a></div>
+      <div ng-if="main.active" class="myslide card-body">
+         
+           <!-- choose body -> -->
+           <div class="row mt-5">
+            <div class="figure col-6"  >
+              <figcaption class="figure-caption"><h2 >Celebritis</h2></figcaption>
+              <img src="images/dashboard_2.png" class="figure-img img-fluid rounded" alt="pick celebrities" ng-click="scelta = 1; main.forward()">
             </div>
-            <div ng-if="userverified">{{user.emailVerified}your email is not verified. rensend linkuser.emailVerified;</div>
-            <div >{{user.uid}}</div>
-        <small><pre>text to say things {{main.tutorial}}</pre></small>
-        <small><input type="text" ng-model="friend">{{friend}}</small>
-    </div>
-    <div class="card-body">
-
-         <!-- choose body -> -->
-         <div class="row mt-5">
-          <div class="figure col-6"  >
-            <figcaption class="figure-caption"><h2 >Celebritis</h2></figcaption>
-            <img src="images/dashboard_2.png" class="figure-img img-fluid rounded" alt="pick celebrities" ng-click="scelta = 1; main.forward()">
-          </div>
-            <!-- ignore card mode, later shadow-->
-          <div class="figure col-sm-offset-6 col-6">
-            <figcaption class="figure-caption text-truncate"><h2 >nature and pets</h2></figcaption>
-            <img src="images/dashboard_player.jpg" class="figure-img img-fluid rounded" alt="pick animals" ng-click="scelta = 2; main.forward()">
+              <!-- ignore card mode, later shadow-->
+            <div class="figure col-sm-offset-6 col-6">
+              <figcaption class="figure-caption text-truncate"><h2 >nature and pets</h2></figcaption>
+              <img src="images/dashboard_player.jpg" class="figure-img img-fluid rounded" alt="pick animals" ng-click="scelta = 2; main.forward()">
+  
+  
+            </div>
+            </div>
+       </div>
 
 
-          </div>
-          </div>
-
-        <pre class="small fa fa-italic">
-        	La donzelletta vien dalla campagna,
-In sul calar del sole,
-Col suo fascio dell'erba; e reca in mano
-Un mazzolin di rose e di viole,
-Onde, siccome suole,
-Ornare ella si appresta
-Dimani, al dì di festa, il petto e il crine.
-Siede con le vicine
-Su la scala a filar la vecchierella,
-Incontro là dove si perde il giorno;
-E novellando vien del suo buon tempo,
-Quando ai dì della festa ella si ornava,
-Ed ancor sana e snella
-Solea danzar la sera intra di quei
-Ch'ebbe compagni dell'età più bella.
-Già tutta l'aria imbruna,
-Torna azzurro il sereno, e tornan l'ombre
-Giù da' colli e da' tetti,
-Al biancheggiar della recente luna.
-Or la squilla dà segno
-Della festa che viene;
-Ed a quel suon diresti
-Che il cor si riconforta.
-I fanciulli gridando
-Su la piazzuola in frotta,
-E qua e là saltando,
-Fanno un lieto romore:
-E intanto riede alla sua parca mensa,
-Fischiando, il zappatore,
-E seco pensa al dì del suo riposo.
-
-
-
-
-    </pre>
-    </div>
-    <button class="btn btn-success col-6 mx-auto" ng-click="koko()">PNAECIOA</button>
-
-</div>
+          <pre class="small fa fa-italic">
+              La donzelletta vien dalla campagna,
+  In sul calar del sole,
+  Col suo fascio dell'erba; e reca in mano
+  Un mazzolin di rose e di viole,
+  Onde, siccome suole,
+  Ornare ella si appresta
+  Dimani, al dì di festa, il petto e il crine.
+  Siede con le vicine
+  Su la scala a filar la vecchierella,
+  Incontro là dove si perde il giorno;
+  E novellando vien del suo buon tempo,
+  Quando ai dì della festa ella si ornava,
+  Ed ancor sana e snella
+  Solea danzar la sera intra di quei
+  Ch'ebbe compagni dell'età più bella.
+  Già tutta l'aria imbruna,
+  Torna azzurro il sereno, e tornan l'ombre
+  Giù da' colli e da' tetti,
+  Al biancheggiar della recente luna.
+  Or la squilla dà segno
+  Della festa che viene;
+  Ed a quel suon diresti
+  Che il cor si riconforta.
+  I fanciulli gridando
+  Su la piazzuola in frotta,
+  E qua e là saltando,
+  Fanno un lieto romore:
+  E intanto riede alla sua parca mensa,
+  Fischiando, il zappatore,
+  E seco pensa al dì del suo riposo.
+  
+  
+  
+  
+      </pre>
+      </div>
+      <button class="btn btn-success col-6 mx-auto" ng-click="koko()">PNAECIOA</button>
+  
+  </div>
+  
+  

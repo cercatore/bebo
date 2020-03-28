@@ -1,0 +1,15 @@
+<br/>
+<br/><br/><br/>
+<h2>hello user </h2><small>{{user}}</small>
+
+
+<div ng-if="!user"><a href="/home"></a></div>
+    <a href="#" class="btn btn-default" ng-click="mainresetPassWord()">RESET</a>
+
+<div ng-if="!user">h1 USER IS NULL  
+     <!--  questo va rui            rootscope -->
+    <a href="#" class="btn btn-info" ng-click="logout()">LOGOUT</a>
+</div>
+
+{{preferenceJSON}}
+

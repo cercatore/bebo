@@ -16,8 +16,10 @@ var app = angular.module('myApp',
 	'ngFileUpload',
 	'myApp.costanti',
 	'myApp.playground',
-	'myApp.yac',
-	'dash'
+	'dash',
+	'ciao.blabla'
+	
+
 
 	//'ngTable'
 
@@ -38,6 +40,7 @@ var user;
 function successLogin(result) {
 
 }
+
 let token;
 app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , $location){
 	this.user = {};
@@ -45,33 +48,8 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
 	$rootScope.user = firebase.auth().currentUser;
 		// $location.path("/kikass");
-	//test button
-	var actionCodeSettings = {
-		url: 'https://www.example.com/?email=' + firebase.auth().currentUser.email,
-		iOS: {
-		  bundleId: 'com.example.ios'
-		},
-		android: {
-		  packageName: 'io.melanzatm.whatisdoggo',
-		  installApp: true,
-		  minimumVersion: '19'
-		},
-		handleCodeInApp: true,
-		// When multiple custom dynamic link domains are defined, specify which
-		// one to use.
-		dynamicLinkDomain: "example.page.link"
-	  };
-this.doStuff = () => {
-	firebase.auth().currentUser.sendEmailVerification(actionCodeSettings)
-  .then(function() {
-    console.log("ok");
-  })
-  .catch(function(error) {
-	// Error occurred. Inspect error.code.
-	console.log(error);
-  });
+	
 
-}
 
 	this.signInNormal = ( ) => {
 	  this.working = true;
@@ -122,6 +100,7 @@ this.doStuff = () => {
 		// }).catch(function(error) {
 		//  console.log("G Authentication failed:", error);
 		// });
+		this.working=1;
 		let myauth = firebase.auth();
 		let provider = new firebase.auth.GoogleAuthProvider();
 		provider.addScope("email");
@@ -177,7 +156,7 @@ if(typeof(String.prototype.trim) === "undefined")
 function _show_error(error, $scope)  {
 	let found = error.message.match(/password/gi);
 	if (found) $scope.message = error;
-		else $scope.message = "Something went wrong. Please try again"
+		else $scope.message = "Something went wrong. Please try again";
 
 
 }
@@ -442,8 +421,8 @@ app.config(
 			controller:"cascata as main"
 		})
 		.when('/prefs' , {
-			templateUrl:"blanotte/cascata.html",
-			controller:"prefs as main"
+			templateUrl:"former/blank.html",
+			controller:"prefcontroller as main"
 		})
 		.otherwise({
 			redirectTo:"/prefs"
@@ -527,8 +506,8 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	$rootScope.project = $proj;
 	$rootScope.navbar = {} ;
 	$rootScope.navbar.debug = () => {
-		// dialogConfirm(JSON.stringify($rootScope.project));
-			// window.localStorage.setItem('preference', [])
+		 dialogConfirm(JSON.stringify($rootScope.project));
+			 window.localStorage.setItem('preference', [])
 
 	}
 	// $rootScope.guard = guardIron;
@@ -563,8 +542,8 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	// 	if ( ! ( val && val != '')) generalAracno = 1;
 	// })
 
-	firebase.auth().getRedirectResult().then((log => console.log(log.credential.accessToken)))
-		.catch(error => console.log(error))
+	// firebase.auth().getRedirectResult().then((log => console.log(log.credential.accessToken)))
+		// .catch(error => console.log(error))
 
 	firebase.auth().onAuthStateChanged(function(_user) {
 		console.log("state changed.");

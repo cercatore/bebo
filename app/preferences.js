@@ -10,13 +10,14 @@ const prefs  = (function( afs, user, $log){
 
 
     } 
-    async function  carica(key){
+    async function  carica(key, sacco){
         let value =undefined;
         let ciao = await afs.collection("users").doc(user)
             .get()
             .then(doc =>{return  doc.data()  } )
             .catch(error => $log("error;.."));
         $log(`key : ${key} ho recuperato la prop :${ciao[key]}`);
+        let item = `{"${user}":"${ciao}"}`;
         
     }
     function base(){
@@ -30,12 +31,26 @@ const prefs  = (function( afs, user, $log){
         console.log(prefValue)
 
     }
+    async function loadTutto( scope){
+        let value =undefined;
+        let item = await afs.collection("users").doc(user)
+            .get()
+            .then(doc =>{return  doc.data()  } )
+            .catch(error => $log("error;.."));
+        // $log(`key : ${key} ho recuperato la prop :${ciao[key]}`);
+        console.log(item); 
+        // let item = `{"${user}":"${ciao}"}`;
+           let obj = JSON.parse(item.toString().trim());
+            scope.preferenceJSON = JSON.stringify(obj,null,4);
+            scope.$apply()
+    }
     base();
-
+    
     return {
         save: save,
         carica:carica,
-        caricaAction:action
+        caricaAction:action,
+        loadTutto:loadTutto
     }
 })
 
