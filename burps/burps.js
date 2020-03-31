@@ -1,6 +1,6 @@
 
 
-app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $log, Upload, $http, aracnoService, geoService, $location) {
+app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $log, Upload, $http, aracnoService, geoService, $location, clSettings) {
   const cloud = "https://vision.googleapis.com/v1/images:annotate?key="; // WARING NO KEY
   // const key = 'AIzaSyAN8SUGdR7A17SCZta40uHajTYhsdOX-po';
   const key = 'AIzaSyCnfDtTBNv_W66cxLfmitf0oGsJkH49OVg';
@@ -12,12 +12,14 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   self.client =  { clientId, name: "alberto alberto"};
   self.data = {};
   self.amici = {};
+  let user = firebase.auth().currentUser;
+  self.user = user.email;
+  let prefs = clSettings.prefs(db, self.user, console.log);
 
-  $rootScope.user = firebase.auth().currentUser;
-
+  
   $scope.origin = { "x" : 0, "y" : 0};
   self.client.image = window.localStorage.getItem('image');
-  console.log("client image is " + self.client.image);
+  console.log("client image is " + self.client.image); //TODO:GONE
   $scope.progressbar = ngProgressFactory.createInstance();
   $scope.progressbar.setParent($("#rootElement").parent()[0]);
   $scope.progressbar.setHeight('12px');
@@ -133,6 +135,17 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     $location.path('/burp2');
   }
 
+  self.updateUserState = (prefs, target, type) => {
+    let id = clSettings.getHash();
+    let key = "";
+    if (type==0) 
+      key ="burps" + "_" + "upload_" + id;
+      else 
+      key ="burps" + "_" + "decode_" + id;
+      
+    let prefInstance = prefs(db, self.user, console.log);
+    prefInstance.save(key, target);
+  }
 
 
   $scope.aggiornaUser = async (a, bucket)=>{self.client.image = a;$scope.upload_complete = true;self.client.gcsImage = bucket;
@@ -143,22 +156,28 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     $scope.recog_in_progress = "wait please, check in progress";
       // let sent = buildRequest(self.client.gcsImage);
       let url = clSettings.doggobackend + "" + a;
-      let result = await $http.get(url);
+      self.updateUserState(clSettings.prefs, a, 0 )
+
+      let result = await $http.get(url); /// TODO: FIX erro
       $scope.recog_in_progress = "";
       let data = result.labels;
-      main.active = true;
+      self.active = true;
       for (ii=0; ii< data.length; ii++){
       //self.testi =data[ii];
         console.log(data[ii] + " data" + data);
       //inserire preferenza
       }
-
-
+      // self.updateUserState(clSetting.prefs, result.labels, 2);
+      
 
 
 
 
   };
+  $scope.saveName= ()=>{
+    let key = "burps_" + "friend_" + clSettings.getHash();
+    prefs.save(key, self.name);
+  }
 
 
   $scope.moveMarker = (event) => {

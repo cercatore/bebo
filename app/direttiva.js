@@ -1,6 +1,7 @@
 
 
 _ = (message) => {console.log(message + "dficance")};
+let getHash = ()=>{return new Date().getTime();}
 let modulo = angular.module('myApp.costanti', []);
 modulo
 .constant('clSettings', {
@@ -14,6 +15,7 @@ modulo
     routes,
     amazonBackend: "http://ec2-18-221-235-74.us-east-2.compute.amazonaws.com/message/blabla:",
     prefs : prefs,
+    getHash : getHash,
     doggobackend: "http://doggo4backend.herokuapp.com/message?blabla="
 
 });

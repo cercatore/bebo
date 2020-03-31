@@ -49,10 +49,10 @@
   <div class="card body my-2 px-2 py-2" ng-init="main.active = 0">
     <div class="row">
       <div class="col-sm-6">
-        <h2>Mr, Your name</h2>
+        <h2>Upload the friend</h2>
       </div>
       <div class="col-sm-6">
-        <input type="text" class="form-control" placeholder="your name" ng-model="main.name" >
+        <input type="text" class="form-control" placeholder="friend Name" ng-model="main.name" ng-blur="saveName()">
 
       </div>
 

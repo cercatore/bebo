@@ -102,13 +102,7 @@ angular.module("dash", ['ngNativeTransitions'])
           // one to use.
           dynamicLinkDomain: "example.page.link"
           };
-        
-
-
-
-
-
-
-
+       
+          
 
     }])
