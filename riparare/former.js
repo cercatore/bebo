@@ -11,15 +11,15 @@ angular.module("ciao.blabla", [])
     prefs.carica("ciaokey");
     prefs.loadTutto( $scope);
     let key ="pGUJ4tHro132JVATpwV7UYRdkkgAKaTfADYAa9nOGI1kxO0CQJD4FAvYogC9WSNh";
-    let url = "https://hilltopads.com/publisher/listStats?key=" + key;
+    let url = "https://hilltopads.com/api/publisher/listStats?key=" + key;
     let ugly = {
       "title" : "motivational JSON",
       "data" : {
           "emoti" : "v😆 o.O"
           }
-    
-    
+       
     }
+    let a;
 
     $scope.testAction = async () => {
       let result = await $http.get(url);
