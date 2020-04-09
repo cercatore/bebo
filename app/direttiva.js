@@ -16,7 +16,7 @@ modulo
     amazonBackend: "http://ec2-18-221-235-74.us-east-2.compute.amazonaws.com/message/blabla:",
     prefs : prefs,
     getHash : getHash,
-    doggobackend: "http://doggo4backend.herokuapp.com/message?blabla="
+    doggobackend: "https://doggo4backend.herokuapp.com/message?blabla="
 
 });
 app.controller("prefs", function(clSettings, $http, $log){

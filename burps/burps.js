@@ -160,7 +160,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
 
       let result = await $http.get(url); /// TODO: FIX erro
       $scope.recog_in_progress = "";
-      let data = result.labels;
+      let data = result.data.Labels;
       self.active = true;
       for (ii=0; ii< data.length; ii++){
       //self.testi =data[ii];

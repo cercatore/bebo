@@ -48,16 +48,16 @@
       </div>
   main-.active is {{main.active }}
           <div class="card-body row col-sm-12">
-              <div class="col-sm-5"><i>Hello </i><h2 class="text-truncate"><h2>{{userLoggedIn}}</h2>
+              <div class="col-sm-8"><i>Hello </i><h2 class="text-truncate">{{userLoggedIn}}</h2>
               
               </div>
               
-              <div ng-if="user.emailVerified">mail your email is not verified. rensend linkuser.emailVerified;</div><button class="pull-right btn btn-default" ng-click="logout()">ESCI</button>
-              <a class="ml-5 btn btn-info" ng-click="main.doStuff()"><span class="fa fa-paper-clip"></span>OTA LOGIN</a>
-         
-              <div >{{user.uid}}</div>
-          <small><pre>text to say things {{main.tutorial}}</pre></small>
-          <small><input type="text" ng-model="friend">{{friend}}</small>
+              <div class="col-sm-2"><div ng-if="user.emailVerified">mail your email is not verified. rensend linkuser.emailVerified;</div><button class="pull-right btn btn-primary-outline" ng-click="logout()">ESCI</button>
+              <a class="ml-2 btn btn-info" ng-click="main.doStuff()"><span class="fa fa-paperclip"></span>OTA</a>         
+              </div>
+              <!-- <div >{{user.uid}}</div> -->
+          <!-- <small><pre>text to say things {{main.tutorial}}</pre></small> -->
+          <div class="col-sm-12 form-control-label"><input type="text" ng-model="friend">{{friend}}</div>
           
       </div>
       <div  class="myslide" ><a class="btn btn-primary" ng-click="main.active = !main.active" >some casual text with fica</a></div>
@@ -80,7 +80,7 @@
        </div>
 
 
-          <pre class="small fa fa-italic">
+          <pre ng-if="main.active" class="small fa fa-italic">
               La donzelletta vien dalla campagna,
   In sul calar del sole,
   Col suo fascio dell'erba; e reca in mano

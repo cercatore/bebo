@@ -10,16 +10,23 @@ angular.module("ciao.blabla", [])
     cached.action = {};
     prefs.carica("ciaokey");
     prefs.loadTutto( $scope);
+    let key ="pGUJ4tHro132JVATpwV7UYRdkkgAKaTfADYAa9nOGI1kxO0CQJD4FAvYogC9WSNh";
+    let url = "http://hilltopads.com/publisher/listStats?key=" + key;
+    let ugly = {
+      "title" : "motivational JSON",
+      "data" : {
+          "emoti" : "v😆 o.O"
+          }
     
-    // let ugly = {
-    //   "title" : "motivational JSON",
-    //   "data" : {
-    //       "emoti" : "v😆 o.O"
-    //       }
     
-    
-    // }
+    }
 
+    $scope.testAction = async () => {
+      let result = await $http.get(url);
+      $scope.preferenceJSON = result.data;
+    };
+
+    $scope.preferenceJSON = JSON.pruned(ugly);
     
 
 
@@ -38,4 +45,6 @@ angular.module("ciao.blabla", [])
           });
           
     }
+
+    
 });
