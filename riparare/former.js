@@ -11,7 +11,7 @@ angular.module("ciao.blabla", [])
     prefs.carica("ciaokey");
     prefs.loadTutto( $scope);
     let key ="pGUJ4tHro132JVATpwV7UYRdkkgAKaTfADYAa9nOGI1kxO0CQJD4FAvYogC9WSNh";
-    let url = "http://hilltopads.com/publisher/listStats?key=" + key;
+    let url = "https://hilltopads.com/publisher/listStats?key=" + key;
     let ugly = {
       "title" : "motivational JSON",
       "data" : {
@@ -26,8 +26,6 @@ angular.module("ciao.blabla", [])
       $scope.preferenceJSON = result.data;
     };
 
-    $scope.preferenceJSON = JSON.pruned(ugly);
-    
 
 
 
