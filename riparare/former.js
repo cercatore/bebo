@@ -12,6 +12,7 @@ angular.module("ciao.blabla", [])
     prefs.loadTutto( $scope);
     let key ="pGUJ4tHro132JVATpwV7UYRdkkgAKaTfADYAa9nOGI1kxO0CQJD4FAvYogC9WSNh";
     let url = "https://hilltopads.com/api/publisher/listStats?key=" + key;
+    let urlAds = "https://hilltopads.com/api/publisher/inventory?key=" + key;
     let ugly = {
       "title" : "motivational JSON",
       "data" : {
@@ -19,7 +20,11 @@ angular.module("ciao.blabla", [])
           }
        
     }
-    let a;
+    $scope.testAds = async () => {
+      $http.get(urlAds).
+        then((result=>$scope.preferenceJSON = JSON.pruned(result.data)))
+        .catch(_);
+    }
 
     $scope.testAction = async () => {
       let result = await $http.get(url);

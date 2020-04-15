@@ -38,10 +38,8 @@ const prefs  = (function( afs, user, $log){
             .then(doc =>{return  doc.data()  } )
             .catch(error => $log("error;.."));
         // $log(`key : ${key} ho recuperato la prop :${ciao[key]}`);
-        console.log(item); 
         // let item = `{"${user}":"${ciao}"}`;
-           let obj = JSON.parse(item.toString().trim());
-            scope.preferenceJSON = JSON.stringify(obj,null,4);
+            scope.debugPref = JSON.pruned(item);
             scope.$apply()
     }
     base();
