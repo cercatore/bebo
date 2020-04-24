@@ -10,6 +10,7 @@
   <link href="css/movie_styles.css" rel="stylesheet">
   <link href="css/chat2.css" rel="stylesheet">
   <script data-ad-client="ca-pub-4685989654150566" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
   <style name="animations.css">
       .view-animate-container {
         position:relative;
@@ -112,8 +113,9 @@
   }
   .doggo {
     background-image: url(images/doggo_sfondo.png);
-    background-size:auto;
-    background-position:bottom;
+    background-size:cover;
+    background-repeat: repeat-y;
+    -o-object-position: top;
   }
 </style>
 <body style="background-color:#CCC"  id="anchor_progress">
@@ -130,7 +132,7 @@
   <img class="col-6" ng-if="!splashLoad" src="images/loading.gif">
   </div>
 <div >
-  <div ng-view class="doggo" style="marginTop:-20px" ></div><!-- qua TODO-->
+  <div ng-view class="doggo mx-auto" style="marginTop:-20px" ></div><!-- qua TODO-->
   <div class="col-12 card card-block">
       <div class="btn btn-primary  mx-5 my-5" ng-click="move()">GO BACK</div>
     </div>
@@ -168,6 +170,13 @@
   var fireapp = firebase.initializeApp(config);
   const db = firebase.firestore();
  
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '276027512942214',
+      version          : 'v6.0'   // 3.0?
+    });
+  };
+
 </script>
 <script src="app/ng-file-upload.min.js"></script>
 

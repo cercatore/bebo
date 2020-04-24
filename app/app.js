@@ -75,8 +75,21 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 				//$location.path('/500');
 			)
 		}
-
 	this.signInFacebook = () => {
+		
+		FB.login(function(response) {
+			// handle the response
+			if (response.authResponse) {
+				// Logged into your webpage and Facebook.
+				console.log("success");
+			  } else {
+				// The person is not logged into your webpage or we are unable to tell. 
+				console.log("balbaalla");
+			  }
+		  }, {scope: 'public_profile,email'});
+	}
+
+	this.signInFacebook_old = () => {
 		let provider = new firebase.auth.FacebookAuthProvider();
 		// provider.addScope("user_birthday");
 		// provider.addScope("user_email");

@@ -21,8 +21,14 @@ angular.module("ciao.blabla", [])
        
     }
     $scope.testAds = async () => {
-      $http.get(urlAds).
-        then((result=>$scope.preferenceJSON = JSON.pruned(result.data)))
+      $http.get(urlAds)
+        .then((result=>$scope.preferenceJSON = JSON.pruned(result.data)))
+        .success( (out, status, headers ) =>{
+          $scope.debug = JSON.pruned(headers)
+          $scope.preferenceJSON = out.data;
+
+        })
+
         .catch(_);
     }
 
