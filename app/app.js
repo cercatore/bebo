@@ -47,6 +47,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 	var auth = $firebaseAuth();
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
 	$rootScope.user = firebase.auth().currentUser;
+	let facebook_url = 
 		// $location.path("/kikass");
 	
 
@@ -81,12 +82,17 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 			// handle the response
 			if (response.authResponse) {
 				// Logged into your webpage and Facebook.
-				console.log("success");
+				FB.api('/me', function(response) {
+					console.log('Successful login for: ' + response.name);
+					console.log(response);
+					
+				  });
+				// let rresult = $https.get(facebook_url)
 			  } else {
 				// The person is not logged into your webpage or we are unable to tell. 
 				console.log("balbaalla");
 			  }
-		  }, {scope: 'public_profile,email'});
+		  }, {scope: 'profile,email'});
 	}
 
 	this.signInFacebook_old = () => {
