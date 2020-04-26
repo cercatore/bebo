@@ -92,7 +92,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 				// The person is not logged into your webpage or we are unable to tell. 
 				console.log("balbaalla");
 			  }
-		  }, {scope: 'profile,email'});
+		  }, {scope: 'public_profile,email'});
 	}
 
 	this.signInFacebook_old = () => {
