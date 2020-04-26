@@ -40,6 +40,18 @@ var user;
 function successLogin(result) {
 
 }
+FB.getLoginStatus(function(response) {
+	console.log(response.authResponse.status);
+    statusChangeCallback(response);
+});
+function statusChangeCallback(res){
+	
+	  FB.api(`${res.authResponse.userID}?fields=name,adaccounts,birthday,profile_pic,picture`, function(response) {
+		console.log('Successful login for: ' + response.name);
+		
+
+	  });
+}
 
 let token;
 app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $location){
@@ -47,7 +59,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 	var auth = $firebaseAuth();
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
 	$rootScope.user = firebase.auth().currentUser;
-	let facebook_url = 
+	let facebook_url = "";
 		// $location.path("/kikass");
 	
 
@@ -83,14 +95,10 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			let res = response.authResponse;
 			if (res) {
 				$rootScope.fb_user.token = res.accessToken;
-				$rootScope.fb_user.token = res.userID;
+				$rootScope.fb_user.id = res.userID;
 				
 				// Logged into your webpage and Facebook.
-				FB.api(`${res.userID}?fields=birthday,profile_pic`, function(response) {
-					console.log('Successful login for: ' + response.name);
-					
-
-				  });
+				
 				// let rresult = $https.get(facebook_url)
 			  } else {
 				// The person is not logged into your webpage or we are unable to tell. 
@@ -159,7 +167,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 
 	this.sendEmailForgot = () => {
 
-		firebase.auth().sendEmailForgotPassword(this.user.email).then(function() {
+		firebase.auth().sendEmailPassword(this.user.email).then(function() {
 		console.log("// Email sent. to " + this.user.email);
 		}).catch(function(error) {
 			_show_error(error, $scope)
@@ -588,7 +596,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 		else { console.log("logout.")}
 	})
 
-	$rootScope.logout = function(){  // NOT THIS
+	$rootScope.logout = () => { // NOT THIS
 		firebase.auth().signOut().then(_=> {
 				// Sign-out successful.
 				$timeout(()=>{
@@ -603,6 +611,11 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 				console.log(error)
 			});
 		}
+	$rootScope.fblogout = () => {
+		FB.logout( function(response){
+			console.log(response.authResponse.status);
+		})
+	}
 
 
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
