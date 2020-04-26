@@ -42,7 +42,7 @@ function successLogin(result) {
 }
 
 let token;
-app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , $location){
+app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $location){
 	this.user = {};
 	var auth = $firebaseAuth();
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
@@ -81,10 +81,13 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 		FB.login(function(response) {
 			// handle the response
 			if (response.authResponse) {
+				console.log(response);
+				$rootScope.fb_user = angular.copy(response);
+			
 				// Logged into your webpage and Facebook.
 				FB.api('/me', function(response) {
 					console.log('Successful login for: ' + response.name);
-					console.log(response);
+					
 					
 				  });
 				// let rresult = $https.get(facebook_url)
@@ -92,7 +95,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth , 
 				// The person is not logged into your webpage or we are unable to tell. 
 				console.log("balbaalla");
 			  }
-		  }, {scope: 'public_profile,email'});
+		  }, {scope: 'public_profile, email'});
 	}
 
 	this.signInFacebook_old = () => {
