@@ -41,8 +41,7 @@ function successLogin(result) {
 
 }
 FB.getLoginStatus(function(response) {
-	console.log(response.authResponse.status);
-    statusChangeCallback(response);
+	 statusChangeCallback(response);
 });
 function statusChangeCallback(res){
 	
@@ -93,9 +92,12 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		FB.login(function(response) {
 			// handle the response
 			let res = response.authResponse;
+			console.log(response.authResponse.status);
+   
 			if (res) {
 				$rootScope.fb_user.token = res.accessToken;
 				$rootScope.fb_user.id = res.userID;
+				$rootScope.fb_user.email = res.email;
 				
 				// Logged into your webpage and Facebook.
 				
