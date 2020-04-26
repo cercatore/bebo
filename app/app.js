@@ -86,10 +86,10 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 				$rootScope.fb_user.token = res.userID;
 				
 				// Logged into your webpage and Facebook.
-				FB.api(res.userI, function(response) {
+				FB.api(`${res.userID}?fields=birthday,profile_pic`, function(response) {
 					console.log('Successful login for: ' + response.name);
 					
-					
+
 				  });
 				// let rresult = $https.get(facebook_url)
 			  } else {
