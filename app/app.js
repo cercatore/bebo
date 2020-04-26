@@ -45,8 +45,9 @@ FB.getLoginStatus(function(response) {
 });
 function statusChangeCallback(res){
 	
-	  FB.api(`${res.authResponse.userID}?fields=name,adaccounts,birthday,profile_pic,picture`, function(response) {
-		console.log('Successful login for: ' + response.name);
+	  FB.api(`/me?fields=name,adaccounts,birthday,profile_pic,picture`, function(response) {
+		console.log(response)
+		// console.log('Successful login for: ' + response.name);
 		
 
 	  });
