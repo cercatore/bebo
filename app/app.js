@@ -80,12 +80,13 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		
 		FB.login(function(response) {
 			// handle the response
-			if (response.authResponse) {
-				console.log(response);
-				$rootScope.fb_user = angular.copy(response);
-			
+			let res = response.authResponse;
+			if (res) {
+				$rootScope.fb_user.token = res.accessToken;
+				$rootScope.fb_user.token = res.userID;
+				
 				// Logged into your webpage and Facebook.
-				FB.api('/me', function(response) {
+				FB.api(res.userI, function(response) {
 					console.log('Successful login for: ' + response.name);
 					
 					
@@ -521,6 +522,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
   // let self = (this);
 	// self.guard = window.localStorage;
 		let $proj = {};
+		
 	$proj.locale = window.localStorage.getItem("cl_locale");
 	$proj.deviceID = $rootScope.clientId;
 	$proj.routes = window.routes;
@@ -532,7 +534,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 			 window.localStorage.setItem('preference', [])
 
 	}
-	// $rootScope.guard = guardIron;
+	$rootScope.fb_user = {};
   // let prefs = guardIron.load();
 	// console.log( prefs )
 
