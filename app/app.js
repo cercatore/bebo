@@ -45,12 +45,16 @@ FB.getLoginStatus(function(response) {
 });
 function statusChangeCallback(res){
 	
-	  FB.api(`/me?fields=name,adaccounts,birthday,profile_pic,picture`, function(response) {
-		console.log(response)
-		// console.log('Successful login for: ' + response.name);
+	if (res){
+		console.log(res.authResponse);
+		FB.api(`/me?fields=name,adaccounts,birthday,profile_pic,picture`, function(response) {
+			console.log(response)
+			// console.log('Successful login for: ' + response.name);
+				
 		
-
-	  });
+			});
+	}
+	
 }
 
 let token;
@@ -88,14 +92,14 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 				//$location.path('/500');
 			)
 		}
-	this.signInFacebook = () => {
+	this.signInFacebook_bak = () => {
 		
 		FB.login(function(response) {
 			// handle the response
 			let res = response.authResponse;
-			console.log(response.authResponse.status);
-   
+			
 			if (res) {
+				console.log(response.authResponse.status);
 				$rootScope.fb_user.token = res.accessToken;
 				$rootScope.fb_user.id = res.userID;
 				$rootScope.fb_user.email = res.email;
@@ -110,13 +114,13 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		  }, {scope: 'public_profile, email'});
 	}
 
-	this.signInFacebook_old = () => {
+	this.signInFacebook = () => {
 		let provider = new firebase.auth.FacebookAuthProvider();
-		// provider.addScope("user_birthday");
-		// provider.addScope("user_email");
+		provider.addScope("public_profile");
+		provider.addScope("email");
 
 
-		auth.$signInWithRedirect(provider).then(function(result) {
+		firebase.auth().$signInWithRedirect(provider).then(function(result) {
 				//TODO $rootScope.user = firebaseUser.uid;
 		console.log("login successful. access token:" + result.credentials.accessToken);
 		window.localStorage.setItem("cl_once",result.credentials.accessToken);
@@ -395,13 +399,9 @@ app.config(
 
     $routeProvider
       
-	  .when('/login', {
-			title: 'LOGIN',
-			templateUrl: '/former.html',
-			controller:"formerCtrl as main"					// controller: 'loginCtrl'
-      })
+	 
 	  .when( "/home" , {
-			title : 'NUTELLA',
+			title : 'home4',
 			templateUrl: 'homeComponent/home.html',
 			controller : 'homeController as main'
 
@@ -439,7 +439,7 @@ app.config(
 			controller:'kikass as main'
 		})
 		.when('/dash', {
-			templateUrl:'homeComponent/dash.html',
+			templateUrl:'former/user_dash.html',
 			controller:'appCtrl as main'
 		})
 		.when('/azione', {

@@ -1,7 +1,41 @@
 
 
 angular.module("dash", ['ngNativeTransitions'])
-  .controller('appCtrl', ['$scope', "$rootScope", "clSettings", '$nativeTransitions' ,'$log', '$location', function ($scope,$rootScope, $settings,$nativeTransitions, $log, $location){
+  .controller('appCtrl', ['$scope', "$rootScope","dialogService", "clSettings", '$nativeTransitions' ,'$log', '$location', "$timeout", function ($scope,$rootScope, dialogService, $settings,$nativeTransitions, $log, $location, $timeout){
+    const log = $log.info;
+    this.labels = { title:"HELLO !!"};
+
+
+    this.tutorial = () => {
+      dialogService.tutorialDialog(this.labels.title, null)
+        .then(function(){
+          alert("called the dog");
+        });
+      };
+    
+    
+
+    $timeout(this.tutorial, 2600);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -13,7 +47,7 @@ angular.module("dash", ['ngNativeTransitions'])
 
     //  mondo nuovo
     
-    let user = $rootScope.userLoggedIn ;
+    let user = $rootScope.userLoggedIn;
     $log.info(user);
     let prefs = $settings.prefs(db, "homegreen@gmail.com",console.log);
     function saveSettings(){

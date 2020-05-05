@@ -13,6 +13,11 @@ modulo
     squadre_serie_a: ["SELEZIONA...", "ATALANTA", "BOLOGNA", "CAGLIARI", "CHIEVO", "EMPOLI", "FIORENTINA", "FROSINONE", "GENOA", "INTER", "JUVENTUS", "LAZIO", "MILAN", "NAPOLI", "PARMA", "ROMA", "SAMPDORIA", "SASSUOLO", "SPAL", "TORINO", "UDINESE"],
     history: [],
     routes,
+    labels: {
+        title: "HELLO !!",
+        tutorial_text:
+            ""
+    },
     amazonBackend: "http://ec2-18-221-235-74.us-east-2.compute.amazonaws.com/message/blabla:",
     prefs : prefs,
     getHash : getHash,

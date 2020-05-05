@@ -48,11 +48,11 @@
       </div>
   main-.active is {{main.active }}
           <div class="card-body row col-sm-12">
-              <div class="col-sm-8"><i>Hello </i><h2 class="text-truncate">{{userLoggedIn}}</h2>
+              <div class="col-sm-8"><i>Hello {{fb_user.id}}-{{fb_user.email}}</i><h2 class="text-truncate">{{userLoggedIn}}</h2>
               
               </div>
               
-              <div class="col-sm-2"><div ng-if="user.emailVerified">mail your email is not verified. rensend linkuser.emailVerified;</div><button class="pull-right btn btn-primary-outline" ng-click="logout()">ESCI</button>
+              <div class="col-sm-2"><div ng-if="user.emailVerified">mail your email is not verified. rensend linkuser.emailVerified;</div><button class="pull-right btn btn-primary-outline" ng-click="fblogout()">ESCI</button>
               <a class="ml-2 btn btn-info" ng-click="main.doStuff()"><span class="fa fa-paperclip"></span>OTA</a>         
               </div>
               <!-- <div >{{user.uid}}</div> -->

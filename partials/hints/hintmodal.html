@@ -1,0 +1,46 @@
+<style>
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.modal-backdrop.in {
+  opacity: 0.5;
+}
+</style>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modal.title}}</h5>
+          <button type="button" class="close" aria-label="Close" ng-click="cancel()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img class="img-fluid" src="images/coraggio.gif">
+          <h4>welcome on whatgsdoggo.</h4>
+          <h4>from here you can call your friends, animal</h4>
+          
+          <h4>and do wonderful things with,</h4>
+
+          <h4>we hope you enjoy stay in this social space.</h4>
+
+          {{modal.message}}
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="custom-switch1" ng-model="modal.dismiss">
+            <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" ng-click="ok()">CALL BUDDY</button>
+          <button type="button" class="btn btn-success" ng-click="cancel()">PLAY</button>
+        </div>
+      </div>
+      <script src="js/bootstrap-switch.min.js"></script>
+      <script>
+        $('#custom-switch1').bootstrapSwitch();
+
+        
+      </script>
