@@ -27,6 +27,7 @@ angular.module('shared', ['ui.bootstrap', 'ui.bootstrap.tpls', 'ngAnimate'])
                     modalInstance.dismiss();
                     defer.reject();
                 };
+                
             }
         });
 		
@@ -45,12 +46,13 @@ angular.module('shared', ['ui.bootstrap', 'ui.bootstrap.tpls', 'ngAnimate'])
             {
                 $scope.modal = {};
                 $scope.modal.title = title;
-				$scope.modal.message = message;
-
+                $scope.modal.message = message;
+                
                 $scope.ok = function ()
                 {
                     modalInstance.close();
-                    defer.resolve();
+                    defer.resolve($scope.modal.dismiss);
+                    
                 };
 
                 $scope.cancel = function ()
@@ -58,6 +60,7 @@ angular.module('shared', ['ui.bootstrap', 'ui.bootstrap.tpls', 'ngAnimate'])
                     modalInstance.dismiss();
                     defer.reject();
                 };
+                
             }
         });
 		

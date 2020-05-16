@@ -18,6 +18,7 @@ const prefs  = (function( afs, user, $log){
             .catch(error => $log("error;.."));
         $log(`key : ${key} ho recuperato la prop :${ciao[key]}`);
         let item = `{"${user}":"${ciao}"}`;
+        sacco[key] = ciao[key];
         
     }
     function base(){

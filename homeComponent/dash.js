@@ -5,17 +5,24 @@ angular.module("dash", ['ngNativeTransitions'])
     const log = $log.info;
     this.labels = { title:"HELLO !!"};
 
-
+    let prefs = $settings.prefs(db, "homegreen@gmail.com",console.log);
+    let dismiss_tutorial_yes = prefs.carica("dismiss_tutorial_yes");
     this.tutorial = () => {
       dialogService.tutorialDialog(this.labels.title, null)
-        .then(function(){
-          alert("called the dog");
-        });
+        .then(function(value){
+          alert("called the dog " + value);
+        })
+        .catch( err => prefs.save("dismiss_tutorial_yes", "yes"));
       };
+
+
+      $scope.$watch("$this.dismiss", function(nv,no){
+        console.log(nv);
+      })
     
     
 
-    $timeout(this.tutorial, 2600);
+    if (dismiss_tutorial_yes)$timeout(this.tutorial, 2600);
 
 
 
@@ -49,7 +56,6 @@ angular.module("dash", ['ngNativeTransitions'])
     
     let user = $rootScope.userLoggedIn;
     $log.info(user);
-    let prefs = $settings.prefs(db, "homegreen@gmail.com",console.log);
     function saveSettings(){
       //  prefs.save("dummykey", user.email);
     }

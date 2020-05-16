@@ -92,7 +92,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 				//$location.path('/500');
 			)
 		}
-	this.signInFacebook_bak = () => {
+	this.signInFacebook = () => {
 		
 		FB.login(function(response) {
 			// handle the response
@@ -100,6 +100,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			
 			if (res) {
 				console.log(response.authResponse.status);
+				$rootScope.user
 				$rootScope.fb_user.token = res.accessToken;
 				$rootScope.fb_user.id = res.userID;
 				$rootScope.fb_user.email = res.email;
@@ -114,13 +115,13 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		  }, {scope: 'public_profile, email'});
 	}
 
-	this.signInFacebook = () => {
+	this.signInFacebook_old = () => {
 		let provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope("public_profile");
 		provider.addScope("email");
 
 
-		firebase.auth().$signInWithRedirect(provider).then(function(result) {
+		firebase.auth().signInWithRedirect(provider).then(function(result) {
 				//TODO $rootScope.user = firebaseUser.uid;
 		console.log("login successful. access token:" + result.credentials.accessToken);
 		window.localStorage.setItem("cl_once",result.credentials.accessToken);
