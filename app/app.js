@@ -48,9 +48,9 @@ function statusChangeCallback(res){
 	if (res){
 		console.log(res.authResponse);
 		FB.api(`/me?fields=name,adaccounts,birthday,profile_pic,picture`, function(response) {
-			console.log(response)
+			console.log(response.data)
 			// console.log('Successful login for: ' + response.name);
-				
+			// $rootScope.user.photoUrl = 
 		
 			});
 	}
@@ -100,11 +100,11 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			
 			if (res) {
 				console.log(response.authResponse.status);
-				$rootScope.user
+				$rootScope.user = {}
 				$rootScope.fb_user.token = res.accessToken;
 				$rootScope.fb_user.id = res.userID;
 				$rootScope.fb_user.email = res.email;
-				
+				$rootScope.user = $rootScope.fb_user;
 				// Logged into your webpage and Facebook.
 				
 				// let rresult = $https.get(facebook_url)
