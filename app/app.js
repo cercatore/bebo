@@ -46,8 +46,8 @@ FB.getLoginStatus(function(response) {
 function statusChangeCallback(res){
 	
 	if (res){
-		console.log(res.authResponse);
-		FB.api(`/me?fields=name,adaccounts,birthday,profile_pic,picture`, function(response) {
+		console.log(res.data);
+		FB.api(`me?fields=name,email,picture`, function(response) {
 			console.log(response.data)
 			// console.log('Successful login for: ' + response.name);
 			// $rootScope.user.photoUrl = 
