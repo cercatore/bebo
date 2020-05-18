@@ -22,7 +22,7 @@ angular.module("dash", ['ngNativeTransitions'])
     
     
 
-    if (dismiss_tutorial_yes)$timeout(this.tutorial, 2600);
+    if (dismiss_tutorial_yes !== 'yes')$timeout(this.tutorial, 2600);
 
 
 

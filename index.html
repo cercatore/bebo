@@ -181,7 +181,21 @@
     });
 
     FB.Event.subscribe('auth.login', function(response) {
-        alert('logged in');
+      FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+         
+		FB.api(`me?fields=name,email,picture`, function(response) {
+			console.log(response.data)
+			// console.log('Successful login for: ' + response.name);
+			// $rootScope.user.photoUrl = 
+		
+			});
+        }
+      else {
+        window.location.href = window.location.protocol + window.location.host + "/#/500";
+        
+      }
+    })
     });
 
   };
