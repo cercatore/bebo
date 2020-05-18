@@ -180,7 +180,7 @@
       version : 'v6.0'
     });
 
-    FB.Event.subscribe('auth.login', function(response) {
+    FB.Event.subscribe('auth.statusChange', function(response) {
       FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
          
