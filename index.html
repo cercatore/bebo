@@ -177,10 +177,15 @@
   window.fbAsyncInit = function() {
     FB.init({
       appId            : '276027512942214',
-      version          : 'v6.0',   // 3.0?
-      status:true,
-      xfbml:true
+      status : true,
+      cookie : true,
+      xfbml  : true,
     });
+
+    FB.Event.subscribe('auth.login', function(response) {
+        alert('logged in');
+    });
+
   };
 
 </script>
