@@ -100,10 +100,11 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			
 			if (res) {
 				console.log(response.authResponse.status);
-				$rootScope.user = {}
+				$rootScope.user =undefined
 				$rootScope.fb_user.token = res.accessToken;
 				$rootScope.fb_user.id = res.userID;
 				$rootScope.fb_user.email = res.email;
+				$rootScope.fb_user.name = 'not blabla';
 				$rootScope.user = $rootScope.fb_user;
 				// Logged into your webpage and Facebook.
 				
