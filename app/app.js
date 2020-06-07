@@ -146,7 +146,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		provider.addScope("email");
 		provider.addScope("profile");
 		console.log("google redirecting")
-		firebase.auth().signInWithRedirect(provider).then(function(result) {
+		firebase.auth().signInWithRedirect(provider).then(result=> {
 			console.log("google redirecting ...");
 			// This gives you a Google Access Token. You can use it to access the Google API.
 			var token = result.credential.accessToken;

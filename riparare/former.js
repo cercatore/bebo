@@ -2,7 +2,7 @@ angular.module("ciao.blabla", [])
   .controller("prefcontroller", function($scope, clSettings, $http, $log){
     let log = $log.info;
     log("iniziale valore di pref : " + this.preferenza);
-    const prefs = clSettings.prefs(db,"3519243517@blabla.it",console.log);
+    const prefs = clSettings.prefs(db,"homegreen@gmail.com",console.log);
     //log(prefs.save("ciaokey","clavalue"));
     //prefs.caricaAction("ciaokey", "fjkjf" );
     var user = firebase.auth().currentUser;

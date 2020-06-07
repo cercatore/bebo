@@ -3,10 +3,11 @@
 angular.module("dash", ['ngNativeTransitions'])
   .controller('appCtrl', ['$scope', "$rootScope","dialogService", "clSettings", '$nativeTransitions' ,'$log', '$location', "$timeout", function ($scope,$rootScope, dialogService, $settings,$nativeTransitions, $log, $location, $timeout){
     const log = $log.info;
+    self=this;
     this.labels = { title:"HELLO !!"};
 
     let prefs = $settings.prefs(db, "homegreen@gmail.com",console.log);
-    let dismiss_tutorial_yes = prefs.carica("dismiss_tutorial_yes");
+    let dismiss_tutorial_yes = prefs.caricaAction("dismiss_tutorial_yes", later);
     this.tutorial = () => {
       dialogService.tutorialDialog(this.labels.title, null)
         .then(function(value){
@@ -21,9 +22,11 @@ angular.module("dash", ['ngNativeTransitions'])
       })
     
     
+    function later(dismiss_tutorial_yes_alias){
+      if (dismiss_tutorial_yes_alias !== 'yes')$timeout(self.tutorial, 2600);
 
-    if (dismiss_tutorial_yes !== 'yes')$timeout(this.tutorial, 2600);
-
+    }
+    
 
 
 
