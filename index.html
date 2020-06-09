@@ -177,7 +177,8 @@
   window.fbAsyncInit = function() {
     FB.init({
       appId            : '276027512942214',
-      version : 'v6.0'
+      status:true,
+      version : 'v3.4'
     });
 
     FB.Event.subscribe('auth.statusChange', function(response) {
