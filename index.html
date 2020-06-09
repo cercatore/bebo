@@ -177,7 +177,7 @@
   window.fbAsyncInit = function() {
     FB.init({
       appId            : '276027512942214',
-      version : 'v6.0'
+      version : '6.0'
     });
 
     FB.Event.subscribe('auth.statusChange', function(response) {
@@ -188,7 +188,13 @@
 			console.log(response.data)
 			// console.log('Successful login for: ' + response.name);
 			// $rootScope.user.photoUrl = 
-		
+		  let scope = angular.element("#rootscope").scope();
+      let user = response.data;
+      user.displayName = user.name;
+            user.profilePic = user.picture.url;
+
+      scope.user = angular.copy(user);
+      scope.userLoggedIn = user.email || user.name || 'anonym';
 			});
         }
       else {
