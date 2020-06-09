@@ -461,7 +461,7 @@ app.config(
 			controller:"prefcontroller as main"
 		})
 		.otherwise({
-			redirectTo:"/prefs"
+			redirectTo:"/500"
 		})
 
 
