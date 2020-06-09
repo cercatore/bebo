@@ -178,10 +178,10 @@
     FB.init({
       appId            : '276027512942214',
       status:true,
-      version : 'v3.4'
+      version : 'v3.0'
     });
 
-    FB.Event.subscribe('auth.statusChange', function(response) {
+    FB.Event.subscribe('ì\auth.statusChange', function(response) {
       FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
          

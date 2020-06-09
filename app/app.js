@@ -460,8 +460,9 @@ app.config(
 			templateUrl:"former/blank.html",
 			controller:"prefcontroller as main"
 		})
+
 		.otherwise({
-			redirectTo:"/500"
+			redirectTo:"/home"
 		})
 
 
