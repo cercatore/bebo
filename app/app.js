@@ -48,8 +48,15 @@ function statusChangeCallback(res){
 	if (res.authResponse){
 		console.log(res.authResponse);
 		FB.api(`me?fields=name,email,picture`, function(response) {
-			console.log(response)
-			// console.log('Successful login for: ' + response.name);
+			let scope = angular.element("#rootscope").scope();
+			let user = response;
+			user.displayName = user.name;
+				  user.profilePic = user.picture.url;
+	  
+			scope.user = angular.copy(user);
+			scope.userLoggedIn = user.email || user.displayName || 'anonym';
+				  
+		// console.log('Successful login for: ' + response.name);
 			// $rootScope.user.photoUrl = 
 		
 			});
@@ -146,7 +153,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		provider.addScope("email");
 		provider.addScope("profile");
 		console.log("google redirecting")
-		firebase.auth().signInWithRedirect(provider).then(result=> {
+		firebase.auth().signInWithPopup(provider).then(result=> {
 			console.log("google redirecting ...");
 			// This gives you a Google Access Token. You can use it to access the Google API.
 			var token = result.credential.accessToken;
@@ -158,7 +165,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			$rootScope.userLoggedIn = result.user.displayName || result.user.email || "anonymous";// +++498534??? add data
 			// user.getIdToken().then( token => {window.localStorage.setItem("token", token);confirm("hello ! " + token.substring(0,5) );});
 
-			$rootScope.user = user;
+			$rootScope.user = angular.copy(user);
 			console.log(user);
 			// ...
 			}).catch( error => _show_error(error, $scope)
@@ -462,7 +469,7 @@ app.config(
 		})
 
 		.otherwise({
-			redirectTo:"/home"
+			redirectTo:"/prefs"
 		})
 
 

@@ -1,14 +1,45 @@
+<style>
+    .overlay {
+        position:absolute;
+        bottom:0;
+        
+    }
+    .test_fb {
+        width:auto;  
+        height:auto;
+        position:relative;
+    }
+    .card > img {
+        #object-position:center;
+        #object-fit:fill;
+
+    }
+</style>
+<!-- methodo 1 : accettare che fb mi da 50px, e test_fb = 50px
+     2 : metter wifdth auto
+-->
 <br/>
 <br/><br/><br/>
 <h2>hello user </h2><small>{{user}} 
     
 </small>
-
+<div style="padding-left:4vw;">
 
 <div ng-if="!user"><a href="/home"></a></div>
     <a href="" class="btn btn-default" ng-click="testAds()">RESET</a>
+<div class="row col-sm-12">
+    <div class="divider col-sm-8"></div>
+    <div class="card card-block border-0 col-sm-4">
 
-<div ng-if="!user">h1 USER IS NULL  
+        <div class="test_fb">
+        <img  src="images/greets.gif">
+            <div class="overlay bg-dark py-2 px-2 rounded-circle"><i style="color:#ccc" class="fa fa-edit fa-2x"></i></div>
+        </div>
+
+    </div>
+</div>
+
+<div ng-if="!user" style="padding-top:50px;">h1 USER IS NULL  
      <!--  questo va rui            rootscope -->
     <a href="#" class="btn btn-info" ng-click="logout()">LOGOUT</a>
 </div>
