@@ -174,21 +174,16 @@
   var fireapp = firebase.initializeApp(config);
   const db = firebase.firestore();
  
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId: '276027512942214',
-      version : 'v3.0'
-    });
-
-    FB.Event.subscribe('auth.statusChange', function(response) {
-      FB.getLoginStatus(function(response) {
-          console.log("£non dovrei stgare qwui")
-    })
-    });
-
-  };
+  
+    // FB.Event.subscribe('auth.statusChange', function(response) {
+      // FB.getLoginStatus(function(response) {
+          // console.log("£non dovrei stgare qwui")
+    // })
+    // });
+  
 
 </script>
+<script src="app/customfb.js"></script>
 <script src="app/ng-file-upload.min.js"></script>
 
 <script src="partials/shared/modal.js"></script>

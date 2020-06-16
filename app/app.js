@@ -40,29 +40,9 @@ var user;
 function successLogin(result) {
 
 }
-FB.getLoginStatus(function(response) {
-	 statusChangeCallback(response);
-});
-function statusChangeCallback(res){
+
 	
-	if (res.authResponse){
-		console.log(res.authResponse);
-		FB.api(`me?fields=name,email,picture`, function(response) {
-			let scope = angular.element("#rootscope").scope();
-			let user = response;
-			user.displayName = user.name;
-				  user.profilePic = user.picture.url;
-	  
-			scope.user = angular.copy(user);
-			scope.userLoggedIn = user.email || user.displayName || 'anonym';
-				  
-		// console.log('Successful login for: ' + response.name);
-			// $rootScope.user.photoUrl = 
-		
-			});
-	}
-	
-}
+
 
 let token;
 app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $location){
@@ -589,7 +569,28 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 
 	// firebase.auth().getRedirectResult().then((log => console.log(log.credential.accessToken)))
 		// .catch(error => console.log(error))
-
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+	   });
+	   function statusChangeCallback(res){
+		   
+		   if (res.authResponse){
+			   console.log(res.authResponse);
+			   FB.api(`me?fields=name,email,picture`, function(response) {
+				   let scope = $rootScope;
+				   let user = response;
+				   user.displayName = user.name;
+						 user.profilePic = user.picture.data.url;
+			 
+				   scope.user = angular.copy(user);
+				   scope.userLoggedIn = user.email || user.displayName || 'anonym';
+					$location.path('/dash')
+			   // console.log('Successful login for: ' + response.name);
+				   // $rootScope.user.photoUrl = 
+			   
+				   });
+		   }
+		}
 	firebase.auth().onAuthStateChanged(function(_user) {
 		console.log("state changed.");
 		if (_user){
@@ -616,7 +617,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 					console.log("tutto previsto 32333. " + _);
 					$rootScope.rightPath = false;
 					$rootScope.userLoggedIn = 'ciao';
-					$location.path('500')
+					$location.path('/500')
 				},300);
 
 			}, function(error) {
