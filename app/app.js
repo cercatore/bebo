@@ -569,28 +569,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 
 	// firebase.auth().getRedirectResult().then((log => console.log(log.credential.accessToken)))
 		// .catch(error => console.log(error))
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-	   });
-	   function statusChangeCallback(res){
-		   
-		   if (res.authResponse){
-			   console.log(res.authResponse);
-			   FB.api(`me?fields=name,email,picture`, function(response) {
-				   let scope = $rootScope;
-				   let user = response;
-				   user.displayName = user.name;
-						 user.profilePic = user.picture.data.url;
-			 
-				   scope.user = angular.copy(user);
-				   scope.userLoggedIn = user.email || user.displayName || 'anonym';
-					$location.path('/dash')
-			   // console.log('Successful login for: ' + response.name);
-				   // $rootScope.user.photoUrl = 
-			   
-				   });
-		   }
-		}
+		
 	firebase.auth().onAuthStateChanged(function(_user) {
 		console.log("state changed.");
 		if (_user){
@@ -609,6 +588,19 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 		}
 		else { console.log("logout.")}
 	})
+	FB.event.subscribe("auth.stateChange", function(res){
+		if (res.authResponse === 'connected'){
+			console.log(res.authResponse + " fb signin");
+			FB.api(`me?fields=name,email,picture`, function(response) {
+				$rootScope.user ={};
+				$rootScope.user.email = response.email;
+				$rootScope.user.profilePic = response.picture.data.url;
+				$location.path('/dash')
+
+			});
+		}
+	},
+	error=>{$rootScope.message="somethign fb huhu";$location.path('/500')
 
 	$rootScope.logout = () => { // NOT THIS
 		firebase.auth().signOut().then(_=> {

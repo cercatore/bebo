@@ -25,10 +25,10 @@
       </div>
   </div>
   
-  <form class="card-header" name="main.myform" ng-submit="main.signInNormal(main.user)">
+  <form class="card-header" name="myform" ng-submit="main.signInNormal(main.user)">
   <h2 class="text-sm-center"> <br><br/><span class="pull-right col-2"><img class="img-thumbnail" src="images/loading.gif" ng-if="main.working"></span></h2>
   <div class="form-group" >
-    <input type="text" ng-model="main.user.email" name="email" class="form-control" placeholder="Email"  required>
+    <input type="email" ng-model="main.user.email" name="email" class="form-control" placeholder="Email"  required>
     <div ng-messages="myform.email.$error">
       <div ng-message="required">Please insert Email.</div>
     </div>
@@ -45,11 +45,11 @@
   </div>
   <a class="pull-right" ng-click="main.sendEmailForgot()"><i><small>Password dimenticata?</i></small></a>
   <!-- test-->
-  <a class="btn btn-primary" ng-click="main.signInNormal()"><span class="fa fa-login"> LOGIN</span></a>
-  <div class="text-primary text-sm-center" ng-if="message"><h2>{{message}}</h2></div>
+  <button type="submit" class="btn btn-primary" ><span class="fa fa-login"> LOGIN</span></button>
+  <div class="text-primary text-sm-center" ng-if="message"><h2>{{message;main.working=false}}</h2></div>
   <span class="icon-bar" style="width:3939px"></span>
 </form>
-<a class="btn btn-warning" href="#signup">saremo</a>
+<a class="btn btn-warning" href="#signup">Signup</a>
 
 
 
