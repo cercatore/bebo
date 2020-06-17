@@ -587,7 +587,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 			console.log("blabla asseytt one(true): " + (_user.uuid == token) );
 		}
 		else { console.log("logout.")}
-	})
+	});
 	FB.event.subscribe("auth.stateChange", function(res){
 		if (res.authResponse === 'connected'){
 			console.log(res.authResponse + " fb signin");
@@ -599,8 +599,9 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 
 			});
 		}
-	},
-	error=>{$rootScope.message="somethign fb huhu";$location.path('/500')
+	    },
+	    error=>{$rootScope.message="somethign fb huhu";$location.path('/500')}
+	);
 
 	$rootScope.logout = () => { // NOT THIS
 		firebase.auth().signOut().then(_=> {
