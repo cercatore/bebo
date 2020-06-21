@@ -590,7 +590,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	});
 	
 	FB.Event.subscribe("auth.statusChange", function(res){
-		if (res.authResponse === 'connected'){
+		if (res.authResponse){
 			console.log(res.authResponse + " fb signin");
 			FB.api(`me?fields=name,email,picture`, function(response) {
 				$rootScope.user ={};
