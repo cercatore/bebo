@@ -589,7 +589,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 		else { console.log("logout.")}
 	});
 	
-	FB.Event.subscribe("auth.stateChange", function(res){
+	FB.Event.subscribe("auth.statusChange", function(res){
 		if (res.authResponse === 'connected'){
 			console.log(res.authResponse + " fb signin");
 			FB.api(`me?fields=name,email,picture`, function(response) {
