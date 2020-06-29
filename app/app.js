@@ -41,7 +41,11 @@ function successLogin(result) {
 
 }
 
-	
+const messaging = firebase.messaging();
+
+messaging.onMessage( (message) => {
+	console.log(message);
+});
 
 
 let token;
@@ -93,6 +97,13 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 				$rootScope.fb_user.email = res.email;
 				$rootScope.fb_user.name = 'not blabla';
 				$rootScope.user = $rootScope.fb_user;
+				FB.api(`me?fields=name,email,picture`, function(response) {
+					$rootScope.user ={};
+					$rootScope.user.email = response.email;
+					$rootScope.user.profilePic = response.picture.data.url;
+					$location.path('/dash')
+	
+				});
 				// Logged into your webpage and Facebook.
 				
 				// let rresult = $https.get(facebook_url)
@@ -252,6 +263,7 @@ app.factory("aracnoService" , function( $http, $location){
 		if (typeof data !== 'string') throw new DOMException('UPLOAD: well, type of data  should be dataUrl, not file');
 		let task = ref.putString(data, "data_url") // TODO: lasc\iare in bianco
 		prog.set(15);
+		
 		// was prog.start(): fixed time increase
 		task.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
 
@@ -439,17 +451,13 @@ app.config(
 			templateUrl:"chat/customerchat.html",
 			controller:'burpsCtrl as main'
 		})
-		.when( '/cascata' , {
-			templateUrl:"blanotte/cascata.html",
-			controller:"cascata as main"
-		})
 		.when('/prefs' , {
-			templateUrl:"former/blank.html",
+			templateUrl:"prefs_debug/blank.html",
 			controller:"prefcontroller as main"
 		})
 
 		.otherwise({
-			redirectTo:"/prefs"
+			redirectTo:"/home"
 		})
 
 
@@ -579,7 +587,8 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 				// 	console.log(uidtoken);
 				// window.localStorage TODO CONTINUE
 			})
-			$rootScope.userLoggedIn = ( _user.displayName || _user.email) + " -> " + _user.emailVerified;
+			$rootScope.userLoggedIn = ( _user.displayName || _user.email) ;//+ " -> " + _user.emailVerified;
+			$rootScope.user = angular.copy(_user);
 			$timeout(()=>{
 				console.log("tutto previsto 32333. ");
 				$location.path('dash')
@@ -601,7 +610,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 			});
 		}
 	    },
-	    error=>{$rootScope.message="somethign fb huhu";$location.path('/500')}
+	    error=>{$rootScope.message="somethign fb huhu"+error;$location.path('/500')}
 	);
 
 	$rootScope.logout = () => { // NOT THIS

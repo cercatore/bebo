@@ -36,7 +36,7 @@ angular.module('shared', ['ui.bootstrap', 'ui.bootstrap.tpls', 'ngAnimate'])
     obj.tutorialDialog = function (title, message) {
     
         var defer = $q.defer();
-		
+		$modal.message = undefined;
         var modalInstance = $modal.open({
             animation: true,
 			backdrop: true,
@@ -51,7 +51,8 @@ angular.module('shared', ['ui.bootstrap', 'ui.bootstrap.tpls', 'ngAnimate'])
                 $scope.ok = function ()
                 {
                     modalInstance.close();
-                    defer.resolve($scope.modal.dismiss);
+                    $modal.message= 1;
+                    defer.resolve( $modal.message);
                     
                 };
 

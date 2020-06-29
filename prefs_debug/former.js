@@ -2,13 +2,15 @@ angular.module("ciao.blabla", [])
   .controller("prefcontroller", function($scope, clSettings, $http, $log){
     let log = $log.info;
     log("iniziale valore di pref : " + this.preferenza);
-    const prefs = clSettings.prefs(db,"homegreen@gmail.com",console.log);
-    //log(prefs.save("ciaokey","clavalue"));
+    const prefs = clSettings.prefs(db, "cbagnato77@gmail.com", console.log);
+    //log(prefs.update("ciaokey","clavalue"));
     //prefs.caricaAction("ciaokey", "fjkjf" );
     var user = firebase.auth().currentUser;
     let cached = {};
     cached.action = {};
-    prefs.carica("ciaokey");
+    try {
+      prefs.carica("ciaokey")
+    }catch(er){log("cl error:" + er);}
     prefs.loadTutto( $scope);
     let key ="pGUJ4tHro132JVATpwV7UYRdkkgAKaTfADYAa9nOGI1kxO0CQJD4FAvYogC9WSNh";
     let url = "https://hilltopads.com/api/publisher/listStats?key=" + key;
@@ -33,8 +35,9 @@ angular.module("ciao.blabla", [])
     }
 
     $scope.testAction = async () => {
-      let result = await $http.get(url);
-      $scope.preferenceJSON = result.data;
+      // let result = await $http.get(url);
+      // $scope.preferenceJSON = result.data;
+      prefs.update("dismiss_dialog_yes" , "false");
     };
 
 

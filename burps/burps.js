@@ -152,7 +152,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     $scope.recog_in_progress = "wait please, check in progress";
     let sent = buildRequest(self.client.gcsImage);
     $scope.thecat = a;
-
+    function ceBounding  () {return 0;}
     $scope.recog_in_progress = "wait please, check in progress";
       // let sent = buildRequest(self.client.gcsImage);
       let url = clSettings.doggobackend + "" + a;
@@ -165,6 +165,12 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
       for (ii=0; ii< data.length; ii++){
       //self.testi =data[ii];
         console.log(data[ii] + " data" + data);
+        if (ii>0) self.testi[ii-1] = data[ii];
+        let sw = ceBounding();
+        if ( ! ceBounding() ) ;
+
+        
+        
       //inserire preferenza
       }
       // self.updateUserState(clSetting.prefs, result.labels, 2);
@@ -176,7 +182,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   };
   $scope.saveName= ()=>{
     let key = "burps_" + "friend_" + clSettings.getHash();
-    prefs.save(key, self.name);
+    prefs.update(key, self.name);
   }
 
 

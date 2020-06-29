@@ -9,7 +9,7 @@
     <h2 class="text-sm-center text-wrap text-warning">THIS is not the page you looking for</h2>
 
     <div class="divider py-3"></div>
-    <h2 class="text-sm-center text-wrap text-warning"><a style="color:#f080c0" href="https://paypal.me/parmigiana">Donate!</a> You looking for this !!</h2>
+    <h2 class="text-sm-center text-wrap text-warning"><a style="color:#f080c0" href="https://paypal.me/">Donate!</a> You looking for this !!</h2>
     
 </div>
 
@@ -27,8 +27,8 @@
 
 
 
-<div style="display:none">
+<div ng-init="show=false;">
 <!-- mettere in sovrapposizione oiverlayu -->
-    <img class="loader" src="images/awwloader.gif" style="display:block">
+    <img class="loader" src="images/awwloader.gif" style="display:block" ng-show="$timeout( () => show=true),1600)">
 </div>
 

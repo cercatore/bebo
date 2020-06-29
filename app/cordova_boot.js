@@ -2,7 +2,7 @@ function checkLocale(name) {
   window.locale = "debug";
   navigator.globalization.getLocaleName(
     function (locale) {
-      // alert('locale: ' + locale.value + '\n');
+      alert('locale: ' + locale.value + '\n');
       // device id non e propagato
       window.localStorage.setItem("cl_locale", locale.value);
       window.localStorage.setItem("deviceId", name);

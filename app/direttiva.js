@@ -25,7 +25,7 @@ modulo
 
 });
 app.controller("prefs", function(clSettings, $http, $log){
-    let log = $log.info;
+    
     log("iniziale valore di pref : " + this.preferenza);
     const prefs = clSettings.prefs(db,"bagnato_c",console.log);
     //log(prefs.save("ciaokey","clavalue"));
@@ -202,22 +202,23 @@ modulo.directive("clUpload", function ($parse) {
     return {
         restrict: "EA",
 
-
-        template: '<span class="text-secondary">{{zio}}<input id="customFile" class="custom-file-input" type="file"><img src="" alt="output" id="example">  </span>',
+                                                                    // RAYMOND : accept="image/*;capture=camera" capture
+        template: '<span class="text-secondary">{{zio}}<input id="customFile" class="custom-file-input" type="file" capture><img src="" alt="output" id="example">  </span>',
         replace: true,
         link: function (scope, element, attrs) {
 
             var modelGet = $parse(attrs.fileInput);
             var modelSet = modelGet.assign;
             var onChange = $parse(attrs.onChange);
-            scope["zio"] = "scegli file zio";
+            scope["zio"] = "scegli file";
             var updateModel = function () {
                 scope.$apply(function () {
                     let fileinputel = element[0].querySelector('input#customFile');
                     let file = fileinputel.files[0];
                     modelSet(scope, file);
                     scope["zio"] = file.name.trim();
-                    if (file.size>2000000) {scope["innocu_error"] = "ops, file too big. \/( max 2MB )";return;}
+                    let Mb = 1024*1024;
+                    if (file.size>5.1 * Mb) {scope["innocu_error"] = "ops, file too big. \/( max 2MB )";return;}
                     var reader = new FileReader();
                     reader.onloadend = function (result) {
                       console.log('chiamata done');
