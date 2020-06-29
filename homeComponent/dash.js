@@ -7,7 +7,7 @@ angular.module("dash", ['ngNativeTransitions'])
     this.labels = { title:"HELLO !!"};
 
     let prefs = $settings.prefs(db,  $rootScope.user.email,console.log);
-    let dismiss_tutorial_yes = prefs.caricaAction("dismiss_tutorial_yes", $scope, (dismiss) => { log('qui'+dismiss);;if ('yes' !== dismiss)$timeout(self.tutorial, 2600);});
+    let dismiss_tutorial_yes = prefs.caricaAction("dismiss_tutorial_yes", $scope, (dismiss) => { if ('yes' !== dismiss)$timeout(self.tutorial, 2600);});
     this.tutorial = () => {
       dialogService.tutorialDialog(this.labels.title, null)
         .then(function(message){
