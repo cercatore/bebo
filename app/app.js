@@ -43,9 +43,9 @@ function successLogin(result) {
 
 const messaging = firebase.messaging();
 
-messaging.onMessage( (message) => {
-	console.log(message);
-});
+// messaging.setBackgroundMessageHandler( (message) => {
+	// console.log(message);
+// });
 
 
 let token;
@@ -260,7 +260,7 @@ app.factory("aracnoService" , function( $http, $location){
 			"claudio" : file.name
 		  };
 		sacco.uploading = 1;
-		if (typeof data !== 'string') throw new DOMException('UPLOAD: well, type of data  should be dataUrl, not file');
+		if (typeof data !== 'string') throw new Error('UPLOAD: well, type of data  should be dataUrl, not file');
 		let task = ref.putString(data, "data_url") // TODO: lasc\iare in bianco
 		prog.set(15);
 		
@@ -310,6 +310,9 @@ app.factory("aracnoService" , function( $http, $location){
 			window.localStorage.setItem('image', downloadURL);
 			sacco[propName] = downloadURL;
 			prog.set(100);
+			sacco['recog_in_progress'] = true;
+			sacco["active2"] = true;
+			sacco.$apply();
 
 		});
 	  });

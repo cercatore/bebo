@@ -28,28 +28,6 @@ angular.module("dash", ['ngNativeTransitions'])
 
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     self = (this);
 
     self.forward = () => { $location.path("burp")};

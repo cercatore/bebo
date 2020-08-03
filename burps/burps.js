@@ -13,7 +13,8 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   self.data = {};
   self.amici = {};
   let user = firebase.auth().currentUser;
-  self.user = user.email;
+  self.user = $rootScope.user.email || user.email;  // TODO FACEBOOK NON ENTRA
+  
   let prefs = clSettings.prefs(db, self.user, console.log);
 
   
@@ -55,7 +56,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   };
 
   $scope.thecat = "images/unload.png";
-  self.testi = [ "Animals - Fauna" , "Mammals", "This cat", "laughing"];
+  $scope.testi = [ "Animals - Fauna" , "Mammals", "This cat", "laughing"];
 
   $scope.fatto = (data, file) => {
     console.log("[DEGUFF ]************** " + file.name)
@@ -144,7 +145,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
       key ="burps" + "_" + "decode_" + id;
       
     let prefInstance = prefs(db, self.user, console.log);
-    prefInstance.save(key, target);
+    prefInstance.update(key, target);
   }
 
 
@@ -159,13 +160,19 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
       self.updateUserState(clSettings.prefs, a, 0 )
 
       let result = await $http.get(url); /// TODO: FIX erro
-      $scope.recog_in_progress = "";
       let data = result.data.Labels;
-      self.active = true;
+      $scope.active2 = true;
       for (ii=0; ii< data.length; ii++){
       //self.testi =data[ii];
-        console.log(data[ii] + " data" + data);
-        if (ii>0) self.testi[ii-1] = data[ii];
+        let certezza = undefined; 
+        try {
+          let numb = data[ii].Confidence.toString();
+          let i = numb.indexOf('.');
+          if (~i) certezza = numb.substring(0,i);
+            else certezza = numb;
+        }catch (err) {$log.info(err)}
+        
+        $scope.testi[ii] = data[ii].Name + "::" + certezza;
         let sw = ceBounding();
         if ( ! ceBounding() ) ;
 
