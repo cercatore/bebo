@@ -22,7 +22,8 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   self.client.image = window.localStorage.getItem('image');
   console.log("client image is " + self.client.image); //TODO:GONE
   $scope.progressbar = ngProgressFactory.createInstance();
-  $scope.progressbar.setParent($("#rootElement").parent()[0]);
+  $scope.progressbar.setParent($("body").parent()[0]);
+  
   $scope.progressbar.setHeight('12px');
   let ACCESS_TOKEN = "ya29.GqMBWQZfe7Hegewj0Xo5pjQEV-_aS3bhhRWUJ1nJtoiPIioJUvJxHGbx8QmvBSkIWfCFQyboS9_RKmy7zDWVFK3XcAYMp-ID7ZdWIeshm5CWBMA-eQbQQT7l82eH_FUjDhJFTwzRBDm6XOkWh65V9rPMJf-LqGfpqjMIXHQz8zTq1gAV6W2KXiJ8QGJYLj5_jZoIiPpWB8YDrkVy6zU1ZjJC6VAKVQ";
   this.save = () => {
@@ -148,7 +149,15 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     prefInstance.update(key, target);
   }
 
-
+  $scope.utile = () => {
+    $scope.progressbar.set($scope.dado);
+    console.log("set " + $scope.dado);
+  }
+  var config = {headers:  {
+    "Access-Control-Allow-Origin": "*",
+    "X-Requested-For" : "github.com"
+  } 
+};
   $scope.aggiornaUser = async (a, bucket)=>{self.client.image = a;$scope.upload_complete = true;self.client.gcsImage = bucket;
     $scope.recog_in_progress = "wait please, check in progress";
     let sent = buildRequest(self.client.gcsImage);
@@ -159,7 +168,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
       let url = clSettings.doggobackend + "" + a;
       self.updateUserState(clSettings.prefs, a, 0 )
 
-      let result = await $http.get(url); /// TODO: FIX erro
+      let result = await $http.get(url, config); /// TODO: FIX erro
       let data = result.data.Labels;
       $scope.active2 = true;
       for (ii=0; ii< data.length; ii++){

@@ -62,6 +62,7 @@
 
     <form name="form">
     <h2 class="text-danger text-nowrap">{{innocu_error}}</h2>
+    <input ng-model="dado" type="text" ng-blur="utile()" ng-init="dado=0">
     <cl-upload class="text-dark text-truncate btn btn-warning btn-file" ng-if="!recog_in_progress" id="rootid" file-input="file" on-change="readFile()" >{{zio}}</cl-upload>
       
     </form>
