@@ -18,12 +18,34 @@ window.fbAsyncInit = function() {
   
   async function doAllThe() {
     await messaging.requestPermission();
-    let regid = await navigator.serviceWorker
-      .register('my-sw.js')
+    if('serviceWorker' in navigator){
+      if(window.location.pathname != '/'){
+          //register with API
+          regid = await navigator.serviceWorker.register('my-sw.js', { scope: '/' });
+          //once registration is complete
+           navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
+              //get subscription
+              serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription){
+    
+                  //enable the user to alter the subscription
+                  //jquery selector for enabling whatever you use to subscribe.removeAttr("disabled");
+                  //set it to allready subscribed if it is so
+                  if(subscription){
+                      //code for showing the user that they're allready subscribed
+                  }
+              });
+          });
+      }   
+    }else{  
+      console.warn('Service workers aren\'t supported in this browser.');  
+    }
+
     let options = {};
     options.vapidKey = vapid;
     options.serviceWorkerRegistration = regid;
     messaging.getToken( {options});
+}
+function myreg(name){
 }
 try {
   setTimeout(doAllThe, 1330);

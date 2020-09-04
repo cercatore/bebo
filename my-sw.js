@@ -3,11 +3,16 @@ importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase.js');
 
 
 
-firebase.initializeApp({
+firebase.initializeApp(
+  {
     apiKey: "AIzaSyCnfDtTBNv_W66cxLfmitf0oGsJkH49OVg",
-    projectId: "969428577500",
-    messagingSenderId: "969428577500"
-});
+    authDomain: "myall-ada32.firebaseapp.com",
+    databaseURL : "myall-ada32.firebaseio.com",
+    storageBucket : "myall-ada32.appspot.com",
+    messagingSenderId : "969428577500",
+    projectId:'myall-ada32'
+  }
+);
 
 const messaging = firebase.messaging();
 
