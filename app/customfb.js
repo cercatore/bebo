@@ -18,6 +18,7 @@ window.fbAsyncInit = function() {
   
   async function doAllThe() {
     await messaging.requestPermission();
+    let regid = 0;
     if('serviceWorker' in navigator){
       if(window.location.pathname != '/'){
           //register with API

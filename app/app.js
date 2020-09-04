@@ -142,9 +142,10 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		let provider = new firebase.auth.GoogleAuthProvider();
 		provider.addScope("email");
 		provider.addScope("profile");
-		console.log("google redirecting")
+		console.log("google redirecting" );
+		console.log(provider);
 		firebase.auth().signInWithPopup(provider).then(result=> {
-			console.log("google redirecting ...");
+			console.log("google redirecting ..." + result);
 			// This gives you a Google Access Token. You can use it to access the Google API.
 			var token = result.credential.accessToken;
 			if ( token || token == undefined || token ==='') alert("token is null");
@@ -442,7 +443,7 @@ app.config(
 			controller:'kikass as main'
 		})
 		.when('/dash', {
-			templateUrl:'prefs_debug/user_dash.html',
+			templateUrl:'former/user_dash.html',
 			controller:'appCtrl as main'
 		})
 		.when('/azione', {
