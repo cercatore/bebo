@@ -1,14 +1,14 @@
-importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase.js');
-// importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
 
 
 
 firebase.initializeApp(
   {
     apiKey: "AIzaSyCnfDtTBNv_W66cxLfmitf0oGsJkH49OVg",
-    authDomain: "myall-ada32.firebaseapp.com",
-    databaseURL : "myall-ada32.firebaseio.com",
-    storageBucket : "myall-ada32.appspot.com",
+    // authDomain: "myall-ada32.firebaseapp.com",
+    // databaseURL : "myall-ada32.firebaseio.com",
+    // storageBucket : "myall-ada32.appspot.com",
     messagingSenderId : "969428577500",
     projectId:'myall-ada32'
   }

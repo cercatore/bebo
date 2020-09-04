@@ -26,12 +26,13 @@ window.fbAsyncInit = function() {
            navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
               //get subscription
               serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription){
-    
+                console.log("sub: " + subscription);
                   //enable the user to alter the subscription
                   //jquery selector for enabling whatever you use to subscribe.removeAttr("disabled");
                   //set it to allready subscribed if it is so
                   if(subscription){
                       //code for showing the user that they're allready subscribed
+                      
                   }
               });
           });
