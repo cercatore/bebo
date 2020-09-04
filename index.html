@@ -59,8 +59,12 @@
         background-size:cover;
 
       }
+      .spalsh_overlay {
+        position:absolute
+      }
 
     </style>
+  
 
   <style type="text/css">
    ul li a{ display:block;
@@ -80,6 +84,9 @@
           color:#0eee}
     .sfondo  {
       background: linear-gradient(to bottom, #888, #EEE);
+    }
+    body {
+      padding: 50px 0 0;
     }
     pre {
       font-weight: bold;
@@ -120,24 +127,21 @@
     background-image: url(images/doggo_sfondo.png);
     background-size:cover;
     background-repeat: repeat-y;
-    -o-object-position: top;
+   
   }
 </style>
 <body style="background-color:#CCC"  id="anchor_progress">
   <cl-navbar></cl-navbar>
   <button class="btn btn-primary " id="confirmDialog">CONFIRM</button>
-  <div class="btn-group" >
-    <a href="{{route_1}}"  class="btn btn-info">{{route_1}}</a>
-    <a href="{{route_2}}"  class="btn btn-info">LINK</a>
-    <a href="{{route_3}}"  class="btn btn-info">LIN</a>
-    <a href="{{route_4}}"  class="btn btn-info">LI</a>
-    <a href="{{route_5}}"  class="btn btn-info">KIKAz</a>
-  </div>
-  <div class="row col-sm-12 mx-auto">
-  <img class="col-6" ng-if="!splashLoad" src="images/loading.gif">
+  
+  <div class="col-12 card card-block text-center">
+    <div class="row">
+      <div class="col-sm-3"></div><img class="rounded-circle col-sm-6" ng-if="!splashLoad" src="images/awwloader.gif"><div class="col-sm-3"></div>
+    </div>
+    
   </div>
 <div >
-  <div ng-view class="doggo mx-auto" style="marginTop:-20px;padding:50px" ></div><!-- qua TODO-->
+  <div ng-view class="doggo"  ></div><!-- qua TODO-->
   <div class="col-12 card card-block">
       <div class="btn btn-primary  mx-5 my-5" ng-click="move()">GO BACK</div>
     </div>
@@ -156,8 +160,8 @@
   <script src="js/angular-animate.min.js"></script>
   <script src="js/ui-bootstrap-tpls-2.2.0.min.js"></script>
     <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-firestore.js"></script>
   <!-- AngularFire -->
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
   <script src="https://cdn.firebase.com/libs/geofire/4.1.2/geofire.min.js"></script>
@@ -184,6 +188,7 @@
   
 
 </script>
+
 <script src="app/customfb.js"></script>
 <script src="app/ng-file-upload.min.js"></script>
 

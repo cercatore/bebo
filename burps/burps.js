@@ -41,10 +41,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   this.updateRange = (r)=>{
     console.log("range : " + r);
   };
-  const feedDoggo = (data) => {
-
-  }
-  const feedGoogle = (data, outputDebug) => {
+  const feedDoggo =  (data, outputDebug) => {
       log( "User login status ", $rootScope.userLogged);
       log({"headers":{
         "Authorization": "bearer " + ACCESS_TOKEN

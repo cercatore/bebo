@@ -23,9 +23,16 @@ function checkLocale(name) {
 
           }, false);
         } else {
-          console.log("Running in browser, bootstrapping AngularJS now.");
+          // setTimeout( () =>  {console.log("Running in browser, bootstrapping AngularJS now.");
           window.locale = {};
           window.locale.debug = 1;angular.bootstrap(document.body, ['myApp']);
-
+     
+          // ,  1300 );
+                  
         }
       });
+
+
+  function code() {
+   
+  }

@@ -41,7 +41,6 @@ function successLogin(result) {
 
 }
 
-const messaging = firebase.messaging();
 
 // messaging.setBackgroundMessageHandler( (message) => {
 	// console.log(message);

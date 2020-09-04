@@ -7,6 +7,29 @@ window.fbAsyncInit = function() {
 
   };
 
+  const messaging = firebase.messaging();
+  let vapid = "AAAA4bZyLNw:APA91bGU0tzUF1atO-V13i0KIN4EfuLYXEYa233xtmfg_n-JjZXy100XLheaUsQOVs_D2lga8Ta_A1QI0znipzwtf94tJtJJ_Ar1mkbYQGArmrFUUwtDdaqREICilU0AtAvKeMGBgAe6";
+  messaging.onTokenRefresh(() => {
+    messaging.getToken().then((refreshedToken) => {
+      console.log('Token refreshed.');
+    });
+  });
+  // .onMessage ( message => console.log(message))
+  
+  async function doAllThe() {
+    await messaging.requestPermission();
+    let regid = await navigator.serviceWorker
+      .register('my-sw.js')
+    let options = {};
+    options.vapidKey = vapid;
+    options.serviceWorkerRegistration = regid;
+    messaging.getToken( {options});
+}
+try {
+  setTimeout(doAllThe, 1330);
+
+}catch(allerror) {console.log("logga",allerror.stacktrace)}
+
   //  FB.getLoginStatus(function(response) {
     // statusChangeCallback(response);
   //  });
