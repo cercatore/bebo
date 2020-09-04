@@ -22,7 +22,7 @@ window.fbAsyncInit = function() {
     if('serviceWorker' in navigator){
       if(window.location.pathname != '/'){
           //register with API
-          regid = await navigator.serviceWorker.register('my-sw.js', { scope: '/' });
+          regid = await navigator.serviceWorker.register('/my-sw.js', { scope: './' });
           //once registration is complete
            navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
               //get subscription
