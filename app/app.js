@@ -442,7 +442,7 @@ app.config(
 			controller:'kikass as main'
 		})
 		.when('/dash', {
-			templateUrl:'former/user_dash.html',
+			templateUrl:'prefs_debug/user_dash.html',
 			controller:'appCtrl as main'
 		})
 		.when('/azione', {

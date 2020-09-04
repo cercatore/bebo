@@ -15,14 +15,14 @@
         <div class="divider col-sm-8" ></div>
         <div class="card card-block border-0 col-sm-4" >
                 
-            <div class="img-fluid"><img  src="{{ user.profilePic || 'images/unknown.jpg'}}"></div>
+            <div class="img-fluid pull-right"><img  src="{{ user.profilePic || 'images/unknown.jpg'}}"></div>
                 <div ng-if="user.profilePic" class="overlay bg-light py-2 px-2 rounded-circle"><i  class="fa fa-edit fa-2x" ng-click="main.tutorial()"></i></div>
             </div>
     
         </div>
     </div>
     <div class="card-body"  >
-        <div class="col-sm-8"  ><i>Hello </i><h2 class="text-truncate">{{userLoggedIn}}</h2>
+        <div class="col-sm-12"  ><i>Hello </i><h2 class="text-truncate">{{user.displayName || user.email}}</h2>
         </div>
         
         <a class="btn btn-light"   ng-click="window.alert(document.cookie)" ng-if="!user.emailVerified"><h4>Verify your email</h4></div>
