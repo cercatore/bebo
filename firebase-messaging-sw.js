@@ -21,8 +21,9 @@ const messaging = firebase.messaging();
 // background (Web app is closed or not in browser focus) then you should
 // implement this optional method.
 // [START background_handler]
+worker = worker + 1;
 messaging.setBackgroundMessageHandler(function(payload) {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  console.log(worker + '[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
   const notificationTitle = 'Background Message Title';
   const notificationOptions = {
@@ -33,4 +34,36 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
   return self.registration.showNotification(notificationTitle,
     notificationOptions);
+});
+
+messaging.onMessage(function(payload){
+  console.log(worker + '##########fore####### received message foreeground');
+  const title = "madonna volante";
+  return self.registration.showNotification(title, payload.body);
+});
+
+self.addEventListener('notificationclick', (event) => {
+  const clickedNotification = event.notification;
+  clickedNotification.close();
+  const promiseChain = clients
+      .matchAll({
+          type: 'window',
+          includeUncontrolled: true
+       })
+      .then(windowClients => {
+          let matchingClient = null;
+          for (let i = 0; i < windowClients.length; i++) {
+              const windowClient = windowClients[i];
+              if (windowClient.url === feClickAction) {
+                  matchingClient = windowClient;
+                  break;
+              }
+          }
+          if (matchingClient) {
+              return matchingClient.focus();
+          } else {
+              return clients.openWindow(feClickAction);
+          }
+      });
+      event.waitUntil(promiseChain);
 });
