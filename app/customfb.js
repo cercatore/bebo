@@ -22,7 +22,7 @@ window.fbAsyncInit = function() {
     if('serviceWorker' in navigator){
       if(window.location.pathname != '/'){
           //register with API
-          regid = await navigator.serviceWorker.register('/my-sw.js', { scope: './' });
+          regid = await navigators.serviceWorker.register('/firebase-messaging-sw.js', { scope: './' });
           //once registration is complete
            navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
               //get subscription
@@ -59,7 +59,7 @@ try {
   //  });
    function statusChangeCallback(res){
      
-     if (res.authResponse){
+     if (res.status === "connected"){
        console.log(res.authResponse);
        FB.api(`me?fields=name,email,picture`, function(response) {
          let scope = $rootScope;

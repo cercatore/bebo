@@ -5,7 +5,7 @@ angular.module("dash", ['ngNativeTransitions'])
     const log = $log.info;
     self=this;
     this.labels = { title:"HELLO !!"};
-
+//                                  ---- vvvv qui ce errore
     let prefs = $settings.prefs(db,  $rootScope.user.email,console.log);
     let dismiss_tutorial_yes = prefs.caricaAction("dismiss_tutorial_yes", $scope, (dismiss) => { if ('yes' !== dismiss)$timeout(self.tutorial, 2600);});
     this.tutorial = () => {

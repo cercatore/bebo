@@ -443,7 +443,7 @@ app.config(
 			controller:'kikass as main'
 		})
 		.when('/dash', {
-			templateUrl:'former/user_dash.html',
+			templateUrl:'prefs_debug/user_dash.html',
 			controller:'appCtrl as main'
 		})
 		.when('/azione', {
@@ -602,7 +602,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	});
 	
 	FB.Event.subscribe("auth.statusChange", function(res){
-		if (res.authResponse){
+		if (res.status === 'connected'){
 			console.log(res.authResponse + " fb signin");
 			FB.api(`me?fields=name,email,picture`, function(response) {
 				$rootScope.user ={};
@@ -611,6 +611,10 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 				$location.path('/dash')
 
 			});
+		}
+		else {
+			$rootScope.userLoggedIn = "facbe logg out";
+			$location.path('/500');
 		}
 	    },
 	    error=>{$rootScope.message="somethign fb huhu"+error;$location.path('/500')}
@@ -633,7 +637,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 		}
 	$rootScope.fblogout = () => {
 		FB.logout( function(response){
-			console.log(response.authResponse.status);
+			console.log(response.status);
 		})
 	}
 
