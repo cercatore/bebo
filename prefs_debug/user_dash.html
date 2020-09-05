@@ -16,7 +16,7 @@
         <div class="card card-block border-0 col-sm-4" >
                 
             <div class="img-fluid pull-right"><img  src="{{ user.profilePic || 'images/unknown.jpg'}}"></div>
-                <div ng-if="user.profilePic" class="overlay bg-light py-2 px-2 rounded-circle"><i  class="fa fa-edit fa-2x" ng-click="main.tutorial()"></i></div>
+                <div ng-if="!user.profilePic" class="overlay bg-light py-2 px-2 rounded-circle"><i  class="fa fa-edit fa-2x" ng-click="main.tutorial()"></i></div>
             </div>
     
         </div>

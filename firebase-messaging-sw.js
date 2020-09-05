@@ -26,8 +26,9 @@ messaging.setBackgroundMessageHandler(function(payload) {
   // Customize notification here
   const notificationTitle = 'Background Message Title';
   const notificationOptions = {
-    body: 'Background Message body.',
-    icon: '/firebase-logo.png'
+    body: payload.body,
+    click_action: "start_Activity_1",
+    icon: '/bebo/images/doggo.png'
   };
 
   return self.registration.showNotification(notificationTitle,

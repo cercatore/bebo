@@ -20,9 +20,9 @@ window.fbAsyncInit = function() {
     await messaging.requestPermission();
     let regid = 0;
     if('serviceWorker' in navigator){
-      if(window.location.pathname != '/'){
+      // if(window.location.pathname != '/'){
           //register with API
-          regid = await navigators.serviceWorker.register('/firebase-messaging-sw.js', { scope: './' });
+          regid = await navigator.serviceWorker.register('/firebase-messaging-sw.js', { scope: '/bebo' });
           //once registration is complete
            navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
               //get subscription
@@ -37,7 +37,7 @@ window.fbAsyncInit = function() {
                   }
               });
           });
-      }   
+      // }   
     }else{  
       console.warn('Service workers aren\'t supported in this browser.');  
     }
