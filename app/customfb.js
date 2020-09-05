@@ -1,6 +1,7 @@
 window.fbAsyncInit = function() {
     FB.init({
       appId: '276027512942214',
+      cookie:true,
       status:true,
       version : 'v6.0'
     });
@@ -22,7 +23,7 @@ window.fbAsyncInit = function() {
     if('serviceWorker' in navigator){
       // if(window.location.pathname != '/'){
           //register with API
-          regid = await navigator.serviceWorker.register('/firebase-messaging-sw.js', { scope: '/bebo' });
+          regid = await navigator.serviceWorker.register('./firebase-messaging-sw.js', { scope: '/bebo' });
           //once registration is complete
            navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
               //get subscription
