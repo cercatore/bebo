@@ -46,7 +46,6 @@ function successLogin(result) {
 	// console.log(message);
 // });
 
-
 let token;
 app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $location){
 	this.user = {};
@@ -310,6 +309,7 @@ app.factory("aracnoService" , function( $http, $location){
 			window.localStorage.setItem('image', downloadURL);
 			sacco[propName] = downloadURL;
 			prog.set(100);
+			prog.complete()
 			sacco['recog_in_progress'] = true;
 			sacco["active2"] = true;
 			sacco.$apply();
@@ -542,7 +542,13 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	$rootScope.project = $proj;
 	$rootScope.navbar = {} ;
 	$rootScope.navbar.debug = () => {
-		 dialogConfirm(JSON.stringify($rootScope.project));
+		try{
+			dialogConfirm(JSON.stringify($rootScope.project));
+		}
+		catch (err){
+			confirm(window.localStorage.getItem("messagingToken"));
+		}
+		 
 			 window.localStorage.setItem('preference', [])
 
 	}
@@ -565,7 +571,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 			href: last
 		  };
 		console.log(last);
-		$location.path("/home");
+		$location.path(last);
 	}
 	$rootScope.$watch("user", function(newvalue,oldvalue){
 		console.log("redirecting to daskboard...");

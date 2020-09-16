@@ -5,18 +5,18 @@
     <div class="col-sm-6">&nbsp;
       
       <i class="my-5">&nbsp;</i><img class="img-fluid pull-right" ng-if="andrina_splash" style="height:auto"src="images/doggo_loading.gif">
-      <div class="my-1"></div>
-<i><h2 >Signup</h2></i><i class="my-5">&nbsp;x</i>
+      <h2 >Signup</h2> <div class="my-1"></div>
+<i></i><i class="my-5">&nbsp;</i>
     </div>
     <div class="col-sm-6 row clearfix">
       <div class="form-group mb-3 col-12 pull-right">
       <div class="input-group-addon" style="opacity:0.7  mn "><i class="fa fa-user-plus fa-2x"></i></div>
-      <label><br/><i class="fa fa-user"></i>Enter your email
+      <label><br/><i class="fa fa-user"> </i>Enter your email
       <input type="email" name="email" class="form-control" placeholder="your name" ng-model="main.name" >
       </label>
       </div>
       <div class="form-group mb-3 col-12 mx-auto" >
-      <label><i class="fa fa-shield "></i>Password
+      <label><i class="fa fa-shield "> </i>Password
       <input type="text" name="pass" class="form-control" placeholder="password" ng-model="main.pass" minLength=6>
       </label>
       </div>
@@ -27,7 +27,7 @@
       </label>
       </div>
     <div class="row col-12 text-nowrap mx-auto " style="margin-left:-20px;">
-        <button class="btn btn-info  mx-auto  col-sm-12" type="submit">MMMMM</button>
+        <button class="btn btn-info  mx-auto  col-sm-12" type="submit">REGISTER</button>
 
       </div>
     </div>
@@ -52,5 +52,5 @@
 
   <h1>{{main.out}}{{out}}</h1>
   <div class="col-4 mx-auto box-shadow">
-    <a class="btn btn-primary text-light" ng-click="andrina_splash = !andrina_splash" >GOGLLANNANAD</a>
+    <a ng-if="!debug" class="btn btn-primary text-light" ng-click="andrina_splash = !andrina_splash" >GOGLLANNANAD</a>
   </div>

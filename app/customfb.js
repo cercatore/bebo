@@ -9,7 +9,6 @@ window.fbAsyncInit = function() {
   };
 
   const messaging = firebase.messaging();
-  let vapid = "AAAA4bZyLNw:APA91bGU0tzUF1atO-V13i0KIN4EfuLYXEYa233xtmfg_n-JjZXy100XLheaUsQOVs_D2lga8Ta_A1QI0znipzwtf94tJtJJ_Ar1mkbYQGArmrFUUwtDdaqREICilU0AtAvKeMGBgAe6";
   messaging.onTokenRefresh(() => {
     messaging.getToken().then((refreshedToken) => {
       console.log('Token refreshed.');
@@ -26,27 +25,23 @@ window.fbAsyncInit = function() {
           regid = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
           //once registration is complete
            navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
-              //get subscription
-              serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription){
-                console.log("sub: " + subscription);
-                  //enable the user to alter the subscription
-                  //jquery selector for enabling whatever you use to subscribe.removeAttr("disabled");
-                  //set it to allready subscribed if it is so
-                  if(subscription){
-                      //code for showing the user that they're allready subscribed
-                      
-                  }
-              });
+             
           });
       // }   
     }else{  
       console.warn('Service workers aren\'t supported in this browser.');  
+      
     }
 
     let options = {};
-    options.vapidKey = vapid;
+    // options.vapidKey = vapid;
     options.serviceWorkerRegistration = regid;
-    messaging.getToken( {options});
+    messaging.getToken( {options}).then( token =>{
+        window.localStorage.setItem("messagingToken", token);
+        
+      })
+      .catch( error => console.log("show error " + error))
+    
 }
 function myreg(name){
 }

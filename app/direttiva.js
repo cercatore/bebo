@@ -94,8 +94,8 @@ angular.module('myApp.playground', [])
 
                 console.log("Controller loaded. bitch ready");
         let self = (this);
-        self.name = "homegreen18@gmail.com";
-        self.pass = "aaaaaa";
+        // self.name = "homegreen18@gmail.com";
+        // self.pass = "aaaaaa";
 
         let obj = {
             register_service: mock_ctrl,

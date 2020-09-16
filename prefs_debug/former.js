@@ -1,6 +1,7 @@
 angular.module("ciao.blabla", [])
   .controller("prefcontroller", function($scope, $rootScope, clSettings, $http, $log){
     let log = $log.info;
+    
     log("iniziale valore di pref : " + this.preferenza);
     const prefs = clSettings.prefs(db, $rootScope.user.email, console.log);
     //log(prefs.update("ciaokey","clavalue"));
@@ -8,6 +9,50 @@ angular.module("ciao.blabla", [])
     var user = firebase.auth().currentUser;
     let cached = {};
     cached.action = {};
+    let fcm_token = window.localStorage.getItem("messagingToken").toString();
+    const myawesomeTopic = "myawesome";
+                                              // ce differenza tra /info e /v1
+    let iidsUrl = `https://iid.googleapis.com/iid/v1/${fcm_token}/rel/topics/${myawesomeTopic}`;
+
+    let config = { headers:  {
+      "Authorization": "key=AAAA4bZyLNw:APA91bGU0tzUF1atO-V13i0KIN4EfuLYXEYa233xtmfg_n-JjZXy100XLheaUsQOVs_D2lga8Ta_A1QI0znipzwtf94tJtJJ_Ar1mkbYQGArmrFUUwtDdaqREICilU0AtAvKeMGBgAe6",
+      "Content-type" : "appkication/json"
+    }
+    };
+    $scope.testCall = () => {
+      if (!fcm_token) throw new Error("ciaoooooooooooooo");
+      $http.post( iidsUrl, {} , config)
+        .then( result => console.log(result.data) )
+        .catch( error => console.log( error))
+    };
+
+    $scope.leggiTutti = () => {
+
+    }
+
+
+
+    messaging.onMessage(function(payload){
+      console.log( '##########fore####### received message foreeground ');
+      const title = "madonna volante";
+      // return self.registration.showNotification(title, payload.notification.body);
+    });
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
     try {
       prefs.carica("ciaokey")
     }catch(er){log("cl error:" + er);}

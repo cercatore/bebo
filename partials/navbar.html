@@ -3,7 +3,7 @@
   <h4 class="pull-right">{{locale}}</h4>
 
   </a>
-  <button class="btn btn-outline-success pull-right mr-2" ng-click="navbar.debug()">::debug:iid</button>
+  <button class="btn btn-outline-success pull-right mr-2" ng-click="navbar.debug()" ng-if="!navbar.debug">::debug:iid</button>
   <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span>
       MENU
@@ -14,14 +14,12 @@
   <div class="navbar-collapse collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="mailto:claudio.bagnato@gmail.com?subject=on%20board!">Contact <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="mailto:support@daffy.app?subject=on%20board!">Contact <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#home">WolfLogin</a>
+        <a class="nav-link" href="#home">Login</a>
       </li>
-      <li>
-        Uela,
-      </li>
+     
       <li class="nav-item">
         <a class="nav-link .debug_url" href="#dash">TEST</a>
       </li>

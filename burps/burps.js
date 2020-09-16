@@ -13,7 +13,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   self.data = {};
   self.amici = {};
   let user = firebase.auth().currentUser;
-  self.user = $rootScope.user.email || user.email;  // TODO FACEBOOK NON ENTRA
+  self.user = $rootScope.user.email || user.email;  // FACBOOK OK
   
   let prefs = clSettings.prefs(db, self.user, console.log);
 
@@ -35,8 +35,9 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     if (window.localStorage.getItem('chrome')){
     }
     checkUser();
+    
     console.log(self.client.clientId + " " + self.client.name);
-    geoService.newUser(self.client, [parseFloat($scope.origin.y), parseFloat($scope.origin.x)]);
+    // geoService.newUser(self.client, [parseFloat($scope.origin.y), parseFloat($scope.origin.x)]);
   }
   this.updateRange = (r)=>{
     console.log("range : " + r);
@@ -57,8 +58,8 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   $scope.testi = [ "Animals - Fauna" , "Mammals", "This cat", "laughing"];
 
   $scope.fatto = (data, file) => {
-    console.log("[DEGUFF ]************** " + file.name)
-    aracnoService.uploadToStorage($scope, clientId, file, data, 'out_url', $scope.progressbar);
+    console.log("[DEGUFF ]************** " + file.name)  // ERRORE DI CUI SOPRA
+    aracnoService.uploadToStorage($scope, self.user , file, data, 'out_url', $scope.progressbar);
 
     // alert(reader.result);
       // var content = reader.result.split(',')[1];// or var base64result = reader.result.substr(reader.result.indexOf(',') + 1); reader.result.split(',')[1]; //or var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
@@ -146,10 +147,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     prefInstance.update(key, target);
   }
 
-  $scope.utile = () => {
-    $scope.progressbar.set($scope.dado);
-    console.log("set " + $scope.dado);
-  }
+  
   var config = {headers:  {
     "Access-Control-Allow-Origin": "*",
     "X-Requested-For" : "github.com"

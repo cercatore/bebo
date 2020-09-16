@@ -41,11 +41,12 @@ FB MESSAGE: {{message}}
 
 <div ng-if="!user" style="padding-top:50px;"><h2> USER is NULL</h2>  
      <!--  questo va rui            rootscope -->
-    <a href="#" class="btn btn-info" ng-click="logout()">LOGOUT</a>
+    
 </div>
+<a ng-if="user" href="#" class="btn btn-info" ng-click="logout()">LOGOUT</a>
 
 <div >
-    <a href="" class="btn btn-info" ng-click="testAction()">TEST action</a>
+    <a href="" class="btn btn-info" ng-click="testCall()">AGGIUNGI SUVSCRIBEn</a>
 </div>
 <pre>{{preferenceJSON}}</pre>
 <pre>{{debugPref}}</pre>

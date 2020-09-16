@@ -6,11 +6,12 @@ importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
 firebase.initializeApp(
   {
     apiKey: "AIzaSyCnfDtTBNv_W66cxLfmitf0oGsJkH49OVg",
-    // authDomain: "myall-ada32.firebaseapp.com",
-    // databaseURL : "myall-ada32.firebaseio.com",
-    // storageBucket : "myall-ada32.appspot.com",
+    authDomain: "myall-ada32.firebaseapp.com",
+    databaseURL : "myall-ada32.firebaseio.com",
+    storageBucket : "myall-ada32.appspot.com",
     messagingSenderId : "969428577500",
-    projectId:'myall-ada32'
+    appId: "1:969428577500:web:825a4956530ee068019819"
+    
   }
 );
 
@@ -21,29 +22,25 @@ const messaging = firebase.messaging();
 // background (Web app is closed or not in browser focus) then you should
 // implement this optional method.
 // [START background_handler]
-worker = worker + 1;
+
 messaging.setBackgroundMessageHandler(function(payload) {
-  console.log(worker + '[firebase-messaging-sw.js] Received background message ', payload);
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
-  const notificationTitle = 'Background Message Title';
+  const notificationTitle = 'baba handler' + payload.title;
   const notificationOptions = {
-    body: payload.body,
+    body: payload.data.body,
     click_action: "start_Activity_1",
-    icon: '/bebo/images/doggo.png'
+    icon: '/images/doggo.png',
+    requireInteraction:true
   };
 
   return self.registration.showNotification(notificationTitle,
     notificationOptions);
 });
 
-messaging.onMessage(function(payload){
-  console.log(worker + '##########fore####### received message foreeground');
-  const title = "madonna volante";
-  return self.registration.showNotification(title, payload.body);
-});
 
 self.addEventListener('notificationclick', (event) => {
-  const clickedNotification = event.notification;
+  const clickedNotification = event.notification; // <-- ptrendo url da qui: event.notifivation.data.url
   clickedNotification.close();
   const promiseChain = clients
       .matchAll({
