@@ -2,14 +2,14 @@ angular.module("ciao.blabla", [])
   .controller("prefcontroller", function($scope, $rootScope, clSettings, $http, $log){
     let log = $log.info;
     
-    log("iniziale valore di pref : " + this.preferenza);
-    const prefs = clSettings.prefs(db, $rootScope.user.email, console.log);
     //log(prefs.update("ciaokey","clavalue"));
     //prefs.caricaAction("ciaokey", "fjkjf" );
     var user = firebase.auth().currentUser;
+    const prefs = clSettings.prefs(db, user.email, $log.info);
+    
     let cached = {};
     cached.action = {};
-    let fcm_token = window.localStorage.getItem("messagingToken").toString();
+    let fcm_token = window.localStorage.getItem("messagingToken");
     const myawesomeTopic = "myawesome";
                                               // ce differenza tra /info e /v1
     let iidsUrl = `https://iid.googleapis.com/iid/v1/${fcm_token}/rel/topics/${myawesomeTopic}`;
@@ -20,11 +20,16 @@ angular.module("ciao.blabla", [])
     }
     };
     $scope.testCall = () => {
-      if (!fcm_token) throw new Error("ciaoooooooooooooo");
+      if (!fcm_token) throw new Error("no token");
       $http.post( iidsUrl, {} , config)
         .then( result => console.log(result.data) )
         .catch( error => console.log( error))
     };
+
+    $scope.createPref = () => {
+      if (!user) throw new Error('no user');
+      db.collection('users').doc(user.email).set({}, {merge:true});
+    }
 
     $scope.leggiTutti = () => {
 
