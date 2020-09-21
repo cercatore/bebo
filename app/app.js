@@ -89,17 +89,21 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			
 			if (res) {
 				console.log(response.authResponse.status);
-				$rootScope.user =undefined
+				
 				$rootScope.fb_user.token = res.accessToken;
 				$rootScope.fb_user.id = res.userID;
 				$rootScope.fb_user.email = res.email;
 				$rootScope.fb_user.name = 'not blabla';
 				$rootScope.user = $rootScope.fb_user;
 				FB.api(`me?fields=name,email,picture`, function(response) {
-					$rootScope.user ={};
-					$rootScope.user.email = response.email;
-					$rootScope.user.profilePic = response.picture.data.url;
-					$location.path('/dash')
+					try{
+						let user ={};
+					user.email = response.email;
+					user.displaName = response.name;
+					}catch(err){_show_error("no named", $scope)}
+					user.profilePic = response.picture.data.url;
+					$rootScope.user = user;
+
 	
 				});
 				// Logged into your webpage and Facebook.
@@ -173,7 +177,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 
 	this.sendEmailForgot = () => {
 
-		firebase.auth().sendEmailPassword(this.user.email).then(function() {
+		firebase.auth().sendPasswordResetEmail(this.user.email).then(function() {
 		console.log("// Email sent. to " + this.user.email);
 		}).catch(function(error) {
 			_show_error(error, $scope)
@@ -619,7 +623,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 			});
 		}
 		else {
-			$rootScope.userLoggedIn = "facbe logg out";
+			$rootScope.userLoggedIn = res.status;
 			$location.path('/500');
 		}
 	    },
