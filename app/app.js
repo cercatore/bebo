@@ -542,7 +542,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	$proj.locale = window.localStorage.getItem("cl_locale");
 	$proj.deviceID = $rootScope.clientId;
 	$proj.routes = window.routes;
-
+	$proj.token = window.localStorage.getItem("messagingToken");
 	$rootScope.project = $proj;
 	$rootScope.navbar = {} ;
 	$rootScope.navbar.debug = () => {

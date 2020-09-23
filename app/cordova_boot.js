@@ -20,15 +20,22 @@ function checkLocale(name) {
             let device = window.device;
             let name = device.model + ":" + device.uuid;
             checkLocale(name);
+            window.localStorage.setItem("deviceId", name);
+
+            
 
           }, false);
         } else {
           // setTimeout( () =>  {console.log("Running in browser, bootstrapping AngularJS now.");
           window.locale = {};
           window.locale.debug = 1;angular.bootstrap(document.body, ['myApp']);
-     
+         
           // ,  1300 );
                   
+        }
+        let plugs = window.plugins;
+        for (var prop in plugs ){
+            console.info(prop);
         }
       });
 
