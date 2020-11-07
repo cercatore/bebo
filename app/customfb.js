@@ -43,12 +43,7 @@ window.fbAsyncInit = function() {
       .catch( error => console.log("show error " + error))
     
 }
-function myreg(name){
-}
-try {
-  setTimeout(doAllThe, 1330);
 
-}catch(allerror) {console.log("logga",allerror.stacktrace)}
 
   //  FB.getLoginStatus(function(response) {
     // statusChangeCallback(response);

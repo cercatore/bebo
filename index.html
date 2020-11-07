@@ -144,6 +144,7 @@
   <div ng-view class="doggo"  ></div><!-- qua TODO-->
   <div class="col-12 card card-block">
       <div class="btn btn-primary  mx-5 my-5" ng-click="move()">GO BACK</div>
+      <h1>{{debug}}</h1>
     </div>
     
 
@@ -165,6 +166,18 @@
   <!-- AngularFire -->
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
   <script src="https://cdn.firebase.com/libs/geofire/4.1.2/geofire.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->           
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136858434-1"></script>
+<script>            //                                --> ERRORE
+  try{
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-136858434-1');
+    }
+  catch(err){console.log(err)}
+</script>
+
 
   <script>
   // Initialize Firebase
@@ -178,6 +191,7 @@
   };
   var fireapp = firebase.initializeApp(config);
   const db = firebase.firestore();
+  const anal = firebase.analytics(); // non va
  
   
     // FB.Event.subscribe('auth.statusChange', function(response) {
@@ -210,10 +224,9 @@
 
 <script src="kikass/kikass.js"></script>
 <script src="cordova.js" type="text"></script>
-<script src="app/dialogs.js"></script>
 <script src="app/cordova_boot.js"></script>
+<script src="app/dialogs.js"></script>
 <script src="app/angular-native-transitions.js"></script>
 <script src="homeComponent/dash.js"></script>
-<script src="app/yap.js"></script>
 <script src="prefs_debug/former.js"></script>
 </html>

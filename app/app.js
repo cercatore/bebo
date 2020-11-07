@@ -534,7 +534,9 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	$rootScope.locale = window.localStorage.getItem("cl_locale");
 	$rootScope.clientId = window.localStorage.getItem("deviceId") || '1234567890';
 	settings.storageBase = (!window.locale ) ? $rootScope.clientId + "" : "";
+	$rootScope.debug_ = !window.cordova; 
 
+	
   // let self = (this);
 	// self.guard = window.localStorage;
 		let $proj = {};

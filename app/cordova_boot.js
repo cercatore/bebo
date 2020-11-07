@@ -21,6 +21,10 @@ function checkLocale(name) {
             let name = device.model + ":" + device.uuid;
             checkLocale(name);
             window.localStorage.setItem("deviceId", name);
+            try {
+              setTimeout(doAllThe, 330);
+            
+            }catch(allerror) {console.log("logga",allerror.stacktrace)}
 
             
 
