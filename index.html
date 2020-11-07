@@ -167,14 +167,20 @@
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
   <script src="https://cdn.firebase.com/libs/geofire/4.1.2/geofire.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->           
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136858434-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQZ89S4E4L"></script>
 <script>            //                                --> ERRORE
   try{
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'UA-136858434-1');
-    }
+    gtag('config', 'G-MQZ89S4E4L');
+    // e possibile aggiungere altre gtag('config' ,...)   
+    // analytics track ind 'UA-136858434-1'
+  
+  
+  
+  }
+
   catch(err){console.log(err)}
 </script>
 
@@ -183,14 +189,15 @@
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCnfDtTBNv_W66cxLfmitf0oGsJkH49OVg",
+              
     authDomain: "myall-ada32.firebaseapp.com",
     databaseURL : "myall-ada32.firebaseio.com",
     storageBucket : "myall-ada32.appspot.com",
     messagingSenderId : "969428577500",
+    measurementId: "G-MQZ89S4E4L",
     projectId:'myall-ada32'
   };
   var fireapp = firebase.initializeApp(config);
-  const db = firebase.firestore();
   const anal = firebase.analytics(); // non va
  
   
