@@ -203,14 +203,14 @@ modulo.directive("clUpload", function ($parse) {
         restrict: "EA",
 
                                                                     // RAYMOND : accept="image/*;capture=camera" capture
-        template: '<span class="text-secondary">{{zio}}<input id="customFile" class="custom-file-input" type="file" capture><img src="" alt="output" id="example">  </span>',
+        template: '<span class="text-secondary">{{zio}}<input id="customFile" class="custom-file-input" type="file" accept="image/*"><img src="" alt="output" id="example">  </span>',
         replace: true,
         link: function (scope, element, attrs) {
 
             var modelGet = $parse(attrs.fileInput);
             var modelSet = modelGet.assign;
             var onChange = $parse(attrs.onChange);
-            scope["zio"] = "scegli file";
+            scope["zio"] = "TAKE A PIC";
             var updateModel = function () {
                 scope.$apply(function () {
                     let fileinputel = element[0].querySelector('input#customFile');

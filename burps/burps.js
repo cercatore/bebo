@@ -155,10 +155,10 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
 };
   $scope.aggiornaUser = async (a, bucket)=>{self.client.image = a;$scope.upload_complete = true;self.client.gcsImage = bucket;
     $scope.recog_in_progress = "wait please, check in progress";
+    self.azione_welcome_text = $scope.recog_in_progress;
     let sent = buildRequest(self.client.gcsImage);
     $scope.thecat = a;
     function ceBounding  () {return 0;}
-    $scope.recog_in_progress = "wait please, check in progress";
       // let sent = buildRequest(self.client.gcsImage);
       let url = clSettings.doggobackend + "" + a;
       self.updateUserState(clSettings.prefs, a, 0 )
@@ -178,7 +178,10 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
         
         $scope.testi[ii] = data[ii].Name + "::" + certezza;
         let sw = ceBounding();
-        if ( ! ceBounding() ) ;
+        if ( ! ceBounding() ) 
+        self.recog_in_progress = false;
+        
+        
 
         
         

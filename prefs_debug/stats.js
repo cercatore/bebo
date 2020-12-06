@@ -26,11 +26,7 @@ angular.module("ciao.blabla", [])
         .catch( error => console.log( error))
     };
 
-    $scope.createPref = () => {
-      if (!user) throw new Error('no user');
-      db.collection('users').doc(user.email).set({}, {merge:true});
-    }
-
+   
     $scope.leggiTutti = () => {
 
     }

@@ -9,7 +9,7 @@ angular.module('shared', ['ui.bootstrap', 'ui.bootstrap.tpls', 'ngAnimate'])
         var modalInstance = $modal.open({
             animation: true,
 			backdrop: true,
-            size: "lg",
+            
             templateUrl: '/partials/shared/confirmationBox.html',
             controller: function ($scope)
             {

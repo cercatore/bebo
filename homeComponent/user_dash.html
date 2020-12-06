@@ -1,0 +1,50 @@
+<style>
+    .overlay {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .card img {
+        max-width: 180px;
+    }
+
+    .modal-backdrop,
+    .modal-backdrop.fade {
+        transform: scale(0.9);
+        opacity: 0;
+        transition: all .2s linear;
+        display: block !important;
+    }
+</style>
+
+<div class="card card-block" ng-init="main.active=false">
+    <div class="card-header row" ng-init="blink=1">
+        <h1 class="my-5">&nbsp;</h1>
+    </div>
+    <div class="row col-sm-12">
+        <div class="divider col-sm-8"></div>
+        <div class="card card-block border-0 col-sm-4">
+
+            <div class="img-fluid pull-right"><img src="{{ user.profilePic || user.photoURL || 'images/unknown.jpg'}}">
+            </div>
+            <div ng-if="!user.profilePic" class="overlay bg-light py-2 px-2 rounded-circle"><i class="fa fa-edit fa-2x"
+                    ng-click="main.tutorial()"></i></div>
+        </div>
+
+    </div>
+</div>
+<div class="card-body">
+    <div class="col-sm-12"><i>Hello </i>
+        <h2 class="text-truncate">{{user.displayName || user.email}}</h2>
+    </div>
+
+    <a class="btn btn-light" ng-click="main.doStuff()" ng-if="!user.emailVerified">
+        <h4>Verify your email</h4>
+</div>
+<hr>
+</hr>
+<a href="#azione" class="ml-2 btn btn-outline-primary">take a pic of your friend</a>
+</div>
+
+
+<!-- hiddden button to right repone tutorial-->

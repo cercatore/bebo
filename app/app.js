@@ -58,7 +58,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 
 
 	this.signInNormal = ( ) => {
-	  this.working = true;
+	  $rootScope.working = true;
 		auth.$signInWithEmailAndPassword(this.user.email, this.user.password)
 			.then(
 				function(firebaseUser){
@@ -82,7 +82,8 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			)
 		}
 	this.signInFacebook = () => {
-		
+		$rootScope.working = 1;
+		$rootScope.ticker= "facebook signin...";
 		FB.login(function(response) {
 			// handle the response
 			let res = response.authResponse;
@@ -140,7 +141,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 		// }).catch(function(error) {
 		//  console.log("G Authentication failed:", error);
 		// });
-		this.working=1;
+		$rootScope.working=1;
 		let myauth = firebase.auth();
 		let provider = new firebase.auth.GoogleAuthProvider();
 		provider.addScope("email");
@@ -447,7 +448,7 @@ app.config(
 			controller:'kikass as main'
 		})
 		.when('/dash', {
-			templateUrl:'prefs_debug/user_dash.html',
+			templateUrl:'homeComponent/user_dash.html',
 			controller:'appCtrl as main'
 		})
 		.when('/azione', {
@@ -459,7 +460,7 @@ app.config(
 			controller:'burpsCtrl as main'
 		})
 		.when('/prefs' , {
-			templateUrl:"prefs_debug/blank.html",
+			templateUrl:"prefs_debug/stats_page.html",
 			controller:"prefcontroller as main"
 		})
 
@@ -559,6 +560,12 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 
 	}
 	$rootScope.fb_user = {};
+	
+	$rootScope.createPref = ( user) => {
+		if (!user) throw new Error('no user');
+		db.collection('users').doc(user.email).set({}, {merge:true});
+	  }
+  
   // let prefs = guardIron.load();
 	// console.log( prefs )
 
@@ -595,6 +602,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 		
 	firebase.auth().onAuthStateChanged(function(_user) {
 		console.log("state changed.");
+		$rootScope.working = true;
 		if (_user){
 			let token = window.localStorage.getItem("cl_once");
 			if (token) console.log( token.slice(0,16));
@@ -614,13 +622,16 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	});
 	
 	FB.Event.subscribe("auth.statusChange", function(res){
+		$rootScope.working = true;
 		if (res.status === 'connected'){
 			console.log(res.authResponse + " fb signin");
 			FB.api(`me?fields=name,email,picture`, function(response) {
 				$rootScope.user ={};
 				$rootScope.user.email = response.email;
+				$rootScope.user.displayName = response.name;
 				$rootScope.user.profilePic = response.picture.data.url;
 				$location.path('/dash')
+				$rootScope.message = JSON.pruned(response);
 
 			});
 		}

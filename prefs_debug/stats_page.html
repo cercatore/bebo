@@ -20,9 +20,10 @@
 -->
 <br/>
 <br/><br/><br/>
-<h2>hello user </h2><small>{{user}} 
-    
-</small>
+<h2>hello user </h2>
+{{user.email}} -- 
+<small ng-click="show_more = 1">show more</small>    
+
 <div style="padding-left:4vw;">
 FB MESSAGE: {{message}}
 <div ng-if="!user"><a href="/home"></a></div>

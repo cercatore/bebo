@@ -1,12 +1,13 @@
 
 
 angular.module("dash", ['ngNativeTransitions'])
-  .controller('appCtrl', ['$scope', "$rootScope","dialogService", "clSettings", '$nativeTransitions' ,'$log', '$location', "$timeout", function ($scope,$rootScope, dialogService, $settings,$nativeTransitions, $log, $location, $timeout){
+  .controller('appCtrl', ['$scope', "$rootScope","dialogService", "clSettings", '$nativeTransitions' ,'$log', '$location', "$timeout", function ($scope,$rootScope, dialogService, $settings, $nativeTransitions, $log, $location, $timeout){
     const log = $log.info;
     self=this;
     this.labels = { title:"HELLO !!"};
+    
 //                                  ---- vvvv qui ce errore
-    let prefs = $settings.prefs(db,  $rootScope.user.email,console.log);
+    let prefs = $settings.prefs( db, $rootScope.user.email, console.log);
     let dismiss_tutorial_yes = prefs.caricaAction("dismiss_tutorial_yes", $scope, (dismiss) => { if ('yes' !== dismiss)$timeout(self.tutorial, 2600);});
     this.tutorial = () => {
       dialogService.tutorialDialog(this.labels.title, null)
@@ -87,6 +88,11 @@ angular.module("dash", ['ngNativeTransitions'])
         });
     }
     $scope.testEmail = sendEmailVerification;
+
+    $timeout(
+      () => $rootScope.createPref($rootScope.user )
+      , 1300
+    )
       
 
 
