@@ -53,10 +53,9 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
           .then( (result) => { log(result); alert("SUCCESS!")})
           .catch( (result) => log( result));
   };
-
+  
   $scope.thecat = "images/unload.png";
-  $scope.testi = [ "Animals - Fauna" , "Mammals", "This cat", "laughing"];
-
+  $scope.testi = [ "whatthefuckyuoudoing"];
   $scope.fatto = (data, file) => {
     console.log("[DEGUFF ]************** " + file.name)  // ERRORE DI CUI SOPRA
     aracnoService.uploadToStorage($scope, self.user , file, data, 'out_url', $scope.progressbar);
@@ -160,12 +159,12 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     $scope.thecat = a;
     function ceBounding  () {return 0;}
       // let sent = buildRequest(self.client.gcsImage);
-      let url = clSettings.doggobackend + "" + a;
+      let url = clSettings.doggobackend + "" +a;
       self.updateUserState(clSettings.prefs, a, 0 )
-
+      try{
       let result = await $http.get(url, config); /// TODO: FIX erro
       let data = result.data.Labels;
-      $scope.active2 = true;
+      
       for (ii=0; ii< data.length; ii++){
       //self.testi =data[ii];
         let certezza = undefined; 
@@ -178,16 +177,17 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
         
         $scope.testi[ii] = data[ii].Name + "::" + certezza;
         let sw = ceBounding();
+        $('#button').click();
         if ( ! ceBounding() ) 
-        self.recog_in_progress = false;
+        $scope.recog_in_progress = false;
+        $scope.active2 = true;
+        self.azione_welcome_text = "";
         
-        
-
-        
-        
+      // self.updateUserState(clSetting.prefs, result.labels, 2);
+      // TODO : recover vita
       //inserire preferenza
       }
-      // self.updateUserState(clSetting.prefs, result.labels, 2);
+    }catch(error){console.log(error)}
       
 
 

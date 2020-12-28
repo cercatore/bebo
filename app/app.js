@@ -50,6 +50,7 @@ let token;
 app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $location){
 	this.user = {};
 	var auth = $firebaseAuth();
+	$rootScope.working = false;
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
 	$rootScope.user = firebase.auth().currentUser;
 	let facebook_url = "";
@@ -152,7 +153,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			console.log("google redirecting ..." + result);
 			// This gives you a Google Access Token. You can use it to access the Google API.
 			var token = result.credential.accessToken;
-			if ( token || token == undefined || token ==='') alert("token is null");
+			// if ( token || token == undefined || token ==='') alert("token is null");
 			window.localStorage.setItem("cl_once" , token);
 			// The signed-in user info.
 			var user = result.user;
@@ -434,7 +435,7 @@ app.config(
 			templateUrl: 'movie/movieDetail.html',
 			controller: 'movieController as ctrl'
 		})
-		.when( '/bah', {
+		.when( '/coraggio', {
 			templateUrl:"movie/batch.html",
 			controller:'batch as ba'
 		})
@@ -531,16 +532,15 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 
 	$rootScope.loginActions  = [ 'LOGOUT', 'I MIEI AMICI', 'FEEDBACK'];
 	$rootScope.splashLoad = true;
-	$rootScope.route_1 = routes[0].replace('/','#');
 	$rootScope.locale = window.localStorage.getItem("cl_locale");
 	$rootScope.clientId = window.localStorage.getItem("deviceId") || '1234567890';
 	settings.storageBase = (!window.locale ) ? $rootScope.clientId + "" : "";
-	$rootScope.debug_ = !window.cordova; 
+	$rootScope.debug_ = window.cordova; 
 
 	
   // let self = (this);
 	// self.guard = window.localStorage;
-		let $proj = {};
+	let $proj = {};
 		
 	$proj.locale = window.localStorage.getItem("cl_locale");
 	$proj.deviceID = $rootScope.clientId;
@@ -575,19 +575,20 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	// window.location.protocol = 'https:';\
 	$rootScope.move = () => {
 		let last = settings.history.pop();
+		
 		var options = {
-			direction: 'left',
-			duration: 300,
-			iosdelay: 100,
-			androiddelay: 1000,
+			direction: 'right',
+			duration: 650,
+			iosdelay: 0,
+			androiddelay: 0,
 			fixedPixelsTop: 45,
-			href: last
-		  };
+			href: last   
+		  };   //& last = "/" + last 
 		console.log(last);
 		$location.path(last);
 	}
 	$rootScope.$watch("user", function(newvalue,oldvalue){
-		console.log("redirecting to daskboard...");
+		console.log("redirecting to dashboard...");
 		let token = window.localStorage.getItem("token");
 		let user = newvalue;
 
@@ -603,7 +604,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	firebase.auth().onAuthStateChanged(function(_user) {
 		console.log("state changed.");
 		$rootScope.working = true;
-		if (_user){
+		if (_user && $rootScope.debug !== 'go' ){
 			let token = window.localStorage.getItem("cl_once");
 			if (token) console.log( token.slice(0,16));
 			_user.getIdToken().then(uidtoken=>{
@@ -670,13 +671,14 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 				$rootScope.title = current.$$route.title;
 				console.log(current.$$route.originalPath);
 
-				settings.history.push(current.$$route.originalPath.replace("/", "#"));
+				settings.history.push(current.$$route.originalPath.replace("/", "")); // nop operation
+				
 			}
 			catch( err){console.log("cl", err)}
 			});
 
 	$rootScope.$on('$routeChangeError', function (event, current, previous) {
-		$location.path('/5423');
+		$location.path('#coraggio');// TODO EANRING WARNING ESAURITO
 	});
 }]);
 // two additional optional parameters :
@@ -777,3 +779,17 @@ JSON.pruned = function (value, depthDecr, arrayMaxLength) {
 };
 
 }());
+
+const global = window || document; // (in browser...)
+
+
+const OldPromise = global.Promise; 
+
+global.Promise = class Promise extends OldPromise {
+  constructor(executor) {
+    // do whatever you want here, but must call super()
+    
+    super(executor); // call native Promise constructor
+  }
+};
+

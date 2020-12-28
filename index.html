@@ -133,7 +133,7 @@
 <body style="background-color:#CCC"  id="anchor_progress" data-toggle="collapse" data-target> 
   <cl-navbar></cl-navbar>
   <button class="btn btn-primary " id="confirmDialog">CONFIRM</button>
-  
+  <a href="#coraggio"><span class="fa fa-2x fa-send" ></span></a>
   <div class="col-12 card card-block text-center">
     <div class="row">
       <div class="col-sm-3"></div><img class="rounded-circle col-sm-6" ng-if="!splashLoad" src="images/awwloader.gif"><div class="col-sm-3"></div>
@@ -199,8 +199,7 @@
   };
   var fireapp = firebase.initializeApp(config);
   const db = firebase.firestore();
-  const anal = firebase.analytics(); // non va
- 
+  
   
     // FB.Event.subscribe('auth.statusChange', function(response) {
       // FB.getLoginStatus(function(response) {

@@ -20,23 +20,39 @@ function fuckerup(json){
   return bru;
 }
 
-app.controller("batch" , function($scope, $http, ngProgressFactory){
+app.controller("batch" , function($scope, $http, ngProgressFactory, clSettings){
   $scope.bla = () =>{
 
   }
 
-  let folder = "test03";
+  https://api.mlab.com/api/1/databases/cbmanager/collections/batch.0015/?apiKey=LC-wif-orODQhsURWZf43a-I0x2hjhIf
   var url = 'https://api.mlab.com/api/1/databases/cbmanager/collections/';
   let apikey = '?apiKey=LC-wif-orODQhsURWZf43a-I0x2hjhIf';
+  let status = {};
+  status.ii = 0;
 
-  $scope.docu = url + folder + apikey;
-  var uploadTotal
+  const buildEndpoint = (folder) => {
+    function format4Padding() {
+      let num = status.ii;
+      let arr = num.toString().split(".")
+      arr[0] = arr[0].padStart(4, "0")
+      let str = arr.join(".")
+      return str;
+      }
+    status.ii = status.ii + 1;
+     return  url + folder + "." + formate4Padding(status.ii) + apikey;
+  }
+
+  const MAX = 2;
+  var uploadTotal = -1;
+
   var cc = 0; // progress
   function initLoadCSV(){
-    $http.get( location.protocol + "//" + location.host+ "/" + "data.json",
-    {"headers":{
-      "content-type": "json; charset",
-      "accept" : "application/json; charset=utf-8"}}
+    $http.get( location.protocol + "//" + location.host+ "/" + "data.json"
+    // {"headers":{
+    //   "content-type": "json; charset",
+      // "accept" : "application/json; charset=utf-8"}
+  // }
     ).then(response => { $scope.data = response.data;$scope.uploadTotal=$scope.data.length;console.log($scope.data[2]);$scope.main = $scope.data[2];})
     
   }
@@ -48,33 +64,28 @@ app.controller("batch" , function($scope, $http, ngProgressFactory){
   }
   $scope.progressbar = ngProgressFactory.createInstance();
 
-  $scope.upload = () => {
-    $scope.progressbar.start();
-    $http.post( $scope.docu , $scope.data  ,{"headers":{"Content-Type" : "application/json; charset=utf-8"}})
-      .then( () => { $scope.outputText = `upload complete.`; $scope.progressbar.complete();})
-      .catch(error => console.log(error) );
+  $scope.upload_chuncked =  (chunck) => {
+    return $http.post( buildEndpoint(chunck), $scope.data  
+      // {"headers":{"Content-Type" : "application/json; charset=utf-8"}}
+      )
+      // .then( (success) => { $scope.outputText = `upload complete.${status.ii}`; return "donce " + status.ii; })
+      // .catch(error => console.log(error) );
+      
   };
 
-
-
-  $scope.aaaa = () => {
-    jQuery.ajax({
-      url : "http://" + location.host + "/data.json",
-      method: "get",
-      headers : {"content-type": "json;charset=UTF-8;",
-      "accept" : "json;charset=uft-8"
-    },
-    dataType : "json",
-    success : function (data){
-      $scope.main = data[2]
-    },
-    error: function (error) {
-      console.log(error)
+  self.uploadBatch =async () => {
+    $scope.progressbar.start();
+    for ( status.ii = 0; status.ii<MAX;){
+      result = await $scope.upload_chuncked ("batch");
+      $scope.progressbar.set(status.ii * 20);
+      console.log(result);
     }
+    $scope.progressbar.complete();
   }
-)
-}
 
+
+
+ 
 function mockProgress(){
   for (cc= 0 ; cc < 18; cc ++){
 

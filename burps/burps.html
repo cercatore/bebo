@@ -51,10 +51,7 @@
       <div class="col-sm-6">
         <h2>{{main.azione_welcome_text}}</h2>
       </div>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" placeholder="friend Name" ng-model="main.name" ng-blur="saveName()">
-
-      </div>
+      <div class="col-sm-6"></div>
 
 
     </div>
@@ -64,22 +61,23 @@
     <h2 class="text-danger text-nowrap">{{innocu_error}}</h2>
    
     <cl-upload class="text-dark text-truncate btn btn-warning btn-file" ng-if="!recog_in_progress" id="rootid" file-input="file" on-change="readFile()" >{{zio}}</cl-upload>
-      
+    <img class="img-thumbnail" src="images/awwloader.gif" ng-if="recog_in_progress">
     </form>
-    <button class="btn btn-info my-2" type="button" ng-click="main.active = !main.active" >BUTTON</button>
-
+    <button class="btn btn-info my-2" type="button" ng-click="main.active = !main.active" id="button">BUTTON</button>
+    
     <!-- <a class="btn btn-block btn-info" ng-click="main.cleanup()">MANDA</a> -->
 
-    <div class="row col-sm-12 mt-5">
+    <div class="row col-sm-12 mt-5" ng-if=" upload_complete || main.active">
       <div class="card col-sm-6 col-md-8" >
       <div class="card-block my-2 pa-2" >
-        <img ng-if=" upload_complete || main.active" style="min-height:200px";class="box img-responsive img-auto" src="{{thecat}}">
+        <img  style="min-height:200px";class="box img-responsive img-auto" src="{{thecat}}">
       </div>
     </div>
       <!-- <div ng-if="recog_in_progress">{{recog_in_progress}}</div> -->
+      
       <div class="card col-sm-6 col-md-4">
           <div class="card-block my-2 pa-2"  >
-            {{recog_in_progress}}
+            
             <div ng-repeat="testo in testi track by $index"  style="font-size:28px" class="text_order" ng-if="active2" >
               <div ng-if="$index != 2"><i>{{testo}}</i></div>
               <div ng-if="$index == 2"><b><i>{{testo}}</i></b></div>

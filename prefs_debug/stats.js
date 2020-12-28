@@ -87,13 +87,11 @@ angular.module("ciao.blabla", [])
     };
 
 
+    
 
 
 
-
-
-
-    this.resetPassword = () => {
+    this.uselresPassword = () => {
         user.updateEmail("cbagnato77@gmail.com").then(function() {
             // Update successful.
             $log.info("success")
