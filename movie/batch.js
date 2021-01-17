@@ -26,11 +26,11 @@ app.controller("batch" , function($scope, $http, ngProgressFactory, clSettings){
   }
 
   https://api.mlab.com/api/1/databases/cbmanager/collections/batch.0015/?apiKey=LC-wif-orODQhsURWZf43a-I0x2hjhIf
-  var url = 'https://api.mlab.com/api/1/databases/cbmanager/collections/';
+  var url = 'https://4doggle:9292/test/';
   let apikey = '?apiKey=LC-wif-orODQhsURWZf43a-I0x2hjhIf';
   let status = {};
   status.ii = 0;
-
+  // IVENDVER SEE THIS CODE BEFORE
   const buildEndpoint = (folder) => {
     function format4Padding() {
       let num = status.ii;
@@ -40,10 +40,12 @@ app.controller("batch" , function($scope, $http, ngProgressFactory, clSettings){
       return str;
       }
     status.ii = status.ii + 1;
-     return  url + folder + "." + formate4Padding(status.ii) + apikey;
+    let pushingurl =url + folder + "" + formate4Padding(status.ii) + "/";//+ apikey;
+    console.log(pushingurl);
+     return  pushingUrl;
   }
 
-  const MAX = 2;
+  const MAX = 1;
   var uploadTotal = -1;
 
   var cc = 0; // progress
@@ -63,6 +65,10 @@ app.controller("batch" , function($scope, $http, ngProgressFactory, clSettings){
 
   }
   $scope.progressbar = ngProgressFactory.createInstance();
+  $scope.progressbar.setHeight("20px");
+  try{
+    $scope.progressbar.setColor("#70ee00");
+  }catch(err){}
 
   $scope.upload_chuncked =  (chunck) => {
     return $http.post( buildEndpoint(chunck), $scope.data  

@@ -18,10 +18,10 @@ modulo
         tutorial_text:
             ""
     },
-    amazonBackend: "http://ec2-18-221-235-74.us-east-2.compute.amazonaws.com/message/blabla:",
-    prefs : prefs,
-    getHash : getHash,
-    doggobackend: "http://localhost/message?blabla="
+    amazonBackend: "...message/blabla:",
+    prefs,
+    getHash,
+    doggobackend: null
 
 });
 app.controller("prefs", function(clSettings, $http, $log){

@@ -90,7 +90,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			let res = response.authResponse;
 			
 			if (res) {
-				console.log(response.authResponse.status);
+				console.log(response.authResponse); 
 				
 				$rootScope.fb_user.token = res.accessToken;
 				$rootScope.fb_user.id = res.userID;
@@ -99,7 +99,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 				$rootScope.user = $rootScope.fb_user;
 				FB.api(`me?fields=name,email,picture`, function(response) {
 					try{
-						let user ={};
+						let user = {};
 					user.email = response.email;
 					user.displaName = response.name;
 					}catch(err){_show_error("no named", $scope)}
@@ -545,7 +545,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	$proj.locale = window.localStorage.getItem("cl_locale");
 	$proj.deviceID = $rootScope.clientId;
 	$proj.routes = window.routes;
-	$proj.token = window.localStorage.getItem("messagingToken");
+	$proj.token = window.localStorage.getItem("messagingToken") ? "ok" : "";
 	$rootScope.project = $proj;
 	$rootScope.navbar = {} ;
 	$rootScope.navbar.debug = () => {
@@ -592,7 +592,8 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 		let token = window.localStorage.getItem("token");
 		let user = newvalue;
 
-	})
+	})			//http://localhost/message?blabla=
+	settings.doggobackend = "http://" + window.location.host + "/message?blabla:";
 	// settings.$watch('storageUrl', function( val, old){
 	// 	console.log('watchdog1' + val);
 	// 	if ( ! ( val && val != '')) generalAracno = 1;
@@ -604,6 +605,8 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	firebase.auth().onAuthStateChanged(function(_user) {
 		console.log("state changed.");
 		$rootScope.working = true;
+		$scope.$apply();
+		alert($rootScope.debug + " dbeig np go");
 		if (_user && $rootScope.debug !== 'go' ){
 			let token = window.localStorage.getItem("cl_once");
 			if (token) console.log( token.slice(0,16));
@@ -625,7 +628,8 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	FB.Event.subscribe("auth.statusChange", function(res){
 		$rootScope.working = true;
 		if (res.status === 'connected'){
-			console.log(res.authResponse + " fb signin");
+			console.log("facebook auth change");
+			console.log(res.authResponse );
 			FB.api(`me?fields=name,email,picture`, function(response) {
 				$rootScope.user ={};
 				$rootScope.user.email = response.email;

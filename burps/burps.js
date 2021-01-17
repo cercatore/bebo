@@ -150,6 +150,8 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   var config = {headers:  {
     "Access-Control-Allow-Origin": "*",
     "X-Requested-For" : "github.com"
+    
+    
   } 
 };
   $scope.aggiornaUser = async (a, bucket)=>{self.client.image = a;$scope.upload_complete = true;self.client.gcsImage = bucket;
@@ -157,6 +159,8 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     self.azione_welcome_text = $scope.recog_in_progress;
     let sent = buildRequest(self.client.gcsImage);
     $scope.thecat = a;
+    let $srv = $("#confirmButton");
+    console.log($srv);
     function ceBounding  () {return 0;}
       // let sent = buildRequest(self.client.gcsImage);
       let url = clSettings.doggobackend + "" +a;
