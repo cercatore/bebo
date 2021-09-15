@@ -6,7 +6,6 @@
 
 var app = angular.module('myApp',
 	[
-	'myApp.chat',
 	'ngRoute',
 	'ngMessages',
 	'ngAnimate',
@@ -16,8 +15,10 @@ var app = angular.module('myApp',
 	'ngFileUpload',
 	'myApp.costanti',
 	'myApp.playground',
+	'myApp.chat',
 	'dash',
-	'ciao.blabla'
+	'prefsModule'
+	
 	
 
 
@@ -47,20 +48,87 @@ function successLogin(result) {
 // });
 
 let token;
-app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $location){
+app.controller('homeController' , ['$rootScope', '$scope', '$firebaseAuth', '$location', '$log' , 'clSettings', function ($rootScope, $scope, $firebaseAuth, $location, log, settings){
 	this.user = {};
-	var auth = $firebaseAuth();
+	const $log = log.info;
+	const auth = $firebaseAuth;
 	$rootScope.working = false;
 	this.hasFinished = 'non voglio vivere cosi cerca qualcosa';
 	$rootScope.user = firebase.auth().currentUser;
 	let facebook_url = "";
+	this.user.email = "cbagnato77@gmail.com"
 		// $location.path("/kikass");
-	
+	/****************************************************
+	 * 
+	 * SIGNIN NEW METHOD 
+	 *  OTP PASSWORD email.page.link
+	 * callback https://localhost/?
+	 */
+	 this.kiki = () => {
+		let dumb = settings.actionCodeSettings
+		$log( dumb.url)
 
+        firebase.auth().sendSignInLinkToEmail(this.user.email, dumb )
+            .then(() => {
+              // The link was successfully sent. Inform the user.
+              // Save the email locally so you don't need to ask the user for it again
+              // if they open the link on the same device.
+              window.localStorage.setItem('emailForSignIn', email);
+              $log("all done.");
+              // ...
+            })
+            .catch((error) => {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              $log( errorCode + " " + error.message)
+
+
+              // ...
+        });
+
+      }
+	  /****************************************************
+	 * 
+	 * SIGNIN NEW METHOD as 26 august by modofo
+	 */
+	this.sigin2608 = () => {
+		//  auth.settings.appVerificationDisabledForTesting = true;
+
+		var phoneNumber = "+393519243517";
+		var testVerificationCode = "123456";
+		
+		// This will render a fake reCAPTCHA as appVerificationDisabledForTesting is true.
+		// This will resolve after rendering without app verification.
+		var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+		appVerifier.prototype = () => {
+			func = function() {
+				// if (b) {
+				// 	return true;
+				// }
+				return true;
+			};
+			return {
+				verify: func
+			}
+
+		}
+		// signInWithPhoneNumber will call appVerifier.verify() which will resolve with a fake
+		// reCAPTCHA response.
+		firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+			.then(function (confirmationResult) {
+			// confirmationResult can resolve with the whitelisted testVerificationCode above.
+			$log(confirmationResult)
+			return confirmationResult.confirm(testVerificationCode)
+			}).catch( error => {
+			// Error; SMS not sent
+			$log(error);
+
+			});
+	}
 
 	this.signInNormal = ( ) => {
 	  $rootScope.working = true;
-		auth.$signInWithEmailAndPassword(this.user.email, this.user.password)
+		firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
 			.then(
 				function(firebaseUser){
 					$rootScope.rightPath = "signedin";
@@ -161,6 +229,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 			$rootScope.userLoggedIn = result.user.displayName || result.user.email || "anonymous";// +++498534??? add data
 			// user.getIdToken().then( token => {window.localStorage.setItem("token", token);confirm("hello ! " + token.substring(0,5) );});
 
+
 			$rootScope.user = angular.copy(user);
 			console.log(user);
 			// ...
@@ -187,7 +256,7 @@ app.controller('homeController' , function ($rootScope, $scope, $firebaseAuth, $
 	}
 
 
-})
+}])
 // GLOBAL FUNCTION MODDING
 if(typeof(String.prototype.trim) === "undefined")
 {
@@ -244,15 +313,7 @@ app.factory("aracnoService" , function( $http, $location){
 			}
 			return obj;
 	}
-	service.init = ( sacco ) =>{
-		$http.get(window.location.protocol + '//' + window.location.host + "/" + "data.json" ).
-		then(response => {
-			sacco.arrayData = response.data;
-			sacco.out = mastica(sacco.arrayData);
-			sacco.status = "done.42";
-		});
-
-	}
+	
 
 	// service.uploadNext = ( firestore,  collName ):String => {
 		// firestore.collection( collName).doc
@@ -537,7 +598,9 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	settings.storageBase = (!window.locale ) ? $rootScope.clientId + "" : "";
 	$rootScope.debug_ = window.cordova; 
 
-	
+	$rootScope.searchbar = "http://google.com/?q="; 
+	$rootScope.alert = () => { alert("https://google.com/q=dogs+OR+pets+" + $rootScope.somevar );
+	}
   // let self = (this);
 	// self.guard = window.localStorage;
 	let $proj = {};
@@ -605,8 +668,8 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 	firebase.auth().onAuthStateChanged(function(_user) {
 		console.log("state changed.");
 		$rootScope.working = true;
-		$scope.$apply();
-		alert($rootScope.debug + " dbeig np go");
+		$rootScope.$apply();
+		// alert($rootScope.debug + " dbeig np go");
 		if (_user && $rootScope.debug !== 'go' ){
 			let token = window.localStorage.getItem("cl_once");
 			if (token) console.log( token.slice(0,16));

@@ -8,14 +8,17 @@ window.fbAsyncInit = function() {
 
   };
 
-  const messaging = firebase.messaging();
+  const messaging = null // firebase.messaging();
+  // TO Enable messaginh 
+  // <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-messaging.js"></script>
+  
   messaging.onTokenRefresh(() => {
     messaging.getToken().then((refreshedToken) => {
       console.log('Token refreshed.');
     });
   });
   // .onMessage ( message => console.log(message))
-  
+
   async function doAllThe() {
     await messaging.requestPermission();
     let regid = 0;
@@ -25,12 +28,12 @@ window.fbAsyncInit = function() {
           regid = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
           //once registration is complete
            navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
-             
+
           });
-      // }   
-    }else{  
-      console.warn('Service workers aren\'t supported in this browser.');  
-      
+      // }
+    }else{
+      console.warn('Service workers aren\'t supported in this browser.');
+
     }
 
     let options = {};
@@ -38,10 +41,10 @@ window.fbAsyncInit = function() {
     options.serviceWorkerRegistration = regid;
     messaging.getToken( {options}).then( token =>{
         window.localStorage.setItem("messagingToken", token);
-        
+
       })
       .catch( error => console.log("show error " + error))
-    
+
 }
 
 
@@ -49,7 +52,7 @@ window.fbAsyncInit = function() {
     // statusChangeCallback(response);
   //  });
    function statusChangeCallback(res){
-     
+
      if (res.status === "connected"){
        console.log(res.authResponse);
        FB.api(`me?fields=name,email,picture`, function(response) {
@@ -57,13 +60,13 @@ window.fbAsyncInit = function() {
          let user = response;
          user.displayName = user.name;
            user.profilePic = user.picture.data.url;
-     
+
          scope.user = angular.copy(user);
          scope.userLoggedIn = user.email || user.displayName || 'anonym';
         $location.path('/dash')
        // console.log('Successful login for: ' + response.name);
-         // $rootScope.user.photoUrl = 
-       
+         // $rootScope.user.photoUrl =
+
          });
      }
   }

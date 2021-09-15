@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md fixed-top py-0 navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md fixed-top py-0 navbar-dark bg-dark ">
   <a class="row navbar-brand" href="http://claudiobagnato.com"><img class="rounded-circle cl_logo_capone" src="images/FL-logo.png">
   <h4 class="pull-right">{{locale}}</h4>
 
@@ -15,20 +15,20 @@
   </button>
 
   <div class="navbar-collapse collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto text-light">
       <li class="nav-item active">
-        <a class="nav-link" href="mailto:support@daffy.app?subject=on%20board!">Contact <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="mailto:support@rairadio.app?subject=be%20%pls! :">Contact <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#home">Login +{{project.token}}</a>
       </li>
      
       <li class="nav-item">
-        <a class="nav-link .debug_url" href="#dash">TEST</a>
+        <a class="nav-link .debug_url" href="#dash">DASH</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link .debug_url" href="#prefs">debug prefs</a>
-      </li>
+      </li> -->
       <li ng-if="rightPath" class="nav-item dropdown">
         <a class="nav-link dropdown dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{userLoggedIn}}
@@ -40,13 +40,17 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://daffy.app/about" ng-click="checkandgo()">MOBILE ABOUT</a>
+        <a class="nav-link" href="http://rairadio.app/about" ng-click="checkandgo()">MOBILE ABOUT</a>
       </li>
       
     </ul>
-    <form ng-show="false" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="doens work... ¯\_(ツ)_/¯ Emoji - Emojipedia" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    
+    <form  class="form-inline my-2 my-lg-0" ng-submit="alert()">
+      <button class="pull-right btn btn-outline-dark" 
+       style="text-transform:none" >
+      <img  width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="images/512px-Google__G__Logo.svg.webp" /></button>
+      <input class="form-control mr-2" placeholder="sea social dogs ¯\_(ツ)_/¯" aria-label="Search" ng-model="somevar">
+      <button class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-search"></i></button>
     </form>
   </div>
 </nav>

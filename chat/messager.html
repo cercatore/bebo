@@ -27,10 +27,36 @@ footer {
   box-shadow: 0 0 2px #888;
   
 }
+.flex {
+  display: flex;
+}
+img {
+  height:auto;
+}
+.ticcc {
+    flex-grow: 1;
+}
 
 
 </style>
 <!-- Message Box -->
+<div class="navbar row col-12" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="navbar-brand">
+    <img class="img-thumbnail rounded-circle" src="images/unknown.jpg">
+  </div>
+  <h2 class="ticcc" >BLA VLEDLSL</h2>
+  <div class="btn-group mr-2 bg-light navbar-item pull-right " role="group" aria-label="Second group">
+    <button type="button" class="btn btn-light"><i class="fa fa-cog"></i></button>
+    <button type="button" class="btn btn-light"><i class="fa fa-trash"></i></button>
+  </div>
+  <div class="btn-group mr-2 navbar-item pull-right" role="group" aria-label="First group">
+    <button type="button" class="btn btn-secondary" active><i class="fa fa-video-camera"></i></button>
+    <button type="button" class="btn btn-secondary"><i class="fa fa-phone"></i></button>
+    
+  </div>
+  
+</div>
+
 <div class="converation" stid="ciao" style="overflow-y:scroll;height:300px;">
 <div class="row col-sm-12 pa-2" >
     <div ng-repeat-start="(key,message) in currentChat.messages track by $index"></div>
@@ -47,6 +73,7 @@ footer {
           </div>
         </div>
       
+        
     </div>
     <div class="col-sm-8 mx-4 mb-2" ng-if="message.sender != control.user" ng-repeat-end>
       <div class="row">

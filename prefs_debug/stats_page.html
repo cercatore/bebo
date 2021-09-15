@@ -9,11 +9,19 @@
         height:auto;
         position:relative;
     }
-    .card > img {
-        #object-position:center;
-        #object-fit:fill;
-
+    /* @media (min-width: 768px) {
+    .row.equal {
+        display: flex;
+        flex-wrap: wrap;
+    } */
+    .zoom {
+    transition: transform .6s; /* Animation */
     }
+    .zoom:hover {
+    overflow:hidden;
+     transform: scale(1.33333); /* (150% zoom)*/
+    }
+}
 </style>
 <!-- methodo 1 : accettare che fb mi da 50px, e test_fb = 50px
      2 : metter wifdth auto
@@ -22,9 +30,21 @@
 <br/><br/><br/>
 <h2>hello user </h2>
 {{user.email}} -- 
-<small ng-click="show_more = 1">show more</small>    
+<small ng-click="">show more</small>    
+<div class="row col-sm-12 ">
+    <div ng-repeat="card in scoped_items" class="card card-block ml-1 col-sm-4 col-md-3 mb-3" >
+        <div class="card-title text-truncate">
+            <h4 class="fa fa-file fa-2x ">{{card.text}}</h4>
+            </div><div class="card-body " >
+            
+            <img class="img-fluid zoom " src="{{card.image}}">
+        </div>
+    </div>
+</div>
 
-<div style="padding-left:4vw;">
+
+
+<div style="padding-left:4vw;" style="display:none">
 FB MESSAGE: {{message}}
 <div ng-if="!user"><a href="/home"></a></div>
     <a href="#" class="btn btn-default" ng-click="fblogout()"> FB logout</a>
@@ -47,7 +67,7 @@ FB MESSAGE: {{message}}
 <a ng-if="user" href="#" class="btn btn-info" ng-click="logout()">LOGOUT</a>
 
 <div >
-    <a href="" class="btn btn-info" ng-click="testCall()">AGGIUNGI SUBSCRIBEn</a>
+    <a href="" class="btn btn-info" ng-click="affanculo()">AGGIUNGI SUBSCRIBEn</a>
 </div>
 
 <div>

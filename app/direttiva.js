@@ -8,7 +8,7 @@ modulo
     beUrl:      'https://api.mlab.com/api/1/databases/cbmanager/collections/',
     docName: 		 'test03',
     apikey:      '?apiKey=LC-wif-orODQhsURWZf43a-I0x2hjhIf',
-    storageBase:  '', 
+    storageBase:  '',
     otherSetting: 'XYZ',
     squadre_serie_a: ["SELEZIONA...", "ATALANTA", "BOLOGNA", "CAGLIARI", "CHIEVO", "EMPOLI", "FIORENTINA", "FROSINONE", "GENOA", "INTER", "JUVENTUS", "LAZIO", "MILAN", "NAPOLI", "PARMA", "ROMA", "SAMPDORIA", "SASSUOLO", "SPAL", "TORINO", "UDINESE"],
     history: [],
@@ -21,11 +21,24 @@ modulo
     amazonBackend: "...message/blabla:",
     prefs,
     getHash,
-    doggobackend: null
+    doggobackend: null,
+    actionCodeSettings : {
+        url: 'https://rairadio.app/#/?email=' + "cbagnato77@gmail.com",
+        android: {
+          packageName: 'com.rairadio.concisecoder',
+          installApp: false, // ?????? TODO
+          minimumVersion: '12'
+        },
+        handleCodeInApp: true,
+        // When multiple custom dynamic link domains are defined, specify which
+        // one to use.
+        dynamicLinkDomain: "https://doggowut.page.link/XktS"
+        }
+    
 
 });
 app.controller("prefs", function(clSettings, $http, $log){
-    
+
     log("iniziale valore di pref : " + this.preferenza);
     const prefs = clSettings.prefs(db,"bagnato_c",console.log);
     //log(prefs.save("ciaokey","clavalue"));
@@ -40,7 +53,7 @@ app.controller("prefs", function(clSettings, $http, $log){
             // An error happened.
             $log.info("err: " + error)
           });
-          
+
     }
 });
 angular.module('myApp.playground', [])

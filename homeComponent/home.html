@@ -10,21 +10,23 @@
   <div class="col-md-12">
       Login via
       <div class="social-buttons">
-          <div class="row">
-              <div class="col-md-3">
-                  <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                  Login with Google
-                </a>
-              </div>
-            </div>
+          &nbsp;
         <a href="#" class="btn btn-primary" ng-click="main.signInFacebook()"><i class="fa fa-facebook"></i> Facebook</a>
-        <!-- <a href="#" class="btn btn-error"><i class="fa fa-twitter"></i> Twitter</a> -->
-        <a class="pull-right btn btn-outline-dark" ng-click="main.signInGoogle()" style="text-transform:none"><img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" /></a>
+        <!-- <a href="#" class="btn btn-error"><i class="fa fa-twitter"></i> Twitter</a> -->                                                                                                                            
+        <a href="#" class="btn btn-info" ng-click="main.kiki()">CHIAMA</a>
+        <a href="#" class="btn btn-warning" ng-click="main.sigin2608()">CHIAMA</a>
+        <a class="pull-right btn btn-outline-dark" ng-click="main.signInGoogle()" style="text-transform:none"><img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="images/512px-Google__G__Logo.svg.webp" /></a>
         
-        <a href="#" class="btn bg-dark text-light" ng-click="main.signInGithub()">GITHUB</a>
+        <div id="recaptcha-container" class="recap"></div>
       </div>
   </div>
-  
+  <script type="text/javascript">
+    var onloadCallback = function() {
+      grecaptcha.render('recaptcha-container', {
+          'sitekey' : '6LdwnGYcAAAAACxHLhVhcM6w60IVt-LORn2FdJrm'
+        });
+    };
+  </script>
   <form class="card-header" name="myform" ng-submit="main.signInNormal(main.user)">
   <h2 class="text-sm-center"> <br><br/><span class="pull-right col-2"><img class="img-thumbnail" src="images/gimmegomme.gif" ng-if="working"></span></h2>
   <div class="form-group" >

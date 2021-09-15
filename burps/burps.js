@@ -55,7 +55,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
   };
   
   $scope.thecat = "images/unload.png";
-  $scope.testi = [ "whatthefuckyuoudoing"];
+  $scope.testi = [ "loading" ]; 
   $scope.fatto = (data, file) => {
     console.log("[DEGUFF ]************** " + file.name)  // ERRORE DI CUI SOPRA
     aracnoService.uploadToStorage($scope, self.user , file, data, 'out_url', $scope.progressbar);
@@ -97,7 +97,7 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
 
   }
 
-  initFire();
+  // initFire();
 
 
 
@@ -154,20 +154,31 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
     
   } 
 };
-  $scope.aggiornaUser = async (a, bucket)=>{self.client.image = a;$scope.upload_complete = true;self.client.gcsImage = bucket;
+  $scope.aggiornaUser = async (doggoImage, bucket)=>{self.client.image = doggoImage;$scope.upload_complete = true;self.client.gcsImage = bucket;
     $scope.recog_in_progress = "wait please, check in progress";
     self.azione_welcome_text = $scope.recog_in_progress;
     let sent = buildRequest(self.client.gcsImage);
-    $scope.thecat = a;
     let $srv = $("#confirmButton");
     console.log($srv);
-    function ceBounding  () {return 0;}
+    function ceBounding2 ( data) {
+      for (let nn = 0; nn < data.length; nn++){
+        if (data[nn].Instances[0] && data[nn].Instances[0].BoundingBox != 'undefined')
+          return data[nn].Instances[0].BoundingBox;
+      }
+    }
+    function getBounding  (rect) {
+      if ( rect.length == 0 ) return 1;
+      let item = rect[0].BoundingBox
+      if (item)   return item;
+        else return 1;
+    }
       // let sent = buildRequest(self.client.gcsImage);
-      let url = clSettings.doggobackend + "" +a;
-      self.updateUserState(clSettings.prefs, a, 0 )
+      let url = clSettings.doggobackend + "" +doggoImage;
+      self.updateUserState(clSettings.prefs, doggoImage, 0 )
       try{
       let result = await $http.get(url, config); /// TODO: FIX erro
       let data = result.data.Labels;
+      self.updateUserTea(doggoImage);
       
       for (ii=0; ii< data.length; ii++){
       //self.testi =data[ii];
@@ -180,17 +191,29 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
         }catch (err) {$log.info(err)}
         
         $scope.testi[ii] = data[ii].Name + "::" + certezza;
-        let sw = ceBounding();
+        let ttt = ceBounding2(data);
+          
+          if ( ttt ) {
+            $scope.style= { top:ttt.Top * 100  + "%", left:100 * ttt.Left + "%", width:100 * ttt.Width + "%",height:100* ttt.Height+"%"};
+          }
+          
+        }
         $('#button').click();
-        if ( ! ceBounding() ) 
+        var $input = $('<button class="btn btn-primary" type="button" value="new button" >AAA button</button');
+        $input.appendTo($("#donut"));
+        
         $scope.recog_in_progress = false;
+        $scope.thecat = doggoImage;
         $scope.active2 = true;
         self.azione_welcome_text = "";
+        
+
+        
         
       // self.updateUserState(clSetting.prefs, result.labels, 2);
       // TODO : recover vita
       //inserire preferenza
-      }
+      
     }catch(error){console.log(error)}
       
 
@@ -214,6 +237,16 @@ app.controller( "burpsCtrl" , function ($scope, $rootScope, ngProgressFactory, $
       $('#maker').css('left', x);
   }
   self.wrap = function () {self.client.image };
+  self.updateUserTea = (img ) => {
+    let headers = { "content-type": "application/json"}
+    let ping = 'http://3.123.236.229:9292/test?collection=frutta';
+    let data = { "$date":`${new Date()}`,"image":img,"app":"Whatsdoggo"};
+    $http.post(ping, data)
+      .then( success=>console.log("send result: " + success))
+      .catch( error=>console.log(error));
+
+
+  } 
 });
 
 // $scope.request = buildRequest($scope.request);

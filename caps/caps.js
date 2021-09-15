@@ -5,7 +5,7 @@ app.controller('capsCtrl' , function( $scope, $http , aracnoService){
     this.worker = 0;
     self.$http = $http;
     aracnoService.init( $scope);
-    let done = 0;
+    let done = 0;  // TODO init removed, this !NOT WORK
     var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAdi_Ooy-2BBYZDZqbUnBVIitdJqy5iSHY&cx=017647395095094430655:fnpg3-mpcs0&q=";
     let pool = new ThreadPool(200);
     function processa(){

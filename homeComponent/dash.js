@@ -46,7 +46,9 @@ angular.module("dash", ['ngNativeTransitions'])
 
     prefs.carica("dummykey");
 
-   
+    let items = prefs.loadTutto( $scope);
+
+    console.log($scope.debugPref);
 
 
 
@@ -94,10 +96,10 @@ angular.module("dash", ['ngNativeTransitions'])
       , 1300
     )
       
+      
 
 
-
-
+    
 
 
 

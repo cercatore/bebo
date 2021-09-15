@@ -64,7 +64,7 @@
       }
 
     </style>
-  
+
 
   <style type="text/css">
    ul li a{ display:block;
@@ -127,46 +127,49 @@
     background-image: url(images/doggo_sfondo.png);
     background-size:cover;
     background-repeat: repeat-y;
-   
+
   }
 </style>
-<body style="background-color:#CCC"  id="anchor_progress" data-toggle="collapse" data-target> 
+<body style="background-color:#CCC"  id="anchor_progress" data-toggle="collapse" data-target>
   <cl-navbar></cl-navbar>
-  <button class="btn btn-primary " id="confirmDialog">CONFIRM</button>
+  <!-- <button class="btn btn-primary " id="confirmDialog">CONFIRM</button>
   <a href="#coraggio"><span class="fa fa-2x fa-send" ></span></a>
   <div class="col-12 card card-block text-center">
     <div class="row">
       <div class="col-sm-3"></div><img class="rounded-circle col-sm-6" ng-if="!splashLoad" src="images/gimmegomme.gif"><div class="col-sm-3"></div>
     </div>
-    
-  </div>
+
+  </div> -->
 <div >
   <div ng-view class="doggo"  ></div><!-- qua TODO-->
   <div class="col-12 card card-block">
       <div class="btn btn-primary  mx-5 my-5" ng-click="move()">GO BACK</div>
       <h1>{{debug}}</h1>
     </div>
-    
+
 
 </div>
 
   </body>
 
   <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.js"></script>
   <script src="js/angular.js"></script>
-
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.js"></script>
   <script src="js/angular-route.js"></script>
   <script src="js/angular-messages.min.js"></script>
   <script src="js/angular-animate.min.js"></script>
   <script src="js/ui-bootstrap-tpls-2.2.0.min.js"></script>
     <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
   <!-- AngularFire -->
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
   <script src="https://cdn.firebase.com/libs/geofire/4.1.2/geofire.min.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->           
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQZ89S4E4L"></script>
 <script>            //                                --> ERRORE
   try{
@@ -174,14 +177,17 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-MQZ89S4E4L');
-    // e possibile aggiungere altre gtag('config' ,...)   
+    // e possibile aggiungere altre gtag('config' ,...)
     // analytics track ind 'UA-136858434-1'
-  
-  
-  
+
+
+
   }
 
   catch(err){console.log(err)}
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
 </script>
 
 
@@ -189,7 +195,7 @@
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCnfDtTBNv_W66cxLfmitf0oGsJkH49OVg",
-              
+
     authDomain: "myall-ada32.firebaseapp.com",
     databaseURL : "myall-ada32.firebaseio.com",
     storageBucket : "myall-ada32.appspot.com",
@@ -199,14 +205,14 @@
   };
   var fireapp = firebase.initializeApp(config);
   const db = firebase.firestore();
-  
-  
+
+
     // FB.Event.subscribe('auth.statusChange', function(response) {
       // FB.getLoginStatus(function(response) {
           // console.log("£non dovrei stgare qwui")
     // })
     // });
-  
+
 
 </script>
 
@@ -222,11 +228,10 @@
 <script src="app/factory/geoservice.js"></script>
 <script src="app/ngprogress.min.js"></script>
 
-<script src="chat/chatController.js"></script>
 <script src="data.js"></script>
 <script src="movie/movieController.js"></script>
 <script src="movie/batch.js"></script>
-<script src="js/threadpool.js"></script>
+
 <script src="burps/burps.js"></script>
 
 <script src="kikass/kikass.js"></script>
@@ -236,4 +241,5 @@
 <script src="app/angular-native-transitions.js"></script>
 <script src="homeComponent/dash.js"></script>
 <script src="prefs_debug/stats.js"></script>
+<script src="chat/chatController.js"></script>
 </html>
