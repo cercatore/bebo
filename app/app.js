@@ -648,7 +648,7 @@ app.run(['$location', '$rootScope', 'clSettings', '$timeout', function($location
 			href: last   
 		  };   //& last = "/" + last 
 		console.log(last);
-		$location.path(last);
+		$location.path("#" + last);
 	}
 	$rootScope.$watch("user", function(newvalue,oldvalue){
 		console.log("redirecting to dashboard...");
